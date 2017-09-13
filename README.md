@@ -7,5 +7,7 @@ This repository is dedicated to the projects of Fall 2017 CS5610 Web Development
 
 # Useful Links
 Root to the hosted environment on Heroku: https://webdev-soni-swati.herokuapp.com/
+
 Project: NA
+
 Assignment: NA
