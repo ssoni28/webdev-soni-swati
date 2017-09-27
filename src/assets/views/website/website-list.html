@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet"
           href="../../vendors/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/style.css">
     <title>Websites</title>
 </head>
 <body>
@@ -11,28 +12,42 @@
   <h1>Website List</h1>
   <ul class="list-group">
     <li class="list-group-item active">
-      <a class="pull-left" href="../user/profile.html" style="margin-right: 10px">
-        <span class="glyphicon glyphicon-chevron-left" style="color:white"></span>
-      </a>
-        Websites
-      <a class="pull-right" href="website-new.html">
-        <span class="glyphicon glyphicon-plus" style="color:white"></span>
-      </a>
+      <div class="row">
+        <div class="col-sm-1">
+          <a href="../user/profile.html">
+            <span class="glyphicon glyphicon-chevron-left" style="color:white"></span>
+          </a>
+        </div>
+        <div class="col-sm-1">
+          Websites
+        </div>
+        <div class="col-sm-10">
+          <a class="pull-right" href="website-new.html">
+            <span class="glyphicon glyphicon-plus" style="color:white"></span>
+          </a>
+        </div>
+      </div>
     </li>
     <li class="list-group-item">
-      Wikipedia
+      <a href="https://www.wikipedia.org/">Wikipedia</a>
       <a class="pull-right" href="website-edit.html">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
     </li>
     <li class="list-group-item">
-      Cnet
+      <a href="https://www.cnet.com/">Cnet</a>
       <a class="pull-right" href="website-edit.html">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
     </li>
     <li class="list-group-item">
-      Sample
+      <a href="https://gizmodo.com/">Gizmodo</a>
+      <a class="pull-right" href="website-edit.html">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://www.ferrari.com/en-US">Ferrari</a>
       <a class="pull-right" href="website-edit.html">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
@@ -40,12 +55,15 @@
   </ul>
 </div>
 
-<nav class="navbar navbar-fixed-bottom" style="color:blue">
+<!-- Footer -->
+<nav class="navbar navbar-custom navbar-fixed-bottom">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+    <p class="navbar-text pull-right">
+      <a href="profile.html">
+        <span class="glyphicon glyphicon-user" style="color: white"></span>
       </a>
-    </div>
+    </p>
+
   </div>
 </nav>
 
