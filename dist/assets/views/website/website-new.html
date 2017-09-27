@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <link rel="stylesheet"
-        href="../../vendors/bootstrap/dist/css/bootstrap.min.css"
+        href="../../vendors/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="../../css/style.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -12,41 +14,57 @@
   <div class="row">
     <ul class="list-group">
       <li class="list-group-item active">
-        <div class="col-sm-1">
-          <a href="../user/profile.html" class="pull-left" style="margin-right: 10px">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-          </a>
-          Websites
-        </div>
-        <div class="col-sm-3">
-          <a href="website-edit.html" class="pull-right">
+    <div class="row">
+      <div class="col-sm-1 col-md-1 col-lg-1">
+            <a href="../user/profile.html" class="pull-left"
+               style="color:white">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+      </div>
+      <div class="col-sm-1 col-md-1 col-lg -1 hidden-sm">
+            Websites
+      </div>
+      <div class="col-sm-1 col-md-1 col-lg-1 hidden-sm">
+          <a href="website-edit.html" class="pull-right" style="color: white">
             <span class="glyphicon glyphicon-plus"></span>
           </a>
-        </div>
-        <div class="col-sm-8">
-          <a href="website-edit.html" class="pull-right">
+      </div>
+      <div class="col-sm-2 col-md-3 col-lg-3">
+        New Website
+      </div>
+      <div class="col-sm-9 col-md-6 col-lg-6">
+          <a href="website-edit.html" class="pull-right" style="color: white">
             <span class="glyphicon glyphicon-ok"></span>
           </a>
-        </div>
-
+      </div>
+    </div>
       </li>
     </ul>
-    <div class="col-sm-3">
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3 col-md-3 col-lg-3 hidden-sm">
       <ul class="list-group">
         <li class="list-group-item">
-          Facebook
+          <a href="https://www.wikipedia.org/">Wikipedia</a>
           <a href="website-edit.html" class="pull-right">
             <span class="glyphicon glyphicon-cog"></span>
           </a>
         </li>
         <li class="list-group-item">
-          Wikipedia
+          <a href="https://www.cnet.com/">Cnet</a>
           <a href="website-edit.html" class="pull-right">
             <span class="glyphicon glyphicon-cog"></span>
           </a>
         </li>
         <li class="list-group-item">
-          Twitter
+          <a href="https://gizmodo.com/">Gizmodo</a>
+          <a href="website-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://www.ferrari.com/en-US">Ferrari</a>
           <a href="website-edit.html" class="pull-right">
             <span class="glyphicon glyphicon-cog"></span>
           </a>
@@ -54,17 +72,26 @@
       </ul>
     </div>
 
-  <div class="col-sm-9">
-    <label>Name</label>
-    <input class="form-control"
+    <div class="col-xs-12 col-md-9 col-lg-9">
+      <label>Name</label>
+      <input class="form-control"
             placeholder="Name"/>
-    <label>Description</label>
-    <textarea class="form-control"
+      <label>Description</label>
+      <textarea class="form-control"
               placeholder="Description"></textarea>
+    </div>
   </div>
+</div>
+<!-- Footer -->
+<nav class="navbar navbar-custom navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a href="profile.html">
+        <span class="glyphicon glyphicon-user" style="color: white"></span>
+      </a>
+    </p>
 
   </div>
-</div>
-</div>
+</nav>
 </body>
 </html>
