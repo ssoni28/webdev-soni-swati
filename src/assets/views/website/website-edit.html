@@ -5,98 +5,98 @@
         href="../../vendors/bootstrap/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet"
         href="../../css/style.css"/>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Website Edit</title>
 </head>
 <body>
-  <div class="container-fluid">
-    <h1>Website Edit</h1>
+<div class="container-fluid">
+
+  <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="row">
+      <div class="col-sm-1 col-md-1 col-lg-1">
+        <a href="../user/profile.html"
+           class="my-white-color pull-left navbar-brand">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+      <div class="navbar-brand my-white-color col-sm-1 col-md-1 col-lg -1
+        hidden-xs hidden-sm">
+        Websites
+      </div>
+      <div class="navbar-brand col-sm-1 col-md-1 col-lg-1
+            hidden-xs hidden-sm">
+        <a href="website-edit.html"
+           class="pull-right navbar-brand my-white-color">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </div>
+      <div class="navbar-brand my-white-color col-sm-2 col-md-3 col-lg-3">
+        Edit Website
+      </div>
+      <div class="col-sm-9 col-md-6 col-lg-6">
+        <a href="website-edit.html"
+           class="pull-right navbar-brand my-white-color">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="my-container row">
+    <div class="col-sm-3 col-md-3 col-lg-3 hidden-sm">
       <ul class="list-group">
-        <li class="list-group-item active">
-          <div class="row">
-            <div class="col-sm-1 col-md-1 col-lg-1">
-              <a href="../user/profile.html" class="pull-left"
-                 style="color:white">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-              </a>
-            </div>
-            <div class="col-sm-1 col-md-1 col-lg -1 hidden-sm">
-              Websites
-            </div>
-            <div class="col-sm-1 col-md-1 col-lg-1 hidden-sm">
-              <a href="website-edit.html" class="pull-right" style="color: white">
-                <span class="glyphicon glyphicon-plus"></span>
-              </a>
-            </div>
-            <div class="col-sm-2 col-md-3 col-lg-3">
-              Edit Website
-            </div>
-            <div class="col-sm-9 col-md-6 col-lg-6">
-              <a href="website-edit.html" class="pull-right" style="color: white">
-                <span class="glyphicon glyphicon-ok"></span>
-              </a>
-            </div>
-          </div>
+        <li class="list-group-item">
+          <a href="../page/page-list.html">Wikipedia</a>
+          <a href="website-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="../page/page-list.html">Cnet</a>
+          <a href="website-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="../page/page-list.html">Gizmodo</a>
+          <a href="website-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="../page/page-list.html">Ferrari</a>
+          <a href="website-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
         </li>
       </ul>
     </div>
 
-    <div class="row">
-      <div class="col-sm-3 col-md-3 col-lg-3 hidden-sm">
-        <ul class="list-group">
-          <li class="list-group-item">
-            <a href="https://www.wikipedia.org/">Wikipedia</a>
-            <a href="website-edit.html" class="pull-right">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-          </li>
-          <li class="list-group-item">
-            <a href="https://www.cnet.com/">Cnet</a>
-            <a href="website-edit.html" class="pull-right">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-          </li>
-          <li class="list-group-item">
-            <a href="https://gizmodo.com/">Gizmodo</a>
-            <a href="website-edit.html" class="pull-right">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-          </li>
-          <li class="list-group-item">
-            <a href="https://www.ferrari.com/en-US">Ferrari</a>
-            <a href="website-edit.html" class="pull-right">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-          </li>
-        </ul>
-      </div>
+    <div class="col-xs-12 col-md-9 col-lg-9">
+      <label>Website Name</label>
+      <input class="form-control"
+             placeholder="Name"/>
 
-      <div class="col-xs-12 col-md-9 col-lg-9">
-        <label>Website Name</label>
-        <input class="form-control"
-               placeholder="Name"/>
+      <label>Website Description</label>
+      <textarea class="form-control"
+                rows="4"
+                placeholder="Description"></textarea>
 
-        <label>Website Description</label>
-        <textarea class="form-control"
-                  rows="4"
-                  placeholder="Description"></textarea>
-
-        <button class="btn btn-danger btn-block">Cancel</button>
-      </div>
+      <button class="btn btn-danger btn-block">Cancel</button>
     </div>
   </div>
+</div>
 
-  <!-- Footer -->
-  <nav class="navbar navbar-custom navbar-fixed-bottom">
-    <div class="container-fluid">
-      <p class="navbar-text pull-right">
-        <a href="profile.html">
-          <span class="glyphicon glyphicon-user" style="color: white"></span>
-        </a>
-      </p>
+<!-- Footer -->
+<nav class="navbar navbar-custom navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a href="profile.html">
+        <span class="glyphicon glyphicon-user" style="color: white"></span>
+      </a>
+    </p>
 
-    </div>
-  </nav>
+  </div>
+</nav>
 </body>
 </html>
