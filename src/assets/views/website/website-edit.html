@@ -10,11 +10,11 @@
 </head>
 <body>
 <div class="container-fluid">
-
+  <!--Header-->
   <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="row">
       <div class="col-sm-1 col-md-1 col-lg-1">
-        <a href="../user/profile.html"
+        <a href="website-list.html"
            class="my-white-color pull-left navbar-brand">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -25,8 +25,8 @@
       </div>
       <div class="navbar-brand col-sm-1 col-md-1 col-lg-1
             hidden-xs hidden-sm">
-        <a href="website-edit.html"
-           class="pull-right navbar-brand my-white-color">
+        <a href="website-new.html"
+           class="pull-right my-white-color">
           <span class="glyphicon glyphicon-plus"></span>
         </a>
       </div>
@@ -34,7 +34,7 @@
         Edit Website
       </div>
       <div class="col-sm-9 col-md-6 col-lg-6">
-        <a href="website-edit.html"
+        <a href="website-list.html"
            class="pull-right navbar-brand my-white-color">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
@@ -43,7 +43,7 @@
   </nav>
 
   <div class="my-container row">
-    <div class="col-sm-3 col-md-3 col-lg-3 hidden-sm">
+    <div class="col-sm-3 col-md-3 col-lg-3 hidden-xs hidden-sm">
       <ul class="list-group">
         <li class="list-group-item">
           <a href="../page/page-list.html">Wikipedia</a>
@@ -72,17 +72,19 @@
       </ul>
     </div>
 
-    <div class="col-xs-12 col-md-9 col-lg-9">
-      <label>Website Name</label>
+    <div class="col-sm-12 col-md-9 col-lg-9">
+      <label for="name">Website Name</label>
       <input class="form-control"
-             placeholder="Name"/>
+             id="name"
+             placeholder="Wikipedia"/>
 
-      <label>Website Description</label>
+      <label for="description">Website Description</label>
       <textarea class="form-control"
+                id="description"
                 rows="4"
-                placeholder="Description"></textarea>
+                placeholder="Wikipedia is a free online encyclopedia with the aim to allow anyone to edit articles. Wikipedia is the largest and most popular general reference work on the Internet, and is ranked the fifth-most popular website. Wikipedia is owned by the nonprofit Wikimedia Foundation."></textarea>
 
-      <button class="btn btn-danger btn-block">Cancel</button>
+      <a class="btn btn-danger btn-block" href="website-list.html">Delete</a>
     </div>
   </div>
 </div>
@@ -91,8 +93,8 @@
 <nav class="navbar navbar-custom navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="profile.html">
-        <span class="glyphicon glyphicon-user" style="color: white"></span>
+      <a href="../user/profile.html">
+        <span class="glyphicon glyphicon-user my-white-color"></span>
       </a>
     </p>
 
