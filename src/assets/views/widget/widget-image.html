@@ -13,52 +13,66 @@
 <div class="container-fluid">
 
   <nav class="navbar navbar-custom navbar-fixed-top">
-  <div class="row">
-          <div class="col-sm-1 col-md-1 col-lg-1">
-            <a href="widget-list.html" class="navbar-brand pull-left my-white-color">
-              <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-          </div>
+    <div class="row">
+      <div class="col-sm-1 col-md-1 col-lg-1">
+        <a href="widget-list.html"
+           class="navbar-brand pull-left my-white-color">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
 
-          <div class="navbar-brand my-white-color col-sm-2 col-md-2 col-lg-2">
-            Widget Edit
-          </div>
-          <div class="col-sm-9 col-md-9 col-lg-9">
-            <a href="website-edit.html" class="navbar-brand pull-right my-white-color">
-              <span class="glyphicon glyphicon-ok"></span>
-            </a>
-          </div>
-  </div>
+      <div class="navbar-brand my-white-color col-sm-2 col-md-2 col-lg-2">
+        Widget Edit
+      </div>
+      <div class="col-sm-9 col-md-9 col-lg-9">
+        <a href="widget-list.html"
+           class="navbar-brand pull-right my-white-color">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
+    </div>
   </nav>
   <div class="row">
-  <div class="col-xs-12 col-md-9 col-lg-9" style="margin-top: 30px">
-    <label for="username">Name</label>
-    <input class="form-control"/>
-    <label>Text</label>
-    <input class="form-control"/>
-    <label>URL</label>
-    <input class="form-control"
-           placeholder="http://lorempixel.com/400/200"/>
-    <label>Width</label>
-    <input class="form-control"
-            placeholder="100%"/>
-    <label>Upload</label>
-    <input class="form-control"
-           type="file"
-           name="Choose File"
-           placeholder="No file choosen">
+    <div class="col-xs-12 col-md-9 col-lg-9" style="margin-top: 30px">
+      <label for="name">Name</label>
+      <input class="form-control"
+             id="name"
+             type="text"
+             placeholder="Name"/>
+      <label for="text">Text</label>
+      <input class="form-control"
+             id="text"
+             type="text"
+             placeholder="Text"/>
+      <label for="url">URL</label>
+      <input class="form-control"
+             id="url"
+             type="url"
+             placeholder="http://lorempixel.com/400/200"/>
+      <label for="imageWidth">Width</label>
+      <input class="form-control"
+             id="imageWidth"
+             type="text"
+             placeholder="100%"/>
+      <label for="fileUpload">Upload</label>
+      <input class="form-control"
+             type="file"
+             id="fileUpload"
+             name="Choose File"
+             placeholder="No file choosen">
 
-    <button class="btn btn-primary btn-block">Upload Image</button>
-    <button class="btn btn-danger btn-block">Delete</button>
-  </div>
+      <a class="btn btn-primary btn-block">Upload Image</a>
+      <a class="btn btn-danger btn-block"
+         href="widget-list.html">Delete</a>
+    </div>
   </div>
 </div>
 <!-- Footer -->
 <nav class="navbar navbar-custom navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="profile.html">
-        <span class="glyphicon glyphicon-user" style="color: white"></span>
+      <a href="../user/profile.html">
+        <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>
 
