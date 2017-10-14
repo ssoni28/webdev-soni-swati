@@ -18,10 +18,9 @@ import { PageEditComponent } from './components/page/page-edit/page-edit.compone
 import { PageListComponent } from './components/page/page-list/page-list.component';
 import { PageNewComponent } from './components/page/page-new/page-new.component';
 import { WidgetChooserComponent } from './components/widget/widget-chooser/widget-chooser.component';
-import { WidgetHeadingComponent } from './components/widget/widget-heading/widget-heading.component';
-import { WidgetImageComponent } from './components/widget/widget-image/widget-image.component';
+import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
-import { WidgetYoutubeComponent } from './components/widget/widget-youtube/widget-youtube.component';
+import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
 
@@ -41,7 +40,6 @@ import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-he
     PageListComponent,
     PageNewComponent,
     WidgetChooserComponent,
-    WidgetHeadingComponent,
     WidgetImageComponent,
     WidgetListComponent,
     WidgetYoutubeComponent,
