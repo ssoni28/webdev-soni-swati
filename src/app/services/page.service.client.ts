@@ -24,40 +24,43 @@ export class PageService {
   };
 
   createPage(websiteId: String, page: Page) {
-    user._id = Math.random().toString();
-    this.users.push(user);
-    return user;
+    page._id = Math.random().toString();
+    page.websiteId = websiteId;
+    this.pages.push(page);
+    return page;
   }
   findPageByWebsiteId(websiteId: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {
-        return this.users[x];
+    let requiredPages: Page[];
+    for (let x = 0; x < this.pages.length; x++) {
+      if (this.pages[x].websiteId === websiteId) {
+        requiredPages.push(this.pages[x]);
       }
     }
+    return requiredPages;
   }
   updatePage(pageId: String, page: Page) {
-    for (const u in this.users) {
-      if (this.users[u]._id === userId) {
-        this.users[u].firstName = user.firstName;
-        this.users[u].lastName =  user.lastName;
-        this.users[u].email = user.email;
+    for (const p in this.pages) {
+      if (this.pages[p]._id === pageId) {
+        this.pages[p].websiteId = page.websiteId;
+        this.pages[p].name = page.name;
+        this.pages[p].description = page.description;
       }
     }
   }
   deletePage(pageId: String) {
-    for (let u in this.users) {
-      if (this.users[u]._id === userId) {
-        let y = +u;
-        this.users.splice(y, 1);
+    for (let p in this.pages) {
+      if (this.pages[p]._id === pageId) {
+        let y = +p;
+        this.pages.splice(y, 1);
         return true;
       }
     }
     return false;
   }
   findPageById(pageId: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x].username === username) {
-        return this.users[x];
+    for (let x = 0; x < this.pages.length; x++) {
+      if (this.pages[x]._id === pageId) {
+        return this.pages[x];
       }
     }
   }

@@ -4,7 +4,7 @@ import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import {Router} from '@angular/router';
-import {Widget} from "../models/widget.model.client";
+import {Widget} from '../models/widget.model.client';
 
 // injecting service into module
 @Injectable()
@@ -29,40 +29,46 @@ export class WidgetService {
   };
 
   createWidget(pageId: string, widget: Widget) {
-    user._id = Math.random().toString();
-    this.users.push(user);
-    return user;
+    widget._id = Math.random().toString();
+    widget.pageId = pageId;
+    this.widgets.push(widget);
+    return widget;
   }
   findWidgetsByPageId(pageId: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {
-        return this.users[x];
+    let requiredWidgets: Widget[];
+    for (let x = 0; x < this.widgets.length; x++) {
+      if (this.widgets[x].pageId === pageId) {
+        requiredWidgets.push(this.widgets[x]);
       }
     }
+    return requiredWidgets;
   }
   updateWidget(widgetId: String, widget: Widget) {
-    for (const u in this.users) {
-      if (this.users[u]._id === userId) {
-        this.users[u].firstName = user.firstName;
-        this.users[u].lastName =  user.lastName;
-        this.users[u].email = user.email;
+    for (const w in this.widgets) {
+      if (this.widgets[w]._id === widgetId) {
+        this.widgets[w].url = widget.url;
+        this.widgets[w].width = widget.width;
+        this.widgets[w].text = widget.text;
+        this.widgets[w].size = widget.size;
+        this.widgets[w].pageId = widget.pageId;
+        this.widgets[w].widgetType = widget.widgetType;
       }
     }
   }
   deleteWidget(widgetId: String) {
-    for (let u in this.users) {
-      if (this.users[u]._id === userId) {
-        let y = +u;
-        this.users.splice(y, 1);
+    for (let w in this.widgets) {
+      if (this.widgets[w]._id === widgetId) {
+        let y = +w;
+        this.widgets.splice(y, 1);
         return true;
       }
     }
     return false;
   }
   findWidgetById(widgetId: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x].username === username) {
-        return this.users[x];
+    for (let x = 0; x < this.widgets.length; x++) {
+      if (this.widgets[x]._id === widgetId) {
+        return this.widgets[x];
       }
     }
   }

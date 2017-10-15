@@ -28,52 +28,43 @@ export class WebsiteService {
 
   };
 
-  findWebsiteByUser(userId: String) {
-    let requiredUser;
-    for (const x in this.users) {
-      if (this.users[x].username === username && this.users[x].password === password) {
-        requiredUser = this.users[x];
-        return requiredUser;
+  findWebsitesByUser(userId: String) {
+    let requiredWebsites: Website[];
+    for (const w in this.websites) {
+      if (this.websites[w].developerId === userId) {
+        requiredWebsites.push(this.websites[w]);
       }
     }
-    const errorMsg = this.makeError(username, password);
-    return errorMsg;
+    return requiredWebsites;
   }
 
-  makeError(username, password) {
-    for (const u in this.users) {
-      if (this.users[u].username === username && this.users[u].password !== password) {
-        return 'Password is not correct.';
-      }
-    }
-    return 'Username does not exists';
-  }
   createwebsite(userId: String, website: Website) {
-    user._id = Math.random().toString();
-    this.users.push(user);
-    return user;
+    website._id = Math.random().toString();
+    website.developerId = userId;
+    this.websites.push(website);
+    return website;
   }
   findWebsiteById(websiteId: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {
-        return this.users[x];
+    for (let x = 0; x < this.websites.length; x++) {
+      if (this.websites[x]._id === websiteId) {
+        return this.websites[x];
       }
     }
   }
   updateWebsite(websiteId: String, website: Website) {
-    for (const u in this.users) {
-      if (this.users[u]._id === userId) {
-        this.users[u].firstName = user.firstName;
-        this.users[u].lastName =  user.lastName;
-        this.users[u].email = user.email;
+    for (const w in this.websites) {
+      if (this.websites[w]._id === websiteId) {
+        this.websites[w].name = website.name;
+        this.websites[w].developerId = website.developerId;
+        this.websites[w].description = website.description;
       }
     }
   }
   deleteWebsite(websiteId: String) {
-    for (let u in this.users) {
-      if (this.users[u]._id === userId) {
-        let y = +u;
-        this.users.splice(y, 1);
+    for (let w in this.websites) {
+      if (this.websites[w]._id === websiteId) {
+        let y = +w;
+        this.websites.splice(y, 1);
         return true;
       }
     }
