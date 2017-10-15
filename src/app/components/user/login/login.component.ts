@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/Rx';
 import {UserService} from '../../../services/user.service.client';
 
 @Component({

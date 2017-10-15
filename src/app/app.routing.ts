@@ -18,21 +18,21 @@ import {WidgetEditComponent} from './components/widget/widget-edit/widget-edit.c
 
 
 const APP_ROUTES: Routes = [
-  {path: '', component : HomeComponent},
+  {path: '', component : LoginComponent},
   {path: 'test', component: TestComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/:uid', component: ProfileComponent},
-  {path: 'user/:uid/website', component: WebsiteListComponent},
-  {path: 'user/:uid/website/new', component: WebsiteNewComponent},
-  {path: 'user/:uid/website/:wid', component: WebsiteEditComponent},
-  {path: 'user/:uid/website/:wid/page', component: PageListComponent},
-  {path: 'user/:uid/website/:wid/page/new', component: PageNewComponent},
-  {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/:wdid', component: WidgetEditComponent}
+  {path: 'user/:userId', component: ProfileComponent},
+  {path: 'user/:userId/website', component: WebsiteListComponent},
+  {path: 'user/:userId/website/new', component: WebsiteNewComponent},
+  {path: 'user/:userId/website/:websiteId', component: WebsiteEditComponent},
+  {path: 'user/:userId/website/:websiteId/page', component: PageListComponent},
+  {path: 'user/:userId/website/:websiteId/page/new', component: PageNewComponent},
+  {path: 'user/:userId/website/:websiteId/page/:pageId', component: PageEditComponent},
+  {path: 'user/:userId/website/:websiteId/page/:pageId/widget', component: WidgetListComponent},
+  {path: 'user/:userId/website/:websiteId/page/:pageId/widget/new', component: WidgetChooserComponent},
+  {path: 'user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', component: WidgetEditComponent}
 ];
 
 // Export the routes as module providers
-export const Routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
+export const Routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES)
