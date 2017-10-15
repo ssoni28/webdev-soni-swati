@@ -47,3 +47,7 @@ body {
 .custom-margin {
   margin-left:5px;
 }
+
+.custom-style {
+  color: #red;
+}

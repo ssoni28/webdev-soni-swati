@@ -23,6 +23,7 @@ import { WidgetListComponent } from './components/widget/widget-list/widget-list
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
+import {UserService} from './services/user.service.client';
 
 @NgModule({
   // Declare components here
@@ -53,7 +54,7 @@ import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-he
     Routing
   ],
   // Client Side services here
-  providers: [ TestService],
+  providers: [ TestService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
