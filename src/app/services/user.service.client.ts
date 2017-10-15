@@ -61,13 +61,14 @@ export class UserService {
       if (this.users[u]._id === userId) {
         this.users[u].firstName = user.firstName;
         this.users[u].lastName =  user.lastName;
+        this.users[u].email = user.email;
       }
     }
   }
   deleteUser(userId: String) {
-    for (const u in this.users) {
+    for (let u in this.users) {
       if (this.users[u]._id === userId) {
-        const y = +u;
+        let y = +u;
         this.users.splice(y, 1);
         return true;
       }
