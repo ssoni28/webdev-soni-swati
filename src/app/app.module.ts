@@ -1,14 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {Routing} from './app.routing';
-import {HttpModule} from '@angular/http';
-import {FormsModule} from '@angular/forms';
+import { Routing } from './app.routing';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+
+import {TestService} from './services/test.service.client';
+import { UserService } from './services/user.service.client';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TestComponent } from './components/test/test.component';
-import {TestService} from './services/test.service.client';
-import {LoginComponent } from './components/user/login/login.component';
+import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { WebsiteEditComponent } from './components/website/website-edit/website-edit.component';
@@ -23,7 +25,6 @@ import { WidgetListComponent } from './components/widget/widget-list/widget-list
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
-import {UserService} from './services/user.service.client';
 
 @NgModule({
   // Declare components here
@@ -55,6 +56,6 @@ import {UserService} from './services/user.service.client';
   ],
   // Client Side services here
   providers: [ TestService, UserService],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
