@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Widget} from '../../../../models/widget.model.client';
+import {WidgetService} from '../../../../services/widget.service.client';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-widget-image',
@@ -7,9 +10,72 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetImageComponent implements OnInit {
 
-  constructor() { }
+
+  userId: String;
+  websiteId: String;
+  pageId: string;
+  widgetId: String;
+  widgetType: String;
+  widgetText: String;
+  widgetSize: String;
+  errorFlag: boolean;
+  errorMsg = 'Fields can not be blank';
+  widgetFlag: boolean;
+  widget: Widget;
+  widgetURL: String;
+  widgetWidth: String;
+  constructor(private widgetService: WidgetService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
+    this.errorFlag = false;
+    this.route.params.subscribe(params => {
+      if (params['userId']) {
+        this.userId = params['userId'];
+      }
+      if (params['websiteId']) {
+        this.websiteId = params['websiteId'];
+      }
+      if (params['pageId']) {
+        this.pageId = params['pageId'];
+      }
+      if (params['widgetId']) {
+        this.widgetId = params['widgetId'];
+      }
+      if (params['widgetType']) {
+        this.pageId = params['widgetType'];
+      }
+      this.findWidgetById();
+    });
+
+  }
+
+  findWidgetById() {
+    this.widget = this.widgetService.findWidgetById(this.widgetId);
+    if (this.widget) {
+      this.widgetFlag = true;
+      this.widgetURL = this.widget.url;
+      this.widgetWidth = this.widget.width;
+    } else {
+      this.widgetWidth = '';
+      this.widgetURL = '';
+      this.widgetFlag = false;
+    }
+  }
+
+  updateWidget() {
+    if (this.widgetURL === '' || this.widgetWidth === '') {
+      this.errorFlag = true;
+    } else {
+      const widget = new Widget(this.widgetId, this.widgetType, this.pageId, this.widgetSize, this.widgetText, '', '');
+      if (!this.widgetFlag) {
+        this.widgetService.createWidget(this.pageId, this.widget);
+      } else {
+        this.widgetService.updateWidget(this.widgetId, this.widget);
+      }
+      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+    }
   }
 
 }

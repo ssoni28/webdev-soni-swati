@@ -1,10 +1,10 @@
-<!--
+
 <div class="container-fluid">
 
   <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="row">
       <div class="col-sm-1 col-md-1 col-lg-1">
-        <a href="widget-list.html"
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']"
            class="navbar-brand pull-left my-white-color">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -14,7 +14,7 @@
         Widget Edit
       </div>
       <div class="col-sm-9 col-md-9 col-lg-9">
-        <a href="widget-list.html"
+        <a (click)="updateWidget()"
            class="navbar-brand pull-right my-white-color">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
@@ -24,27 +24,32 @@
   <div class="row">
     <div class="col-xs-12 col-md-9 col-lg-9" style="margin-top: 30px">
       <label for="name">Name</label>
-      <input class="form-control"
+      <input [(ngModel)]="widgetName"
+             class="form-control"
              id="name"
              type="text"
              placeholder="Name"/>
       <label for="text">Text</label>
-      <input class="form-control"
+      <input [(ngModel)]="widgetText"
+             class="form-control"
              id="text"
              type="text"
              placeholder="Text"/>
       <label for="url">URL</label>
-      <input class="form-control"
+      <input [(ngModel)]="widgetURL"
+             class="form-control"
              id="url"
              type="url"
              placeholder="http://lorempixel.com/400/200"/>
       <label for="imageWidth">Width</label>
-      <input class="form-control"
+      <input [(ngModel)]="widgetWidth"
+             class="form-control"
              id="imageWidth"
              type="text"
              placeholder="100%"/>
       <label for="fileUpload">Upload</label>
-      <input class="form-control"
+      <input [(ngModel)]="widgetUpload"
+             class="form-control"
              type="file"
              id="fileUpload"
              name="Choose File"
@@ -52,7 +57,7 @@
 
       <a class="btn btn-primary btn-block">Upload Image</a>
       <a class="btn btn-danger btn-block"
-         href="widget-list.html">Delete</a>
+      [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
     </div>
   </div>
 </div>
@@ -60,11 +65,11 @@
 <nav class="navbar navbar-custom navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
+      <a [routerLink]="['/user', userId]">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>
 
   </div>
 </nav>
--->
+

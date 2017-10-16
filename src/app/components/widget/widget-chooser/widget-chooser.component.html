@@ -1,10 +1,10 @@
-<!--
+
 <div class="container-fluid">
 
   <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="row">
       <div class="col-sm-1 col-md-1 col-lg-1">
-        <a href="widget-list.html"
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']"
            class="pull-left navbar-brand my-white-color">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -19,34 +19,34 @@
   <div class="my-container row">
     <ul class="list-group">
       <li class="list-group-custom-item">
-        <a href="widget-heading.html">Heading</a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'HEADING']">Heading</a>
       </li>
       <li class="list-group-custom-item">
-        <a href="widget-heading.html">Label</a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'HEADING']">Label</a>
       </li>
       <li class="list-group-custom-item">
-        <a href="widget-heading.html">HTML</a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'HEADING']">HTML</a>
       </li>
       <li class="list-group-custom-item">
-        <a href="widget-heading.html">Text Input</a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'HEADING']">Text Input</a>
       </li>
       <li class="list-group-custom-item">
-        <a href="widget-heading.html">Link</a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'HEADING']">Link</a>
       </li>
       <li class="list-group-custom-item">
-        <a href="widget-heading.html">Button</a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'HEADING']">Button</a>
       </li>
       <li class="list-group-custom-item">
-        <a href="widget-image.html">Image</a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'IMAGE']">Image</a>
       </li>
       <li class="list-group-custom-item">
-        <a href="widget-youtube.html">Youtube</a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'YOUTUBE']">Youtube</a>
       </li>
       <li class="list-group-custom-item">
-        <a href="widget-heading.html">Data Table</a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'HEADING']">Data Table</a>
       </li>
       <li class="list-group-custom-item">
-        <a href="widget-heading.html">Repeater</a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'HEADING']">Repeater</a>
       </li>
     </ul>
   </div>
@@ -55,7 +55,7 @@
 <nav class="navbar navbar-custom navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
+      <a [routerLink]="['/user', userId]">
         <span class="glyphicon glyphicon-user my-white-color"></span>
       </a>
     </p>
@@ -63,4 +63,3 @@
   </div>
 </nav>
 
--->

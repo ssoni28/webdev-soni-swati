@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
+    this.errorFlag = false;
   }
 
   login() {
@@ -33,7 +34,8 @@ export class LoginComponent implements OnInit {
     if (currentUser) {
       console.log(currentUser);
       this.router.navigate(['/user', currentUser._id]);
-      this.disabledFlag = false;
+    } else {
+      this.errorFlag = true;
     }
   }
 }

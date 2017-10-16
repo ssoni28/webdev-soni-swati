@@ -1,10 +1,10 @@
-<!--
+
 <div class="container-fluid">
 
   <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="row">
       <div class="col-sm-1 col-md-1 col-lg-1">
-        <a href="widget-list.html"
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']"
            class="pull-left navbar-brand my-white-color">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -14,7 +14,7 @@
         Widget Edit
       </div>
       <div class="col-sm-9 col-md-9 col-lg-9">
-        <a href="widget-list.html"
+        <a (click)="updateWidget()"
            class="navbar-brand my-white-color pull-right">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
@@ -23,23 +23,35 @@
   </nav>
 
   <div class="my-container row">
+    <div *ngIf="errorFlag"
+         class="alert alert-danger">
+      {{errorMsg}}
+    </div>
     <div class="col-xs-12 col-md-9 col-lg-9">
       <label for="headerName">Name</label>
-      <input class="form-control"
+      <input [(ngModel)]="widgetType"
+             class="form-control"
              placeholder="Name"
              type="text"
              id="headerName"/>
+
       <label for="headerText">Text</label>
-      <input class="form-control"
+
+      <input [(ngModel)]="widgetText"
+             class="form-control"
              type="text"
              id="headerText"
-             placeholder="A Short History of Donald Trump's Stormy Relationship With Facebook"></input>
+             placeholder="A Short History of Donald Trump's Stormy Relationship With Facebook"/>
+
       <label for="size">Size</label>
-      <input class="form-control"
+
+      <input [(ngModel)]="widgetSize"
+             class="form-control"
              placeholder="4"
              type="number"
              id="size"/>
-      <a class="btn btn-danger btn-block" href="widget-list.html">Delete</a>
+      <a class="btn btn-danger btn-block"
+         [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
     </div>
   </div>
 </div>
@@ -47,11 +59,11 @@
 <nav class="navbar navbar-custom navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
+      <a [routerLink]="['/user', userId]">
         <span class="glyphicon glyphicon-user my-white-color"></span>
       </a>
     </p>
   </div>
 </nav>
 
--->
+

@@ -1,6 +1,6 @@
 export class Widget {
   _id: String;
-  widgetType: string;
+  widgetType: String;
   pageId: String;
   size: String;
   text: String;

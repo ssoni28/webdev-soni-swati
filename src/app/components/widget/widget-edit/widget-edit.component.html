@@ -1,15 +1,39 @@
-<div [ngSwitch]="widget.type">
+<div class="container">
+<div [ngSwitch]="widget.widgetType">
 
-  <div *ngSwitchCase='header'>
+  <div *ngSwitchCase="'HEADING'">
     <app-widget-header></app-widget-header>
   </div>
 
-  <div *ngSwitchCase='image'>
+  <div *ngSwitchCase="'IMAGE'">
     <app-widget-image></app-widget-image>
   </div>
 
-  <div *ngSwitchCase='youtube'>
+  <div *ngSwitchCase="'YOUTUBE'">
     <app-widget-youtube></app-widget-youtube>
   </div>
+</div>
 
 </div>
+<!-- Footer -->
+<nav class="navbar navbar-custom navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-left">
+      <a [routerLink]="['/user', userId, 'website']">
+        class="my-white-color">
+        <span class="glyphicon glyphicon-play"></span>
+      </a>
+
+      <a [routerLink]="['/user', userId, 'website']">
+        class="custom-margin my-white-color">
+        <span class="glyphicon glyphicon-eye-open my-white-color"></span>
+      </a>
+    </p>
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/user', userId]">
+        <span class="glyphicon glyphicon-user my-white-color"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

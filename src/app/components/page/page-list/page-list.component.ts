@@ -25,6 +25,9 @@ export class PageListComponent implements OnInit {
       if (params['websiteId']) {
         this.websiteId = params['websiteId'];
       }
+      if (params['userId']) {
+        this.userId = params['userId'];
+      }
     });
     this.findPagesByWebsiteId();
   }

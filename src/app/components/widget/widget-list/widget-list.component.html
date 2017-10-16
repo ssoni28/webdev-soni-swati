@@ -21,98 +21,56 @@
     </div>
   </nav>
 
-  <div class="my-container row">
-    <ul class="list-group">
-      <li class="list-group-custom-item">
-        <div class="row">
-          <div class="my-wd-toolbar">
-            <a href="widget-heading.html">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
+  <div *ngFor="let widget of widgets">
+    <div class="row">
+      <div class="my-wd-toolbar">
+        <a [routerLink]="['/user',userId,'website',websiteId,'page',pageId,'widget',widget._id]">
+          <span class="glyphicon glyphicon-cog"></span></a>
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </div>
+    </div>
 
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-          </div>
-        </div>
-        <h1>GIZMODO</h1>
-      </li>
-      <li class="list-group-custom-item">
-        <div class="row">
-          <div class="my-wd-toolbar">
-            <a href="widget-heading.html">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-          </div>
-        </div>
-        <h2>A Short History of Donald Trump's Stormy Relationship With Facebook</h2>
-      </li>
-      <li class="list-group-custom-item">
-        <div class="row">
-          <div class="my-wd-toolbar">
-            <a href="widget-image.html">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-          </div>
-        </div>
-        <img class="my-wd-content" src="http://lorempixel.com/400/200"/>
-      </li>
-      <li class="list-group-custom-item">
-        <div class="row">
-          <div class="my-wd-toolbar">
-            <a href="widget-heading.html">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-          </div>
-        </div>
-        <p>
-          “Devastated,” said Bill McDowell, an ecologist at the University of New Hampshire who has spent decades leading research efforts in El Yunque, when asked how the rainforest has fared. Photos shared with Earther by researchers who have been out in the field confirm McDowell’s appraisal, showing felled trees, canopies stripped of their leaves, and battered field stations badly in need of repair. But there’s a silver lining: El Yunque is a hurricane-adapted ecosystem, and as it rebounds, scientists will be watching and learning new things about rainforest recovery.
-        </p>
-      </li>
 
-      <li class="list-group-custom-item">
-        <div class="row">
-          <div class="my-wd-toolbar">
-            <a href="widget-youtube.html">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-          </div>
-        </div>
-        <iframe class="my-wd-content" height="315" src="https://www.youtube.com/embed/RY4rWrlY-qM" frameborder="0" allowfullscreen></iframe>
-      </li>
+    <div [ngSwitch]="widget.widgetType">
 
-      <li class="list-group-custom-item">
-        <div class="row">
-          <div class="my-wd-toolbar">
-            <a href="widget-heading.html">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-          </div>
-        </div>
-        <p>Spanning nearly 30,000 acres of rugged terrain in the northeast corner of of Puerto Rico, the El Yunque National Forest is home to a dazzling diversity of flora, fauna and ecosystems, from sweltering lowland rainforests that hum with chirps of Coqui frogs, to chilly, cloud-covered dwarf forests that pepper the towering Luquillo mountains. Thanks to its accessibility to US researchers, El Yunque is also home to a <em>lot</em> of science.</p>
-      </li>
-    </ul>
+      <div *ngSwitchCase="'HEADING'">
+        <h2>{{widget.text}}</h2>
+      </div>
+
+
+      <div *ngSwitchCase="'IMAGE'">
+        <img [style.width]="widget.width+'%'" height="300"
+             [src]="safeURL(widget.url)">
+      </div>
+
+      <div *ngSwitchCase= "'YOUTUBE'">
+        <iframe  [style.width]="widget.width+'%'" height="300"
+                 [src]="safeURL(widget.url)"></iframe>
+      </div>
+
+      <div *ngSwitchCase="'HTML'">
+        <p> {{widget.text}}</p>
+      </div>
+
+    </div>
   </div>
 </div>
 <!-- Footer -->
 <nav class="navbar navbar-custom navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a href="website-list.html"
+      <a [routerLink]="['/user', userId, 'website']">
          class="my-white-color">
         <span class="glyphicon glyphicon-play"></span>
       </a>
 
-      <a href="website-list.html"
+      <a [routerLink]="['/user', userId, 'website']">
          class="custom-margin my-white-color">
         <span class="glyphicon glyphicon-eye-open my-white-color"></span>
       </a>
     </p>
     <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
+      <a [routerLink]="['/user', userId]">
         <span class="glyphicon glyphicon-user my-white-color"></span>
       </a>
     </p>

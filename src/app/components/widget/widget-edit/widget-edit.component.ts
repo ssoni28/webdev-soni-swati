@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {WidgetService} from '../../../services/widget.service.client';
+import {Widget} from "../../../models/widget.model.client";
 
 @Component({
   selector: 'app-widget-edit',
@@ -7,9 +10,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetEditComponent implements OnInit {
 
-  constructor() { }
+  userId: String;
+  websiteId: String;
+  pageId: String;
+  widgetId: String;
+  widgetFlag: boolean;
+  widget: Widget;
+  constructor(private widgetService: WidgetService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
+    this.widgetFlag = false;
+    this.route.params.subscribe(params => {
+      if (params['userId']) {
+        this.userId = params['userId'];
+      }
+      if (params['websiteId']) {
+        this.websiteId = params['websiteId'];
+      }
+      if (params['pageId']) {
+        this.pageId = params['pageId'];
+      }
+      if (params['widgetId']) {
+        this.widgetId = params['widgetId'];
+      }
+      this.widget = this.widgetService.findWidgetById(this.widgetId);
+      if (this.widget) {
+        this.widgetFlag = true;
+      }
+    });
+  }
+  deleteWidget() {
+    this.widgetService.deleteWidget(this.widgetId);
+    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
   }
 
 }

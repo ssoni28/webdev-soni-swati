@@ -19,21 +19,30 @@ export class WidgetService {
     new Widget('345', 'IMAGE', '321', '', '', '100%', 'http://lorempixel.com/400/200/'),
     new Widget('456', 'HTML', '321', '', '<p>Lorem ipsum</p>', '', ''),
     new Widget('567', 'HEADING', '321', '4', 'Lorem ipsum', '', ''),
-    new Widget('678', 'YOUTUBE', '321', '', '', '100%', 'https://youtu.be/AM2Ivdi9c4E'),
+    new Widget('678', 'YOUTUBE', '321', '', '', '100%', 'https://www.youtube.com/embed/nhyc5ca3eVw'),
     new Widget('789', 'HTML', '321', '', '<p>Lorem ipsum</p>', '', '')
 
   ];
-
   api = {
     'createWidget'   : this.createWidget,
     'findWidgetById' : this.findWidgetById
   };
 
   createWidget(pageId: string, widget: Widget) {
-    widget._id = Math.random().toString();
-    widget.pageId = pageId;
-    this.widgets.push(widget);
-    return widget;
+    const widgetId: String =  Math.random().toString();
+    if (widget.widgetType === 'HEADING') {
+      const w: Widget = new Widget(widgetId, widget.widgetType, pageId, widget.size, widget.text, '', '');
+      this.widgets.push(w);
+    } else if (widget.widgetType === 'IMAGE') {
+      const w: Widget = new Widget(widgetId, widget.widgetType, pageId, '', '', widget.width, widget.url);
+      this.widgets.push(w);
+    } else if (widget.widgetType === 'HTML') {
+      const w: Widget = new Widget(widgetId, widget.widgetType, pageId, '', widget.text, '', '');
+      this.widgets.push(w);
+    } else if (widget.widgetType === 'YOUTUBE') {
+      const w: Widget = new Widget(widgetId, widget.widgetType, pageId, '', '', widget.width, widget.url);
+      this.widgets.push(w);
+    }
   }
   findWidgetsByPageId(pageId: String) {
     const requiredWidgets: Widget[] = [];
