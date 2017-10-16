@@ -57,6 +57,7 @@ export class ProfileComponent implements OnInit {
 
   deleteUser() {
     this.userService.deleteUser(this.userId);
+    this.router.navigate(['/login']);
   }
 
 }
