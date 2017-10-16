@@ -54,15 +54,21 @@ export class WidgetService {
     return requiredWidgets;
   }
   updateWidget(widgetId: String, widget: Widget) {
-    for (const w in this.widgets) {
-      if (this.widgets[w]._id === widgetId) {
-        this.widgets[w].url = widget.url;
-        this.widgets[w].width = widget.width;
-        this.widgets[w].text = widget.text;
-        this.widgets[w].size = widget.size;
-        this.widgets[w].pageId = widget.pageId;
-        this.widgets[w].widgetType = widget.widgetType;
-      }
+    const updatedWidget: Widget = this.widgets.find( function (widgetTest) {
+      return widgetTest._id === widgetId;
+    });
+    if (widget.widgetType === 'YOUTUBE') {
+      updatedWidget.width = widget.width;
+      updatedWidget.url = widget.url;
+
+    } else if (widget.widgetType === 'IMAGE') {
+      updatedWidget.text = widget.text;
+      updatedWidget.url = widget.url;
+      updatedWidget.width = widget.width;
+
+    } else if (widget.widgetType === 'HEADING') {
+      updatedWidget.text = widget.text;
+      updatedWidget.size = widget.size;
     }
   }
   deleteWidget(widgetId: String) {

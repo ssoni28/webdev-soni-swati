@@ -40,40 +40,38 @@ export class WidgetHeaderComponent implements OnInit {
       if (params['widgetId']) {
         this.widgetId = params['widgetId'];
       }
-      if (params['widgetType']) {
-        this.pageId = params['widgetType'];
-      }
       this.findWidgetById();
     });
 
   }
 
   findWidgetById() {
-    this.widget = this.widgetService.findWidgetById(this.widgetId);
-    if (this.widget) {
+    const widget = this.widgetService.findWidgetById(this.widgetId);
+    this.widget = widget;
+    if (widget) {
       this.widgetFlag = true;
-      this.widgetText = this.widget.text;
-      this.widgetSize = this.widget.size;
+      this.widgetText = widget.text;
+      this.widgetSize = widget.size;
     } else {
       this.widgetText = '';
       this.widgetSize = '';
       this.widgetFlag = false;
     }
   }
-
   updateWidget() {
-    if (this.widgetText === '' || this.widgetSize === '') {
-      this.errorFlag = true;
+   const widget = new Widget(this.widgetId, 'HEADING', this.pageId, this.widgetSize, this.widgetText, '', '');
+    if (this.widgetId) {
+      this.widgetService.updateWidget(this.widgetId, this.widget);
     } else {
-      if (!this.widgetFlag) {
-        const widget = new Widget(this.widgetId, this.widgetType, this.pageId, this.widgetSize, this.widgetText, '', '');
-        this.widgetService.createWidget(this.pageId, this.widget);
-      } else {
-        const widget = new Widget(this.widgetId, this.widgetType, this.pageId, this.widgetSize, this.widgetText, '', '');
-        this.widgetService.updateWidget(this.widgetId, this.widget);
-      }
-      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+      this.widgetService.createWidget(this.pageId, this.widget);
     }
+    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+  }
+  deleteWidget() {
+    if (this.widgetId) {
+      this.widgetService.deleteWidget(this.widgetId);
+    }
+
   }
 
 }

@@ -43,9 +43,6 @@ export class WidgetImageComponent implements OnInit {
       if (params['widgetId']) {
         this.widgetId = params['widgetId'];
       }
-      if (params['widgetType']) {
-        this.pageId = params['widgetType'];
-      }
       this.findWidgetById();
     });
 
@@ -57,9 +54,11 @@ export class WidgetImageComponent implements OnInit {
       this.widgetFlag = true;
       this.widgetURL = this.widget.url;
       this.widgetWidth = this.widget.width;
+      this.widgetText = this.widget.text;
     } else {
       this.widgetWidth = '';
       this.widgetURL = '';
+      this.widgetText = '';
       this.widgetFlag = false;
     }
   }
@@ -68,13 +67,19 @@ export class WidgetImageComponent implements OnInit {
     if (this.widgetURL === '' || this.widgetWidth === '') {
       this.errorFlag = true;
     } else {
-      const widget = new Widget(this.widgetId, this.widgetType, this.pageId, this.widgetSize, this.widgetText, '', '');
+      const widget = new Widget(this.widgetId, 'IMAGE', this.pageId, '', this.widgetText, this.widgetWidth, this.widgetURL);
       if (!this.widgetFlag) {
         this.widgetService.createWidget(this.pageId, this.widget);
       } else {
         this.widgetService.updateWidget(this.widgetId, this.widget);
       }
       this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+    }
+  }
+
+  deleteWidget() {
+    if (this.widgetId) {
+      this.widgetService.deleteWidget(this.widgetId);
     }
   }
 

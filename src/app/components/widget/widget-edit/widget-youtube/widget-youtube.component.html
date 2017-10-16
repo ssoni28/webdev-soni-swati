@@ -3,7 +3,7 @@
   <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="row">
       <div class="col-sm-1 col-md-1 col-lg-1">
-        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']"
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget','new']"
            class="pull-left my-white-color navbar-brand">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -57,7 +57,8 @@
              id="videoWidth"
              type="text"
              placeholder="100%"/>
-      <a class="btn btn-danger btn-block"
+      <a (click)="deleteWidget()"
+         class="btn btn-danger btn-block"
          [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
     </div>
   </div>

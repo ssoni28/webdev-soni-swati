@@ -16,7 +16,6 @@ export class WidgetYoutubeComponent implements OnInit {
   widgetId: String;
   widgetType: String;
   widgetText: String;
-  widgetSize: String;
   widgetURL: String;
   widgetWidth: String;
   errorFlag: boolean;
@@ -42,9 +41,6 @@ export class WidgetYoutubeComponent implements OnInit {
       if (params['widgetId']) {
         this.widgetId = params['widgetId'];
       }
-      if (params['widgetType']) {
-        this.pageId = params['widgetType'];
-      }
       this.findWidgetById();
     });
 
@@ -64,17 +60,18 @@ export class WidgetYoutubeComponent implements OnInit {
   }
 
   updateWidget() {
-    if (this.widgetURL === '' || this.widgetWidth === '') {
-      this.errorFlag = true;
+    const widget = new Widget(this.widgetId, 'YOUTUBE', this.pageId, '', '', 'widgetWidth', 'widgetURL');
+    if (this.widgetId) {
+      this.widgetService.updateWidget(this.widgetId, widget);
     } else {
-      const widget = new Widget(this.widgetId, this.widgetType, this.pageId, '', '', 'widgetWidth', 'widgetURL');
-      if (this.widgetFlag) {
-        this.widgetService.updateWidget(this.widgetId, widget);
-      } else {
           this.widgetService.createWidget(this.pageId, widget);
       }
       this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
     }
-  }
 
+  deleteWidget() {
+    if (this.widgetId) {
+      this.widgetService.deleteWidget(this.widgetId);
+    }
+  }
 }

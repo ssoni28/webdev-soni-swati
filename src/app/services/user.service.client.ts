@@ -32,17 +32,6 @@ export class UserService {
         return requiredUser;
       }
     }
-    const errorMsg = this.makeError(username, password);
-    return errorMsg;
-  }
-
-  makeError(username, password) {
-    for (const u in this.users) {
-      if (this.users[u].username === username && this.users[u].password !== password) {
-        return 'Password is not correct.';
-      }
-    }
-    return 'Username does not exists';
   }
   createUser(user: User) {
     user._id = Math.random().toString();

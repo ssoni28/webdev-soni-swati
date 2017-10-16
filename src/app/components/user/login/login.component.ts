@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   username: String;
   password: String;
   errorFlag: boolean;
-  disabledFlag: boolean;
   errorMsg = 'Invalid username or password';
 
   constructor(private router: Router, private userService: UserService) { }
@@ -34,8 +33,7 @@ export class LoginComponent implements OnInit {
     if (currentUser) {
       console.log(currentUser);
       this.router.navigate(['/user', currentUser._id]);
-    } else {
-      this.errorFlag = true;
     }
+    this.errorFlag = true;
   }
 }
