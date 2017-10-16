@@ -1,11 +1,11 @@
-<!--
+
 <div class="container-fluid">
 
 
   <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="row">
       <div class="col-sm-1 col-md-1 col-lg-1">
-        <a href="../website/website-list.html"
+        <a [routerLink]="['/user', userId, 'website']"
            class="navbar-brand my-white-color">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -14,7 +14,8 @@
         Pages
       </div>
       <div class="col-sm-10 col-md-10 col-lg-10">
-        <a class="pull-right navbar-brand" href="page-new.html">
+        <a class="pull-right navbar-brand"
+           [routerLink]="['/user', userId, 'website', websiteId, 'page', 'new']">
           <span class="glyphicon glyphicon-plus my-white-color"></span>
         </a>
       </div>
@@ -23,27 +24,13 @@
 
   <div class="my-container row">
     <ul class="list-group">
-      <li class="list-group-custom-item">
-        <a href="../widget/widget-list.html">Main Page</a>
-        <a class="pull-right" href="page-edit.html">
-          <span class="glyphicon glyphicon-cog"></span>
+      <li *ngFor="let page of pages"
+          class="list-group-custom-item">
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', page._id, 'widget']">
+          {{page['name']}}
         </a>
-      </li>
-      <li class="list-group-custom-item">
-        <a href="../widget/widget-list.html">Contents</a>
-        <a class="pull-right" href="page-edit.html">
-          <span class="glyphicon glyphicon-cog"></span>
-        </a>
-      </li>
-      <li class="list-group-custom-item">
-        <a href="../widget/widget-list.html">About</a>
-        <a class="pull-right" href="page-edit.html">
-          <span class="glyphicon glyphicon-cog"></span>
-        </a>
-      </li>
-      <li class="list-group-custom-item">
-        <a href="../widget/widget-list.html">Contact Page</a>
-        <a class="pull-right" href="page-edit.html">
+        <a class="pull-right"
+           [routerLink]="['/user', userId, 'website', websiteId, 'page', page._id]">
           <span class="glyphicon glyphicon-cog"></span>
         </a>
       </li>
@@ -54,7 +41,7 @@
   <nav class="navbar navbar-custom navbar-fixed-bottom">
     <div class="container-fluid">
       <p class="navbar-text pull-right">
-        <a href="../user/profile.html">
+        <a [routerLink]="['/user', userId]">
           <span class="glyphicon glyphicon-user my-white-color"></span>
         </a>
       </p>
@@ -62,4 +49,4 @@
   </nav>
 </div>
 
--->
+

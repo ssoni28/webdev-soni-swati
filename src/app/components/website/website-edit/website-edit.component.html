@@ -1,10 +1,10 @@
-<!--
+
 <div class="container-fluid">
 
   <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="row">
       <div class="col-sm-1 col-md-1 col-lg-1">
-        <a href="website-list.html"
+        <a [routerLink]="['/user', userId, 'website']"
            class="my-white-color pull-left navbar-brand">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -15,7 +15,7 @@
       </div>
       <div class="navbar-brand col-sm-1 col-md-1 col-lg-1
             hidden-xs hidden-sm">
-        <a href="website-new.html"
+        <a [routerLink]="['/user', userId, 'website', 'new']"
            class="pull-right my-white-color">
           <span class="glyphicon glyphicon-plus"></span>
         </a>
@@ -24,7 +24,7 @@
         Edit Website
       </div>
       <div class="col-sm-9 col-md-6 col-lg-6">
-        <a href="website-list.html"
+        <a (click)="updateWebsite()"
            class="pull-right navbar-brand my-white-color">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
@@ -35,27 +35,13 @@
   <div class="my-container row">
     <div class="col-sm-3 col-md-3 col-lg-3 hidden-xs hidden-sm">
       <ul class="list-group">
-        <li class="list-group-item">
-          <a href="../page/page-list.html">Wikipedia</a>
-          <a href="website-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog"></span>
+        <li *ngFor="let website of websites"
+            class="list-group-custom-item">
+          <a [routerLink]="['/user', userId, 'website', website._id, 'page']">
+            {{website['name']}}
           </a>
-        </li>
-        <li class="list-group-item">
-          <a href="../page/page-list.html">Cnet</a>
-          <a href="website-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog"></span>
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="../page/page-list.html">Gizmodo</a>
-          <a href="website-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog"></span>
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="../page/page-list.html">Ferrari</a>
-          <a href="website-edit.html" class="pull-right">
+          <a class="pull-right"
+             [routerLink]="['/user', userId, 'website', website._id]">
             <span class="glyphicon glyphicon-cog"></span>
           </a>
         </li>
@@ -64,19 +50,24 @@
 
     <div class="col-sm-12 col-md-9 col-lg-9">
       <label for="name">Website Name</label>
-      <input class="form-control"
+      <input [(ngModel)]="name"
+             class="form-control"
              id="name"
              type="text"
+             name="name"
              placeholder="Wikipedia"/>
 
       <label for="description">Website Description</label>
-      <textarea class="form-control"
+      <textarea [(ngModel)]="description"
+                class="form-control"
                 id="description"
                 rows="4"
+                type="text"
+                name="description"
                 placeholder="Wikipedia is a free online encyclopedia with the aim to allow anyone to edit articles. Wikipedia is the largest and most popular general reference work on the Internet, and is ranked the fifth-most popular website. Wikipedia is owned by the nonprofit Wikimedia Foundation. Wikipedia was launched on January 15,2001, by Jimmy Wales and Larry Sanger. Sanger coined its name, a portmanteau of wiki and encyclopedia. There was only the English-language version initially, but similar versions in other languages quickly developed, which differ in content and in editing prices."></textarea>
 
       <a class="btn btn-danger btn-block"
-         href="website-list.html">Delete</a>
+         [routerLink]="['/user', userId, 'website']">Delete</a>
     </div>
   </div>
 </div>
@@ -85,11 +76,11 @@
 <nav class="navbar navbar-custom navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
+      <a [routerLink]="['/user', userId]">
         <span class="glyphicon glyphicon-user my-white-color"></span>
       </a>
     </p>
 
   </div>
 </nav>
--->
+

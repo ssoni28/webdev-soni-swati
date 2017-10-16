@@ -20,7 +20,8 @@ export class PageService {
   ];
 
   api = {
-
+    'createPage'   : this.createPage,
+    'findPageById' : this.findPageById
   };
 
   createPage(websiteId: String, page: Page) {
@@ -30,7 +31,7 @@ export class PageService {
     return page;
   }
   findPageByWebsiteId(websiteId: String) {
-    let requiredPages: Page[];
+    const requiredPages: Page[] = [];
     for (let x = 0; x < this.pages.length; x++) {
       if (this.pages[x].websiteId === websiteId) {
         requiredPages.push(this.pages[x]);

@@ -4,7 +4,7 @@
   <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="row">
       <div class="col-sm-1">
-        <a href="../page/page-list.html"
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page']"
            class="navbar-brand my-white-color">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -14,7 +14,7 @@
       </div>
       <div class="col-sm-10">
         <a class="pull-right navbar-brand my-white-color"
-           href="widget-chooser.html">
+           [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']">
           <span class="glyphicon glyphicon-plus"></span>
         </a>
       </div>

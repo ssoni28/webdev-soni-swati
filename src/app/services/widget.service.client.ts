@@ -25,7 +25,8 @@ export class WidgetService {
   ];
 
   api = {
-
+    'createWidget'   : this.createWidget,
+    'findWidgetById' : this.findWidgetById
   };
 
   createWidget(pageId: string, widget: Widget) {
@@ -35,7 +36,7 @@ export class WidgetService {
     return widget;
   }
   findWidgetsByPageId(pageId: String) {
-    let requiredWidgets: Widget[];
+    const requiredWidgets: Widget[] = [];
     for (let x = 0; x < this.widgets.length; x++) {
       if (this.widgets[x].pageId === pageId) {
         requiredWidgets.push(this.widgets[x]);

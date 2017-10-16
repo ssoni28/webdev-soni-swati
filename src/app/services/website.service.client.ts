@@ -1,8 +1,8 @@
-import {User} from '../models/user.model.client';
+
 import {Injectable} from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
+
 import 'rxjs/Rx';
-import { environment } from '../../environments/environment';
+
 import {Router} from '@angular/router';
 import {Website} from '../models/website.model.client';
 
@@ -13,6 +13,7 @@ export class WebsiteService {
   constructor(private router: Router) {
 
   }
+
   websites: Website[] = [
     new Website('123', 'Facebook', '456', 'Lorem'),
     new Website('234', 'Tweeter', '456', 'Lorem'),
@@ -25,11 +26,11 @@ export class WebsiteService {
 
 
   api = {
-
+    'createWebsite'   : this.createWebsite,
+    'findWebsiteById' : this.findWebsiteById
   };
-
   findWebsitesByUser(userId: String) {
-    let requiredWebsites: Website[];
+    const requiredWebsites: Website[] = [];
     for (const w in this.websites) {
       if (this.websites[w].developerId === userId) {
         requiredWebsites.push(this.websites[w]);
@@ -38,7 +39,7 @@ export class WebsiteService {
     return requiredWebsites;
   }
 
-  createwebsite(userId: String, website: Website) {
+  createWebsite(userId: String, website: Website) {
     website._id = Math.random().toString();
     website.developerId = userId;
     this.websites.push(website);
