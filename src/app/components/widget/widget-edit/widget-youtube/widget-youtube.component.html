@@ -3,7 +3,7 @@
   <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="row">
       <div class="col-sm-1 col-md-1 col-lg-1">
-        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget','new']"
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']"
            class="pull-left my-white-color navbar-brand">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -52,7 +52,7 @@
              placeholder="http://lorempixel.com/400/200"/>
       <label for="videoWidth">Width</label>
 
-      <input [(ngModel)]="widgeWidth"
+      <input [(ngModel)]="widgetWidth"
              class="form-control"
              id="videoWidth"
              type="text"

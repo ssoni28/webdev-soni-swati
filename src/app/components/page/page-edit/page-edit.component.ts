@@ -25,15 +25,9 @@ export class PageEditComponent implements OnInit {
       if (params['userId']) {
         this.userId = params['userId'];
       }
-    });
-
-    this.route.params.subscribe(params => {
       if (params['websiteId']) {
         this.websiteId = params['websiteId'];
       }
-    });
-
-    this.route.params.subscribe(params => {
       if (params['pageId']) {
         this.pageId = params['pageId'];
       }

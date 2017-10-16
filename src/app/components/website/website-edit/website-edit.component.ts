@@ -24,9 +24,6 @@ export class WebsiteEditComponent implements OnInit {
       if (params['userId']) {
         this.userId = params['userId'];
       }
-    });
-
-    this.route.params.subscribe(params => {
       if (params['websiteId']) {
         this.websiteId = params['websiteId'];
       }

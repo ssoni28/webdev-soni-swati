@@ -49,12 +49,12 @@ export class WidgetImageComponent implements OnInit {
   }
 
   findWidgetById() {
-    this.widget = this.widgetService.findWidgetById(this.widgetId);
-    if (this.widget) {
+    const widget = this.widgetService.findWidgetById(this.widgetId);
+    if (widget) {
       this.widgetFlag = true;
-      this.widgetURL = this.widget.url;
-      this.widgetWidth = this.widget.width;
-      this.widgetText = this.widget.text;
+      this.widgetURL = widget.url;
+      this.widgetWidth = widget.width;
+      this.widgetText = widget.text;
     } else {
       this.widgetWidth = '';
       this.widgetURL = '';
@@ -64,17 +64,13 @@ export class WidgetImageComponent implements OnInit {
   }
 
   updateWidget() {
-    if (this.widgetURL === '' || this.widgetWidth === '') {
-      this.errorFlag = true;
-    } else {
       const widget = new Widget(this.widgetId, 'IMAGE', this.pageId, '', this.widgetText, this.widgetWidth, this.widgetURL);
-      if (!this.widgetFlag) {
-        this.widgetService.createWidget(this.pageId, this.widget);
+      if (this.widgetId) {
+        this.widgetService.updateWidget(this.widgetId, widget);
       } else {
-        this.widgetService.updateWidget(this.widgetId, this.widget);
+        this.widgetService.createWidget(this.pageId, widget);
       }
-      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-    }
+      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget'])
   }
 
   deleteWidget() {

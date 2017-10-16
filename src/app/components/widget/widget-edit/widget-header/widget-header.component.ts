@@ -47,7 +47,6 @@ export class WidgetHeaderComponent implements OnInit {
 
   findWidgetById() {
     const widget = this.widgetService.findWidgetById(this.widgetId);
-    this.widget = widget;
     if (widget) {
       this.widgetFlag = true;
       this.widgetText = widget.text;
@@ -61,9 +60,9 @@ export class WidgetHeaderComponent implements OnInit {
   updateWidget() {
    const widget = new Widget(this.widgetId, 'HEADING', this.pageId, this.widgetSize, this.widgetText, '', '');
     if (this.widgetId) {
-      this.widgetService.updateWidget(this.widgetId, this.widget);
+      this.widgetService.updateWidget(this.widgetId, widget);
     } else {
-      this.widgetService.createWidget(this.pageId, this.widget);
+      this.widgetService.createWidget(this.pageId, widget);
     }
     this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
   }
