@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../../services/user.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../models/user.model.client';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/Rx';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -21,7 +23,6 @@ export class RegisterComponent implements OnInit {
   verifyPassword: String;
   email: String;
   errorFlag: boolean;
-  disabledFlag: boolean;
   errorMsg = 'Password does not match';
 
   constructor(
@@ -44,5 +45,9 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/user', newUser._id]);
       }
     }
+  }
+
+  cancel() {
+    this.router.navigate(['/login']);
   }
 }
