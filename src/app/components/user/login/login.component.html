@@ -1,12 +1,14 @@
 
 <div class="container">
   <a routerLink="/test">Test</a>
+  <a href="https://github.com/ssoni28/webdev-soni-swati">GitHub</a>
+
   <div *ngIf="errorFlag"
        class="alert alert-danger custom-style">
     {{errorMsg}}
   </div>
 
-  <h1>Login</h1>
+<h1>Login</h1>
 
   <form (ngSubmit) = "login()" #f="ngForm">
 
