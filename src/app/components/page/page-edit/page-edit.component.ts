@@ -53,7 +53,12 @@ export class PageEditComponent implements OnInit {
   updatePage() {
     const page = new Page(this.pageId, this.name, this.websiteId, this.title);
     this.pageService.updatePage(this.pageId, page);
-    this.ngOnInit();
+    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+  }
+
+  deletePage() {
+    this.pageService.deletePage(this.pageId);
+    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
   }
 
 }

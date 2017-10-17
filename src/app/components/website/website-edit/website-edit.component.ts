@@ -49,7 +49,7 @@ export class WebsiteEditComponent implements OnInit {
   updateWebsite() {
     const website = new Website(this.websiteId, this.name, this.userId, this.description);
     this.websiteService.updateWebsite(this.websiteId, website);
-    this.ngOnInit();
+    this.router.navigate(['/user', this.userId, 'website']);
   }
 
 }

@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
   }
 
   createUser() {
+    this.errorFlag = false;
     this.username = this.registerForm.value.username;
     this.password = this.registerForm.value.password;
     this.verifyPassword = this.registerForm.value.verifyPassword;
@@ -44,6 +45,8 @@ export class RegisterComponent implements OnInit {
         console.log(newUser);
         this.router.navigate(['/user', newUser._id]);
       }
+    } else {
+      this.errorFlag = true;
     }
   }
 

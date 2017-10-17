@@ -323,7 +323,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-edit/page-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container-fluid\">\n  <nav class=\"navbar navbar-custom navbar-fixed-top\">\n    <div class=\"row\">\n\n      <div class=\"col-sm-1 col-md-1 col-lg-1\">\n        <a [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\"\n           class=\"pull-left my-white-color navbar-brand\">\n          <span class=\"glyphicon glyphicon-chevron-left\"></span>\n        </a>\n      </div>\n\n      <div class=\"navbar-brand my-white-color col-sm-2 col-md-2 col-lg-2\">\n        Edit Page\n      </div>\n      <div class=\"col-sm-9 col-md-9 col-lg-9\">\n        <a (click)=\"updatePage()\"\n           class=\"pull-right my-white-color navbar-brand\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </a>\n      </div>\n    </div>\n  </nav>\n\n  <div class=\"my-container row\">\n    <div class=\"col-xs-12 col-md-9 col-lg-9\">\n      <label for=\"pageName\">Name</label>\n      <input [(ngModel)]=\"name\"\n             class=\"form-control\"\n             id=\"pageName\"\n             type=\"text\"\n             name=\"name\"\n             placeholder=\"Main Page\"/>\n\n      <label for=\"pageTitle\">Title</label>\n      <input [(ngModel)]=\"title\"\n             class=\"form-control\"\n             id=\"pageTitle\"\n             type=\"text\"\n             name=\"title\"\n             placeholder=\"Page Title\"/>\n      <a class=\"btn btn-danger btn-block\" href=\"page-list.html\">Delete</a>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-custom navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a [routerLink]=\"['/user', userId]\">\n        <span class=\"glyphicon glyphicon-user my-white-color\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n"
+module.exports = "\n<div class=\"container-fluid\">\n  <nav class=\"navbar navbar-custom navbar-fixed-top\">\n    <div class=\"row\">\n\n      <div class=\"col-sm-1 col-md-1 col-lg-1\">\n        <a [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\"\n           class=\"pull-left my-white-color navbar-brand\">\n          <span class=\"glyphicon glyphicon-chevron-left\"></span>\n        </a>\n      </div>\n\n      <div class=\"navbar-brand my-white-color col-sm-2 col-md-2 col-lg-2\">\n        Edit Page\n      </div>\n      <div class=\"col-sm-9 col-md-9 col-lg-9\">\n        <a (click)=\"updatePage()\"\n           class=\"pull-right my-white-color navbar-brand\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </a>\n      </div>\n    </div>\n  </nav>\n\n  <div class=\"my-container row\">\n    <div class=\"col-xs-12 col-md-9 col-lg-9\">\n      <label for=\"pageName\">Name</label>\n      <input [(ngModel)]=\"name\"\n             class=\"form-control\"\n             id=\"pageName\"\n             type=\"text\"\n             name=\"name\"\n             placeholder=\"Main Page\"/>\n\n      <label for=\"pageTitle\">Title</label>\n      <input [(ngModel)]=\"title\"\n             class=\"form-control\"\n             id=\"pageTitle\"\n             type=\"text\"\n             name=\"title\"\n             placeholder=\"Page Title\"/>\n      <a (click)=\"deletePage()\"\n         class=\"btn btn-danger btn-block\">Delete</a>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-custom navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a [routerLink]=\"['/user', userId]\">\n        <span class=\"glyphicon glyphicon-user my-white-color\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -386,7 +386,11 @@ var PageEditComponent = (function () {
     PageEditComponent.prototype.updatePage = function () {
         var page = new __WEBPACK_IMPORTED_MODULE_3__models_page_model_client__["a" /* Page */](this.pageId, this.name, this.websiteId, this.title);
         this.pageService.updatePage(this.pageId, page);
-        this.ngOnInit();
+        this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+    };
+    PageEditComponent.prototype.deletePage = function () {
+        this.pageService.deletePage(this.pageId);
+        this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
     };
     return PageEditComponent;
 }());
@@ -931,6 +935,7 @@ var RegisterComponent = (function () {
     RegisterComponent.prototype.ngOnInit = function () {
     };
     RegisterComponent.prototype.createUser = function () {
+        this.errorFlag = false;
         this.username = this.registerForm.value.username;
         this.password = this.registerForm.value.password;
         this.verifyPassword = this.registerForm.value.verifyPassword;
@@ -941,6 +946,9 @@ var RegisterComponent = (function () {
                 console.log(newUser);
                 this.router.navigate(['/user', newUser._id]);
             }
+        }
+        else {
+            this.errorFlag = true;
         }
     };
     RegisterComponent.prototype.cancel = function () {
@@ -1047,7 +1055,7 @@ var WebsiteEditComponent = (function () {
     WebsiteEditComponent.prototype.updateWebsite = function () {
         var website = new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */](this.websiteId, this.name, this.userId, this.description);
         this.websiteService.updateWebsite(this.websiteId, website);
-        this.ngOnInit();
+        this.router.navigate(['/user', this.userId, 'website']);
     };
     return WebsiteEditComponent;
 }());
@@ -1789,7 +1797,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container-fluid\">\n  <!--Header-->\n  <nav class=\"navbar navbar-custom navbar-fixed-top\">\n    <div class=\"row\">\n      <div class=\"col-sm-1\">\n        <a [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\"\n           class=\"navbar-brand my-white-color\">\n          <span class=\"glyphicon glyphicon-chevron-left\"></span>\n        </a>\n      </div>\n      <div class=\"navbar-brand my-white-color col-sm-1\">\n        Widgets\n      </div>\n      <div class=\"col-sm-10\">\n        <a class=\"pull-right navbar-brand my-white-color\"\n           [routerLink]=\"['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']\">\n          <span class=\"glyphicon glyphicon-plus\"></span>\n        </a>\n      </div>\n    </div>\n  </nav>\n\n  <div *ngFor=\"let widget of widgets\">\n    <div class=\"row\">\n      <div class=\"my-wd-toolbar\">\n        <a [routerLink]=\"['/user',userId,'website',websiteId,'page',pageId,'widget',widget._id]\">\n          <span class=\"glyphicon glyphicon-cog\"></span></a>\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </div>\n    </div>\n\n\n    <div [ngSwitch]=\"widget.widgetType\">\n\n      <div *ngSwitchCase=\"'HEADING'\">\n        <h2>{{widget.text}}</h2>\n      </div>\n\n\n      <div *ngSwitchCase=\"'IMAGE'\">\n        <img [style.width]=\"widget.width+'%'\" height=\"300\"\n             [src]=\"safeURL(widget.url)\">\n      </div>\n\n      <div *ngSwitchCase= \"'YOUTUBE'\">\n        <iframe  [style.width]=\"widget.width+'%'\" height=\"300\"\n                 [src]=\"safeURL(widget.url)\"></iframe>\n      </div>\n\n      <div *ngSwitchCase=\"'HTML'\">\n        <p> {{widget.text}}</p>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- Footer -->\n<nav class=\"navbar navbar-custom navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a [routerLink]=\"['/user', userId, 'website']\">\n         class=\"my-white-color\">\n        <span class=\"glyphicon glyphicon-play\"></span>\n      </a>\n\n      <a [routerLink]=\"['/user', userId, 'website']\">\n         class=\"custom-margin my-white-color\">\n        <span class=\"glyphicon glyphicon-eye-open my-white-color\"></span>\n      </a>\n    </p>\n    <p class=\"navbar-text pull-right\">\n      <a [routerLink]=\"['/user', userId]\">\n        <span class=\"glyphicon glyphicon-user my-white-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n"
+module.exports = "\n<div class=\"container-fluid\">\n  <!--Header-->\n  <nav class=\"navbar navbar-custom navbar-fixed-top\">\n    <div class=\"row\">\n      <div class=\"col-sm-1\">\n        <a [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\"\n           class=\"navbar-brand my-white-color\">\n          <span class=\"glyphicon glyphicon-chevron-left\"></span>\n        </a>\n      </div>\n      <div class=\"navbar-brand my-white-color col-sm-1\">\n        Widgets\n      </div>\n      <div class=\"col-sm-10\">\n        <a class=\"pull-right navbar-brand my-white-color\"\n           [routerLink]=\"['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']\">\n          <span class=\"glyphicon glyphicon-plus\"></span>\n        </a>\n      </div>\n    </div>\n  </nav>\n\n  <div *ngFor=\"let widget of widgets\">\n    <div class=\"my-container row\">\n      <div class=\"my-wd-toolbar\">\n        <a [routerLink]=\"['/user',userId,'website',websiteId,'page',pageId,'widget',widget._id]\">\n          <span class=\"glyphicon glyphicon-cog\"></span></a>\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </div>\n    </div>\n\n\n    <div [ngSwitch]=\"widget.widgetType\">\n\n      <div *ngSwitchCase=\"'HEADING'\">\n        <h2>{{widget.text}}</h2>\n      </div>\n\n\n      <div *ngSwitchCase=\"'IMAGE'\">\n        <img [style.width]=\"widget.width+'%'\" height=\"300\"\n             [src]=\"safeURL(widget.url)\">\n      </div>\n\n      <div *ngSwitchCase= \"'YOUTUBE'\">\n        <iframe  [style.width]=\"widget.width+'%'\" height=\"300\"\n                 [src]=\"safeURL(widget.url)\"></iframe>\n      </div>\n\n      <div *ngSwitchCase=\"'HTML'\">\n        <p> {{widget.text}}</p>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- Footer -->\n<nav class=\"navbar navbar-custom navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a [routerLink]=\"['/user', userId, 'website']\">\n         class=\"my-white-color\">\n        <span class=\"glyphicon glyphicon-play\"></span>\n      </a>\n\n      <a [routerLink]=\"['/user', userId, 'website']\">\n         class=\"custom-margin my-white-color\">\n        <span class=\"glyphicon glyphicon-eye-open my-white-color\"></span>\n      </a>\n    </p>\n    <p class=\"navbar-text pull-right\">\n      <a [routerLink]=\"['/user', userId]\">\n        <span class=\"glyphicon glyphicon-user my-white-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n"
 
 /***/ }),
 
