@@ -45,13 +45,7 @@ export class WebsiteService {
     this.websites.push(website);
     return website;
   }
-  findWebsiteById(websiteId: String) {
-    for (let x = 0; x < this.websites.length; x++) {
-      if (this.websites[x]._id === websiteId) {
-        return this.websites[x];
-      }
-    }
-  }
+
   updateWebsite(websiteId: String, website: Website) {
     for (const w in this.websites) {
       if (this.websites[w]._id === websiteId) {
@@ -70,6 +64,14 @@ export class WebsiteService {
       }
     }
     return false;
+  }
+
+  findWebsiteById(websiteId: String) {
+    for (let x = 0; x < this.websites.length; x++) {
+      if (this.websites[x]._id === websiteId) {
+        return this.websites[x];
+      }
+    }
   }
 
 }

@@ -66,8 +66,8 @@
                 name="description"
                 placeholder="Wikipedia is a free online encyclopedia with the aim to allow anyone to edit articles. Wikipedia is the largest and most popular general reference work on the Internet, and is ranked the fifth-most popular website. Wikipedia is owned by the nonprofit Wikimedia Foundation. Wikipedia was launched on January 15,2001, by Jimmy Wales and Larry Sanger. Sanger coined its name, a portmanteau of wiki and encyclopedia. There was only the English-language version initially, but similar versions in other languages quickly developed, which differ in content and in editing prices."></textarea>
 
-      <a class="btn btn-danger btn-block"
-         [routerLink]="['/user', userId, 'website']">Delete</a>
+      <a (click)="deleteWebsite()"
+         class="btn btn-danger btn-block">Delete</a>
     </div>
   </div>
 </div>

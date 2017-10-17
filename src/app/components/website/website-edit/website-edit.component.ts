@@ -52,4 +52,10 @@ export class WebsiteEditComponent implements OnInit {
     this.router.navigate(['/user', this.userId, 'website']);
   }
 
+  deleteWebsite() {
+    this.websiteService.deleteWebsite(this.websiteId);
+    this.router.navigate(['/user', this.userId, 'website']);
+  }
+
+
 }

@@ -995,7 +995,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-edit/website-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container-fluid\">\n\n  <nav class=\"navbar navbar-custom navbar-fixed-top\">\n    <div class=\"row\">\n      <div class=\"col-sm-1 col-md-1 col-lg-1\">\n        <a [routerLink]=\"['/user', userId, 'website']\"\n           class=\"my-white-color pull-left navbar-brand\">\n          <span class=\"glyphicon glyphicon-chevron-left\"></span>\n        </a>\n      </div>\n      <div class=\"navbar-brand my-white-color col-sm-1 col-md-1 col-lg -1\n        hidden-xs hidden-sm\">\n        Websites\n      </div>\n      <div class=\"navbar-brand col-sm-1 col-md-1 col-lg-1\n            hidden-xs hidden-sm\">\n        <a [routerLink]=\"['/user', userId, 'website', 'new']\"\n           class=\"pull-right my-white-color\">\n          <span class=\"glyphicon glyphicon-plus\"></span>\n        </a>\n      </div>\n      <div class=\"navbar-brand my-white-color col-sm-2 col-md-3 col-lg-3\">\n        Edit Website\n      </div>\n      <div class=\"col-sm-9 col-md-6 col-lg-6\">\n        <a (click)=\"updateWebsite()\"\n           class=\"pull-right navbar-brand my-white-color\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </a>\n      </div>\n    </div>\n  </nav>\n\n  <div class=\"my-container row\">\n    <div class=\"col-sm-3 col-md-3 col-lg-3 hidden-xs hidden-sm\">\n      <ul class=\"list-group\">\n        <li *ngFor=\"let website of websites\"\n            class=\"list-group-custom-item\">\n          <a [routerLink]=\"['/user', userId, 'website', website._id, 'page']\">\n            {{website['name']}}\n          </a>\n          <a class=\"pull-right\"\n             [routerLink]=\"['/user', userId, 'website', website._id]\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </li>\n      </ul>\n    </div>\n\n    <div class=\"col-sm-12 col-md-9 col-lg-9\">\n      <label for=\"name\">Website Name</label>\n      <input [(ngModel)]=\"name\"\n             class=\"form-control\"\n             id=\"name\"\n             type=\"text\"\n             name=\"name\"\n             placeholder=\"Wikipedia\"/>\n\n      <label for=\"description\">Website Description</label>\n      <textarea [(ngModel)]=\"description\"\n                class=\"form-control\"\n                id=\"description\"\n                rows=\"4\"\n                type=\"text\"\n                name=\"description\"\n                placeholder=\"Wikipedia is a free online encyclopedia with the aim to allow anyone to edit articles. Wikipedia is the largest and most popular general reference work on the Internet, and is ranked the fifth-most popular website. Wikipedia is owned by the nonprofit Wikimedia Foundation. Wikipedia was launched on January 15,2001, by Jimmy Wales and Larry Sanger. Sanger coined its name, a portmanteau of wiki and encyclopedia. There was only the English-language version initially, but similar versions in other languages quickly developed, which differ in content and in editing prices.\"></textarea>\n\n      <a class=\"btn btn-danger btn-block\"\n         [routerLink]=\"['/user', userId, 'website']\">Delete</a>\n    </div>\n  </div>\n</div>\n\n\n<nav class=\"navbar navbar-custom navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a [routerLink]=\"['/user', userId]\">\n        <span class=\"glyphicon glyphicon-user my-white-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n"
+module.exports = "\n<div class=\"container-fluid\">\n\n  <nav class=\"navbar navbar-custom navbar-fixed-top\">\n    <div class=\"row\">\n      <div class=\"col-sm-1 col-md-1 col-lg-1\">\n        <a [routerLink]=\"['/user', userId, 'website']\"\n           class=\"my-white-color pull-left navbar-brand\">\n          <span class=\"glyphicon glyphicon-chevron-left\"></span>\n        </a>\n      </div>\n      <div class=\"navbar-brand my-white-color col-sm-1 col-md-1 col-lg -1\n        hidden-xs hidden-sm\">\n        Websites\n      </div>\n      <div class=\"navbar-brand col-sm-1 col-md-1 col-lg-1\n            hidden-xs hidden-sm\">\n        <a [routerLink]=\"['/user', userId, 'website', 'new']\"\n           class=\"pull-right my-white-color\">\n          <span class=\"glyphicon glyphicon-plus\"></span>\n        </a>\n      </div>\n      <div class=\"navbar-brand my-white-color col-sm-2 col-md-3 col-lg-3\">\n        Edit Website\n      </div>\n      <div class=\"col-sm-9 col-md-6 col-lg-6\">\n        <a (click)=\"updateWebsite()\"\n           class=\"pull-right navbar-brand my-white-color\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </a>\n      </div>\n    </div>\n  </nav>\n\n  <div class=\"my-container row\">\n    <div class=\"col-sm-3 col-md-3 col-lg-3 hidden-xs hidden-sm\">\n      <ul class=\"list-group\">\n        <li *ngFor=\"let website of websites\"\n            class=\"list-group-custom-item\">\n          <a [routerLink]=\"['/user', userId, 'website', website._id, 'page']\">\n            {{website['name']}}\n          </a>\n          <a class=\"pull-right\"\n             [routerLink]=\"['/user', userId, 'website', website._id]\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </li>\n      </ul>\n    </div>\n\n    <div class=\"col-sm-12 col-md-9 col-lg-9\">\n      <label for=\"name\">Website Name</label>\n      <input [(ngModel)]=\"name\"\n             class=\"form-control\"\n             id=\"name\"\n             type=\"text\"\n             name=\"name\"\n             placeholder=\"Wikipedia\"/>\n\n      <label for=\"description\">Website Description</label>\n      <textarea [(ngModel)]=\"description\"\n                class=\"form-control\"\n                id=\"description\"\n                rows=\"4\"\n                type=\"text\"\n                name=\"description\"\n                placeholder=\"Wikipedia is a free online encyclopedia with the aim to allow anyone to edit articles. Wikipedia is the largest and most popular general reference work on the Internet, and is ranked the fifth-most popular website. Wikipedia is owned by the nonprofit Wikimedia Foundation. Wikipedia was launched on January 15,2001, by Jimmy Wales and Larry Sanger. Sanger coined its name, a portmanteau of wiki and encyclopedia. There was only the English-language version initially, but similar versions in other languages quickly developed, which differ in content and in editing prices.\"></textarea>\n\n      <a (click)=\"deleteWebsite()\"\n         class=\"btn btn-danger btn-block\">Delete</a>\n    </div>\n  </div>\n</div>\n\n\n<nav class=\"navbar navbar-custom navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a [routerLink]=\"['/user', userId]\">\n        <span class=\"glyphicon glyphicon-user my-white-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n"
 
 /***/ }),
 
@@ -1055,6 +1055,10 @@ var WebsiteEditComponent = (function () {
     WebsiteEditComponent.prototype.updateWebsite = function () {
         var website = new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */](this.websiteId, this.name, this.userId, this.description);
         this.websiteService.updateWebsite(this.websiteId, website);
+        this.router.navigate(['/user', this.userId, 'website']);
+    };
+    WebsiteEditComponent.prototype.deleteWebsite = function () {
+        this.websiteService.deleteWebsite(this.websiteId);
         this.router.navigate(['/user', this.userId, 'website']);
     };
     return WebsiteEditComponent;
@@ -2262,13 +2266,6 @@ var WebsiteService = (function () {
         this.websites.push(website);
         return website;
     };
-    WebsiteService.prototype.findWebsiteById = function (websiteId) {
-        for (var x = 0; x < this.websites.length; x++) {
-            if (this.websites[x]._id === websiteId) {
-                return this.websites[x];
-            }
-        }
-    };
     WebsiteService.prototype.updateWebsite = function (websiteId, website) {
         for (var w in this.websites) {
             if (this.websites[w]._id === websiteId) {
@@ -2287,6 +2284,13 @@ var WebsiteService = (function () {
             }
         }
         return false;
+    };
+    WebsiteService.prototype.findWebsiteById = function (websiteId) {
+        for (var x = 0; x < this.websites.length; x++) {
+            if (this.websites[x]._id === websiteId) {
+                return this.websites[x];
+            }
+        }
     };
     return WebsiteService;
 }());
