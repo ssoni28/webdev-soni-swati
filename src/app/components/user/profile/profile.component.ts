@@ -36,13 +36,18 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser() {
-    const currentUser = this.userService.findUserById(this.userId);
-    if (currentUser) {
-      this.username = currentUser.username;
-      this.firstName = currentUser.firstName;
-      this.lastName = currentUser.lastName;
-      this.email = currentUser.email;
-    }
+    const currentUser = this.userService.findUserById(this.userId)
+      .subscribe(
+        (data: any) => {
+          this.username = data.username;
+          this.firstName = data.firstName;
+          this.lastName = data.lastName;
+          this.email = data.email;
+        },
+        (error: any) => {
+
+        }
+      );
   }
 
   logout() {

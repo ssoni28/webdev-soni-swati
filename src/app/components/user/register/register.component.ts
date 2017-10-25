@@ -24,6 +24,8 @@ export class RegisterComponent implements OnInit {
   email: String;
   errorFlag: boolean;
   errorMsg = 'Password does not match';
+  alreadyExistsFlag: boolean;
+  alreadyExistsMsg = 'User already exists';
 
   constructor(
     private userService: UserService,
@@ -40,13 +42,15 @@ export class RegisterComponent implements OnInit {
     this.verifyPassword = this.registerForm.value.verifyPassword;
     if (this.password === this.verifyPassword) {
       const user = new User('', this.username, this.password, '', '');
-      const newUser = this.userService.createUser(user);
-      if (newUser) {
-        console.log(newUser);
-        this.router.navigate(['/user', newUser._id]);
-      }
-    } else {
-      this.errorFlag = true;
+      this.userService.createUser(user)
+        .subscribe(
+          (newUser: User) => {
+            this.router.navigate(['/user', newUser._id]);
+          },
+          (error: any) => {
+            this.errorFlag = true;
+          }
+        );
     }
   }
 
