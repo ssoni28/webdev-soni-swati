@@ -4,30 +4,24 @@ import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
 
 // injecting service into module
 @Injectable()
 export class UserService {
 
-  baseUrl = environment.baseUrl;
+  newUrl = environment.baseUrl;
   constructor(private http: Http) {
 
   }
-  /* users: User[] = [
-     new User('123', 'alice', 'alice', 'Alice', 'Wonder'),
-     new User('234', 'bob', 'bob', 'Bob', 'Marley'),
-     new User('345', 'charly', 'charly', 'Charly', 'Garcia'),
-     new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi')
-   ];
- */
   /* api = {
      'createUser'   : this.createUser,
      'findUserById' : this.findUserById
    };
  */
 
-  findUserByCredentials(username, password) {
-    const url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;
+  findUserByCredentials(username: String, password: String): Observable<any> {
+    const url = this.newUrl + '/api/user?username=' + username + '&password=' + password;
     return this.http.get(url)
       .map(
         (response: Response) => {
@@ -36,7 +30,7 @@ export class UserService {
       );
   }
   createUser(user: User) {
-    const url = this.baseUrl + '/api/user/';
+    const url = this.newUrl + '/api/user/';
     return this.http.post(url, user)
       .map(
         (response: Response) => {
@@ -46,7 +40,7 @@ export class UserService {
   }
 
   findUserById(userId: String) {
-    const url = this.baseUrl + '/api/user/' + userId;
+    const url = this.newUrl + '/api/user/' + userId;
     return this.http.get(url)
       .map(
         (response: Response) => {
@@ -56,7 +50,7 @@ export class UserService {
   }
 
   updateUser(userId: String, user: User) {
-    const url = this.baseUrl + '/api/user/' + userId;
+    const url = this.newUrl + '/api/user/' + userId;
     return this.http.put(url, user)
       .map(
         (response: Response) => {
@@ -65,7 +59,7 @@ export class UserService {
       );
   }
   deleteUser(userId: String) {
-    const url = this.baseUrl + '/api/user/' + userId;
+    const url = this.newUrl + '/api/user/' + userId;
     return this.http.delete(url)
       .map(
         (response: Response) => {
@@ -75,7 +69,7 @@ export class UserService {
   }
 
   findUserByUsername(username: String) {
-    const url = this.baseUrl + '/api/user?username/' + username;
+    const url = this.newUrl + '/api/user?username/' + username;
     return this.http.get(url)
       .map(
         (response: Response) => {

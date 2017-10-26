@@ -43,17 +43,12 @@ require("./server/test-mongodb/app") (app);
 
 var assignment = require("./assignment/app");
 assignment (app);
-//app.listen(port, ipaddress);
-
-
 
 // For Build: Catch all other routes and return the index file -- BUILDING
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-server.listen(port);
-
-//server.listen( port , () => console.log('Running'));
+server.listen( port , () => console.log('Running'));
 
 

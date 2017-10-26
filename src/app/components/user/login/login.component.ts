@@ -14,7 +14,6 @@ import {UserService} from '../../../services/user.service.client';
 export class LoginComponent implements OnInit {
 
   @ViewChild('f') loginForm: NgForm;
-  hello: String;
   username: String;
   password: String;
   errorFlag: boolean;
@@ -34,12 +33,10 @@ export class LoginComponent implements OnInit {
     this.userService.findUserByCredentials(this.username, this.password)
       .subscribe(
         (user: User) => {
-          this.errorFlag = false;
-          this.router.navigate(['/user', user._id]);
+          this.router.navigate(['/user/', user._id]);
         },
         (error: any) => {
           this.errorFlag = true;
-        }
-      );
+        });
   }
 }

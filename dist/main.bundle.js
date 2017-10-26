@@ -695,7 +695,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\">\n  <a routerLink=\"/test\">Test</a>\n  <a href=\"https://github.com/ssoni28/webdev-soni-swati\">GitHub</a>\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger custom-style\">\n    {{errorMsg}}\n  </div>\n\n<h1>Login</h1>\n\n  <form (ngSubmit) = \"login()\" #f=\"ngForm\">\n\n    <input   placeholder=\"username\"\n             name=\"username\"\n             type=\"text\"\n             class=\"form-control\"\n             ngModel\n             required\n             #username=\"ngModel\"/>\n    <span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">Please enter username!</span>\n\n\n    <input   placeholder=\"password\"\n             name=\"password\"\n             type=\"password\"\n             class=\"form-control\"\n             ngModel\n             required\n             #password=\"ngModel\"/>\n    <span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">Please enter password!</span>\n\n\n    <button class=\"btn btn-primary btn-block\"\n            type=\"submit\"\n            [disabled]=\"!f.valid\">Login</button>\n\n    <button class=\"btn btn-success btn-block\"\n            [routerLink]=\"['/register']\">Register</button>\n\n  </form>\n</div>\n"
+module.exports = "\n<div class=\"container\">\n  <a routerLink=\"/test\">Test</a>\n  <a href=\"https://github.com/ssoni28/webdev-soni-swati\">GitHub</a>\n  <br/>\n  <a href=\"https://webdev-soni-swati.herokuapp.com/\">Heroku</a>\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger custom-style\">\n    {{errorMsg}}\n  </div>\n\n<h1>Login</h1>\n\n  <form (ngSubmit) = \"login()\" #f=\"ngForm\">\n\n    <input   placeholder=\"username\"\n             name=\"username\"\n             type=\"text\"\n             class=\"form-control\"\n             ngModel\n             required\n             #username=\"ngModel\"/>\n    <span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">Please enter username!</span>\n\n\n    <input   placeholder=\"password\"\n             name=\"password\"\n             type=\"password\"\n             class=\"form-control\"\n             ngModel\n             required\n             #password=\"ngModel\"/>\n    <span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">Please enter password!</span>\n\n\n    <button class=\"btn btn-primary btn-block\"\n            type=\"submit\"\n            [disabled]=\"!f.valid\">Login</button>\n\n    <button class=\"btn btn-success btn-block\"\n            [routerLink]=\"['/register']\">Register</button>\n\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -734,16 +734,15 @@ var LoginComponent = (function () {
         this.errorMsg = 'Invalid username or password';
     }
     LoginComponent.prototype.ngOnInit = function () {
-        this.errorFlag = false;
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
         this.userService.findUserByCredentials(this.username, this.password)
-            .subscribe(function (user) {
+            .subscribe(function (data) {
             _this.errorFlag = false;
-            _this.router.navigate(['/user', user._id]);
+            _this.router.navigate(['/user/', data._id]);
         }, function (error) {
             _this.errorFlag = true;
         });
@@ -2144,57 +2143,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = (function () {
     function UserService(http) {
         this.http = http;
-        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
+        this.newUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
     }
-    /* users: User[] = [
-       new User('123', 'alice', 'alice', 'Alice', 'Wonder'),
-       new User('234', 'bob', 'bob', 'Bob', 'Marley'),
-       new User('345', 'charly', 'charly', 'Charly', 'Garcia'),
-       new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi')
-     ];
-   */
     /* api = {
        'createUser'   : this.createUser,
        'findUserById' : this.findUserById
      };
    */
     UserService.prototype.findUserByCredentials = function (username, password) {
-        var url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;
+        var url = this.newUrl + '/api/user?username=' + username + '&password=' + password;
         return this.http.get(url)
             .map(function (response) {
             return response.json();
         });
     };
     UserService.prototype.createUser = function (user) {
-        var url = this.baseUrl + '/api/user/';
+        var url = this.newUrl + '/api/user/';
         return this.http.post(url, user)
             .map(function (response) {
             return response.json();
         });
     };
     UserService.prototype.findUserById = function (userId) {
-        var url = this.baseUrl + '/api/user/' + userId;
+        var url = this.newUrl + '/api/user/' + userId;
         return this.http.get(url)
             .map(function (response) {
             return response.json();
         });
     };
     UserService.prototype.updateUser = function (userId, user) {
-        var url = this.baseUrl + '/api/user/' + userId;
+        var url = this.newUrl + '/api/user/' + userId;
         return this.http.put(url, user)
             .map(function (response) {
             return response.json();
         });
     };
     UserService.prototype.deleteUser = function (userId) {
-        var url = this.baseUrl + '/api/user/' + userId;
+        var url = this.newUrl + '/api/user/' + userId;
         return this.http.delete(url)
             .map(function (response) {
             return response.json();
         });
     };
     UserService.prototype.findUserByUsername = function (username) {
-        var url = this.baseUrl + '/api/user?username/' + username;
+        var url = this.newUrl + '/api/user?username/' + username;
         return this.http.get(url)
             .map(function (response) {
             return response.json();
@@ -2427,9 +2419,14 @@ var _a;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: true,
-    baseUrl: ''
+    production: false,
+    baseUrl: 'http://localhost:3100'
 };
 //# sourceMappingURL=environment.js.map
 
