@@ -33,28 +33,41 @@ export class WebsiteEditComponent implements OnInit {
   }
 
   getWebsite() {
-    const currentWebsite = this.websiteService.findWebsiteById(this.websiteId);
-    if (currentWebsite) {
-      this.name = currentWebsite.name;
-      this.description = currentWebsite.description;
-      this.userId = currentWebsite.developerId;
-    }
+    this.websiteService.findWebsiteById(this.websiteId)
+      .subscribe(
+        (currentWebsite: any) => {
+          this.name = currentWebsite.name;
+          this.description = currentWebsite.description;
+          this.userId = currentWebsite.developerId;
+        }
+      );
   }
 
   findWebsitesByUserId() {
-    const websites = this.websiteService.findWebsitesByUser(this.userId);
-    this.websites = websites;
+    this.websiteService.findWebsitesByUser(this.userId)
+      .subscribe(
+        (data: any) => {
+          this.websites = data;
+        }
+      );
   }
 
   updateWebsite() {
     const website = new Website(this.websiteId, this.name, this.userId, this.description);
-    this.websiteService.updateWebsite(this.websiteId, website);
-    this.router.navigate(['/user', this.userId, 'website']);
+    this.websiteService.updateWebsite(this.websiteId, website)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['/user', this.userId, 'website']);
+        });
   }
 
   deleteWebsite() {
-    this.websiteService.deleteWebsite(this.websiteId);
-    this.router.navigate(['/user', this.userId, 'website']);
+    this.websiteService.deleteWebsite(this.websiteId)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['/user', this.userId, 'website']);
+        }
+      );
   }
 
 

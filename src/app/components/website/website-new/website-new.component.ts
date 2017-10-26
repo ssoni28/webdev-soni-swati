@@ -29,14 +29,22 @@ export class WebsiteNewComponent implements OnInit {
   }
 
   findWebsitesByUserId() {
-    const websites = this.websiteService.findWebsitesByUser(this.userId);
-    this.websites = websites;
+     this.websiteService.findWebsitesByUser(this.userId)
+      .subscribe(
+        (websites: any) => {
+          this.websites = websites;
+        }
+      );
   }
 
   createWebsite() {
     this.website = new Website('', this.name, this.userId, this.description);
-    this.websiteService.createWebsite(this.userId, this.website);
-    this.router.navigate(['/user', this.userId, 'website']);
+    this.websiteService.createWebsite(this.userId, this.website)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['/user', this.userId, 'website']);
+        }
+      );
   }
 
 }

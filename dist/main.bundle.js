@@ -734,15 +734,15 @@ var LoginComponent = (function () {
         this.errorMsg = 'Invalid username or password';
     }
     LoginComponent.prototype.ngOnInit = function () {
+        this.errorFlag = false;
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
         this.userService.findUserByCredentials(this.username, this.password)
-            .subscribe(function (data) {
-            _this.errorFlag = false;
-            _this.router.navigate(['/user/', data._id]);
+            .subscribe(function (user) {
+            _this.router.navigate(['/user/', user._id]);
         }, function (error) {
             _this.errorFlag = true;
         });
@@ -1044,25 +1044,35 @@ var WebsiteEditComponent = (function () {
         this.getWebsite();
     };
     WebsiteEditComponent.prototype.getWebsite = function () {
-        var currentWebsite = this.websiteService.findWebsiteById(this.websiteId);
-        if (currentWebsite) {
-            this.name = currentWebsite.name;
-            this.description = currentWebsite.description;
-            this.userId = currentWebsite.developerId;
-        }
+        var _this = this;
+        this.websiteService.findWebsiteById(this.websiteId)
+            .subscribe(function (currentWebsite) {
+            _this.name = currentWebsite.name;
+            _this.description = currentWebsite.description;
+            _this.userId = currentWebsite.developerId;
+        });
     };
     WebsiteEditComponent.prototype.findWebsitesByUserId = function () {
-        var websites = this.websiteService.findWebsitesByUser(this.userId);
-        this.websites = websites;
+        var _this = this;
+        this.websiteService.findWebsitesByUser(this.userId)
+            .subscribe(function (data) {
+            _this.websites = data;
+        });
     };
     WebsiteEditComponent.prototype.updateWebsite = function () {
+        var _this = this;
         var website = new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */](this.websiteId, this.name, this.userId, this.description);
-        this.websiteService.updateWebsite(this.websiteId, website);
-        this.router.navigate(['/user', this.userId, 'website']);
+        this.websiteService.updateWebsite(this.websiteId, website)
+            .subscribe(function (data) {
+            _this.router.navigate(['/user', _this.userId, 'website']);
+        });
     };
     WebsiteEditComponent.prototype.deleteWebsite = function () {
-        this.websiteService.deleteWebsite(this.websiteId);
-        this.router.navigate(['/user', this.userId, 'website']);
+        var _this = this;
+        this.websiteService.deleteWebsite(this.websiteId)
+            .subscribe(function (data) {
+            _this.router.navigate(['/user', _this.userId, 'website']);
+        });
     };
     return WebsiteEditComponent;
 }());
@@ -1144,8 +1154,11 @@ var WebsiteListComponent = (function () {
         this.findWebsitesByUserId();
     };
     WebsiteListComponent.prototype.findWebsitesByUserId = function () {
-        var websites = this.websiteService.findWebsitesByUser(this.userId);
-        this.websites = websites;
+        var _this = this;
+        var websites = this.websiteService.findWebsitesByUser(this.userId)
+            .subscribe(function (data) {
+            _this.websites = data;
+        });
     };
     return WebsiteListComponent;
 }());
@@ -1226,13 +1239,19 @@ var WebsiteNewComponent = (function () {
         this.findWebsitesByUserId();
     };
     WebsiteNewComponent.prototype.findWebsitesByUserId = function () {
-        var websites = this.websiteService.findWebsitesByUser(this.userId);
-        this.websites = websites;
+        var _this = this;
+        this.websiteService.findWebsitesByUser(this.userId)
+            .subscribe(function (websites) {
+            _this.websites = websites;
+        });
     };
     WebsiteNewComponent.prototype.createWebsite = function () {
+        var _this = this;
         this.website = new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */]('', this.name, this.userId, this.description);
-        this.websiteService.createWebsite(this.userId, this.website);
-        this.router.navigate(['/user', this.userId, 'website']);
+        this.websiteService.createWebsite(this.userId, this.website)
+            .subscribe(function (data) {
+            _this.router.navigate(['/user', _this.userId, 'website']);
+        });
     };
     return WebsiteNewComponent;
 }());
@@ -2212,8 +2231,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__ = __webpack_require__("../../../../../src/app/models/website.model.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2229,68 +2248,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // injecting service into module
 var WebsiteService = (function () {
-    function WebsiteService(router) {
-        this.router = router;
-        this.websites = [
-            new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */]('123', 'Facebook', '456', 'Lorem'),
-            new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */]('234', 'Tweeter', '456', 'Lorem'),
-            new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */]('456', 'Gizmodo', '456', 'Lorem'),
-            new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */]('890', 'Go', '123', 'Lorem'),
-            new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */]('567', 'Tic Tac Toe', '123', 'Lorem'),
-            new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */]('678', 'Checkers', '123', 'Lorem'),
-            new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */]('789', 'Chess', '234', 'Lorem')
-        ];
+    function WebsiteService(http) {
+        this.http = http;
+        this.newUrl = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].baseUrl;
         this.api = {
             'createWebsite': this.createWebsite,
             'findWebsiteById': this.findWebsiteById
         };
     }
     WebsiteService.prototype.findWebsitesByUser = function (userId) {
-        var requiredWebsites = [];
-        for (var w in this.websites) {
-            if (this.websites[w].developerId === userId) {
-                requiredWebsites.push(this.websites[w]);
-            }
-        }
-        return requiredWebsites;
+        var url = this.newUrl + '/api/user/' + userId + '/website';
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json();
+        });
     };
     WebsiteService.prototype.createWebsite = function (userId, website) {
-        website._id = Math.random().toString();
-        website.developerId = userId;
-        this.websites.push(website);
-        return website;
+        var url = this.newUrl + '/api/user/' + userId + '/website';
+        return this.http.post(url, website)
+            .map(function (response) {
+            return response.json();
+        });
     };
     WebsiteService.prototype.updateWebsite = function (websiteId, website) {
-        for (var w in this.websites) {
-            if (this.websites[w]._id === websiteId) {
-                this.websites[w].name = website.name;
-                this.websites[w].developerId = website.developerId;
-                this.websites[w].description = website.description;
-            }
-        }
+        var url = this.newUrl + '/api/website/' + websiteId;
+        return this.http.put(url, website)
+            .map(function (response) {
+            return response.json();
+        });
     };
     WebsiteService.prototype.deleteWebsite = function (websiteId) {
-        for (var w in this.websites) {
-            if (this.websites[w]._id === websiteId) {
-                var y = +w;
-                this.websites.splice(y, 1);
-                return true;
-            }
-        }
-        return false;
+        var url = this.newUrl + '/api/website/' + websiteId;
+        return this.http.delete(url)
+            .map(function (response) {
+            return response.json();
+        });
     };
     WebsiteService.prototype.findWebsiteById = function (websiteId) {
-        for (var x = 0; x < this.websites.length; x++) {
-            if (this.websites[x]._id === websiteId) {
-                return this.websites[x];
-            }
-        }
+        var url = this.newUrl + '/api/website/' + websiteId;
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json();
+        });
     };
     return WebsiteService;
 }());
 WebsiteService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], WebsiteService);
 
 var _a;

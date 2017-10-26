@@ -13,7 +13,6 @@ module.exports = function (app) {
  // app.get("/api/user?username=username&password=password", findUserByCredentials);
  // app.get("/api/user?username=username", findUserByUsername);
 
-
   var users = [
     {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder'},
     {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley'},
@@ -43,7 +42,7 @@ module.exports = function (app) {
   function createUser(req, res) {
     var user = req.body;
     user._id = Math.random().toString();
-    this.users.push(user);
+    users.push(user);
     res.json(user);
   }
 
@@ -51,7 +50,7 @@ module.exports = function (app) {
     var userId = req.params["userId"];
     var updatedUser = req.body;
     for (var u in users) {
-      if (this.users[u]._id === req.params["userId"]) {
+      if (users[u]._id === req.params["userId"]) {
         users[u] == updatedUser;
         res.json(users);
       }
@@ -63,7 +62,7 @@ module.exports = function (app) {
     for (var u in users) {
       if (users[u]._id === userId) {
         var y = +u;
-        this.users.splice(y, 1);
+        users.splice(y, 1);
       }
     }
     res.json(users);
@@ -89,9 +88,5 @@ module.exports = function (app) {
     } else {
       res.status(404).send({error: "Not found"});
     }
-
   }
-
 };
-
-
