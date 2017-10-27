@@ -1457,9 +1457,6 @@ var WidgetEditComponent = (function () {
                 .subscribe(function (data) {
                 _this.widget = data;
             });
-            if (_this.widget) {
-                _this.widgetFlag = true;
-            }
         });
     };
     WidgetEditComponent.prototype.deleteWidget = function () {
@@ -1575,18 +1572,28 @@ var WidgetHeaderComponent = (function () {
         });
     };
     WidgetHeaderComponent.prototype.updateWidget = function () {
+        var _this = this;
         var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */](this.widgetId, 'HEADING', this.pageId, this.widgetSize, this.widgetText, '', '');
         if (this.widgetId) {
-            this.widgetService.updateWidget(this.widgetId, widget);
+            this.widgetService.updateWidget(this.widgetId, widget)
+                .subscribe(function (data) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget']);
+            });
         }
         else {
-            this.widgetService.createWidget(this.pageId, widget);
+            this.widgetService.createWidget(this.pageId, widget)
+                .subscribe(function (data) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget']);
+            });
         }
-        this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
     };
     WidgetHeaderComponent.prototype.deleteWidget = function () {
+        var _this = this;
         if (this.widgetId) {
-            this.widgetService.deleteWidget(this.widgetId);
+            this.widgetService.deleteWidget(this.widgetId)
+                .subscribe(function (data) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget']);
+            });
         }
     };
     return WidgetHeaderComponent;
@@ -1697,18 +1704,28 @@ var WidgetImageComponent = (function () {
         });
     };
     WidgetImageComponent.prototype.updateWidget = function () {
+        var _this = this;
         var widget = new __WEBPACK_IMPORTED_MODULE_1__models_widget_model_client__["a" /* Widget */](this.widgetId, 'IMAGE', this.pageId, '', this.widgetText, this.widgetWidth, this.widgetURL);
         if (this.widgetId) {
-            this.widgetService.updateWidget(this.widgetId, widget);
+            this.widgetService.updateWidget(this.widgetId, widget)
+                .subscribe(function (data) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget']);
+            });
         }
         else {
-            this.widgetService.createWidget(this.pageId, widget);
+            this.widgetService.createWidget(this.pageId, widget)
+                .subscribe(function (data) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget']);
+            });
         }
-        this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
     };
     WidgetImageComponent.prototype.deleteWidget = function () {
+        var _this = this;
         if (this.widgetId) {
-            this.widgetService.deleteWidget(this.widgetId);
+            this.widgetService.deleteWidget(this.widgetId)
+                .subscribe(function (data) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget']);
+            });
         }
     };
     return WidgetImageComponent;
@@ -1815,18 +1832,28 @@ var WidgetYoutubeComponent = (function () {
         });
     };
     WidgetYoutubeComponent.prototype.updateWidget = function () {
+        var _this = this;
         var widget = new __WEBPACK_IMPORTED_MODULE_1__models_widget_model_client__["a" /* Widget */](this.widgetId, 'YOUTUBE', this.pageId, '', '', this.widgetWidth, this.widgetURL);
         if (this.widgetId) {
-            this.widgetService.updateWidget(this.widgetId, widget);
+            this.widgetService.updateWidget(this.widgetId, widget)
+                .subscribe(function (data) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget']);
+            });
         }
         else {
-            this.widgetService.createWidget(this.pageId, widget);
+            this.widgetService.createWidget(this.pageId, widget)
+                .subscribe(function (data) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget']);
+            });
         }
-        this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
     };
     WidgetYoutubeComponent.prototype.deleteWidget = function () {
+        var _this = this;
         if (this.widgetId) {
-            this.widgetService.deleteWidget(this.widgetId);
+            this.widgetService.deleteWidget(this.widgetId)
+                .subscribe(function (data) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget']);
+            });
         }
     };
     return WidgetYoutubeComponent;

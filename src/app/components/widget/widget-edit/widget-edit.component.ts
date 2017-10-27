@@ -41,9 +41,6 @@ export class WidgetEditComponent implements OnInit {
             this.widget = data;
           }
         );
-      if (this.widget) {
-        this.widgetFlag = true;
-      }
     });
   }
   deleteWidget() {

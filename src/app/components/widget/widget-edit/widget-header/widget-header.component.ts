@@ -62,17 +62,31 @@ export class WidgetHeaderComponent implements OnInit {
       );
   }
   updateWidget() {
-   const widget = new Widget(this.widgetId, 'HEADING', this.pageId, this.widgetSize, this.widgetText, '', '');
+    const widget = new Widget(this.widgetId, 'HEADING', this.pageId, this.widgetSize, this.widgetText, '', '');
     if (this.widgetId) {
-      this.widgetService.updateWidget(this.widgetId, widget);
+      this.widgetService.updateWidget(this.widgetId, widget)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          }
+        );
     } else {
-      this.widgetService.createWidget(this.pageId, widget);
+      this.widgetService.createWidget(this.pageId, widget)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          }
+        );
     }
-    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
   }
   deleteWidget() {
     if (this.widgetId) {
-      this.widgetService.deleteWidget(this.widgetId);
+      this.widgetService.deleteWidget(this.widgetId)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          }
+        );
     }
 
   }

@@ -63,16 +63,30 @@ export class WidgetYoutubeComponent implements OnInit {
   updateWidget() {
     const widget = new Widget(this.widgetId, 'YOUTUBE', this.pageId, '', '', this.widgetWidth, this.widgetURL);
     if (this.widgetId) {
-      this.widgetService.updateWidget(this.widgetId, widget);
+      this.widgetService.updateWidget(this.widgetId, widget)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          }
+        );
     } else {
-          this.widgetService.createWidget(this.pageId, widget);
+          this.widgetService.createWidget(this.pageId, widget)
+            .subscribe(
+              (data: any) => {
+                this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+              }
+            );
       }
-      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
     }
 
   deleteWidget() {
     if (this.widgetId) {
-      this.widgetService.deleteWidget(this.widgetId);
+      this.widgetService.deleteWidget(this.widgetId)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          }
+        );
     }
   }
 }
