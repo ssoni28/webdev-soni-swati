@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../services/widget.service.client';
-import {Widget} from "../../../models/widget.model.client";
+import {Widget} from '../../../models/widget.model.client';
 
 @Component({
   selector: 'app-widget-edit',
@@ -16,6 +16,7 @@ export class WidgetEditComponent implements OnInit {
   widgetId: String;
   widgetFlag: boolean;
   widget: Widget;
+  widgetType: String;
   constructor(private widgetService: WidgetService,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -39,6 +40,7 @@ export class WidgetEditComponent implements OnInit {
         .subscribe(
           (data: any) => {
             this.widget = data;
+            this.widgetType = this.widget.widgetType;
           }
         );
       if (this.widget) {

@@ -10,9 +10,6 @@ module.exports = function (app) {
   app.get("/api/user", findUser);
   app.delete("/api/user/:userId", deleteUser);
 
- // app.get("/api/user?username=username&password=password", findUserByCredentials);
- // app.get("/api/user?username=username", findUserByUsername);
-
   var users = [
     {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder'},
     {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley'},

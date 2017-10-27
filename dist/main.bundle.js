@@ -821,7 +821,6 @@ module.exports = "\n<nav class=\"navbar navbar-custom navbar-fixed-top\">\n\n  <
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_user_model_client__ = __webpack_require__("../../../../../src/app/models/user.model.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -831,7 +830,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -854,13 +852,13 @@ var ProfileComponent = (function () {
     };
     ProfileComponent.prototype.getUser = function () {
         var _this = this;
-        var currentUser = this.userService.findUserById(this.userId)
-            .subscribe(function (data) {
-            _this.username = data.username;
-            _this.firstName = data.firstName;
-            _this.lastName = data.lastName;
-            _this.email = data.email;
-        }, function (error) {
+        this.userService.findUserById(this.userId)
+            .subscribe(function (currentUser) {
+            _this.user = currentUser;
+            _this.username = currentUser.username;
+            _this.firstName = currentUser.firstName;
+            _this.lastName = currentUser.lastName;
+            _this.email = currentUser.email;
         });
     };
     ProfileComponent.prototype.logout = function () {
@@ -868,9 +866,11 @@ var ProfileComponent = (function () {
     };
     ProfileComponent.prototype.updateUser = function () {
         var _this = this;
-        var user = new __WEBPACK_IMPORTED_MODULE_4__models_user_model_client__["a" /* User */](this.userId, this.username, this.password, this.firstName, this.lastName);
-        user.email = this.email;
-        this.userService.updateUser(this.userId, user)
+        this.user.username = this.username;
+        this.user.firstName = this.firstName;
+        this.user.lastName = this.lastName;
+        this.user.email = this.email;
+        this.userService.updateUser(this.userId, this.user)
             .subscribe(function (data) {
             _this.ngOnInit();
         });
@@ -1180,7 +1180,7 @@ var WebsiteListComponent = (function () {
     };
     WebsiteListComponent.prototype.findWebsitesByUserId = function () {
         var _this = this;
-        var websites = this.websiteService.findWebsitesByUser(this.userId)
+        this.websiteService.findWebsitesByUser(this.userId)
             .subscribe(function (data) {
             _this.websites = data;
         });
@@ -1456,6 +1456,7 @@ var WidgetEditComponent = (function () {
             _this.widgetService.findWidgetById(_this.widgetId)
                 .subscribe(function (data) {
                 _this.widget = data;
+                _this.widgetType = _this.widget.widgetType;
             });
             if (_this.widget) {
                 _this.widgetFlag = true;
@@ -2351,7 +2352,6 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_widget_model_client__ = __webpack_require__("../../../../../src/app/models/widget.model.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2365,21 +2365,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 // injecting service into module
 var WidgetService = (function () {
     function WidgetService(http) {
         this.http = http;
         this.newUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
-        this.widgets = [
-            new __WEBPACK_IMPORTED_MODULE_4__models_widget_model_client__["a" /* Widget */]('123', 'HEADING', '321', '2', 'GIZMODO', '', ''),
-            new __WEBPACK_IMPORTED_MODULE_4__models_widget_model_client__["a" /* Widget */]('234', 'HEADING', '321', '4', 'Lorem ipsum', '', ''),
-            new __WEBPACK_IMPORTED_MODULE_4__models_widget_model_client__["a" /* Widget */]('345', 'IMAGE', '321', '', '', '100%', 'http://lorempixel.com/400/200/'),
-            new __WEBPACK_IMPORTED_MODULE_4__models_widget_model_client__["a" /* Widget */]('456', 'HTML', '321', '', '<p>Lorem ipsum</p>', '', ''),
-            new __WEBPACK_IMPORTED_MODULE_4__models_widget_model_client__["a" /* Widget */]('567', 'HEADING', '321', '4', 'Lorem ipsum', '', ''),
-            new __WEBPACK_IMPORTED_MODULE_4__models_widget_model_client__["a" /* Widget */]('678', 'YOUTUBE', '321', '', '', '100%', 'https://www.youtube.com/embed/nhyc5ca3eVw'),
-            new __WEBPACK_IMPORTED_MODULE_4__models_widget_model_client__["a" /* Widget */]('789', 'HTML', '321', '', '<p>Lorem ipsum</p>', '', '')
-        ];
         this.api = {
             'createWidget': this.createWidget,
             'findWidgetById': this.findWidgetById
@@ -2387,31 +2377,36 @@ var WidgetService = (function () {
     }
     WidgetService.prototype.createWidget = function (pageId, widget) {
         var url = this.newUrl + '/api/page/' + pageId + '/widget';
-        return this.http.post(url, widget).map(function (response) {
+        return this.http.post(url, widget)
+            .map(function (response) {
             return response.json();
         });
     };
     WidgetService.prototype.findWidgetsByPageId = function (pageId) {
         var url = this.newUrl + '/api/page/' + pageId + '/widget';
-        return this.http.get(url).map(function (response) {
+        return this.http.get(url)
+            .map(function (response) {
             return response.json();
         });
     };
     WidgetService.prototype.updateWidget = function (widgetId, widget) {
         var url = this.newUrl + '/api/widget/' + widgetId;
-        return this.http.put(url, widget).map(function (response) {
+        return this.http.put(url, widget)
+            .map(function (response) {
             return response.json();
         });
     };
     WidgetService.prototype.deleteWidget = function (widgetId) {
         var url = this.newUrl + '/api/widget/' + widgetId;
-        return this.http.delete(url).map(function (response) {
+        return this.http.delete(url)
+            .map(function (response) {
             return response.json();
         });
     };
     WidgetService.prototype.findWidgetById = function (widgetId) {
         var url = this.newUrl + '/api/widget/' + widgetId;
-        return this.http.delete(url).map(function (response) {
+        return this.http.get(url)
+            .map(function (response) {
             return response.json();
         });
     };
