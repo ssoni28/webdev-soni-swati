@@ -855,10 +855,10 @@ var ProfileComponent = (function () {
         this.userService.findUserById(this.userId)
             .subscribe(function (currentUser) {
             _this.user = currentUser;
-            _this.username = currentUser.username;
-            _this.firstName = currentUser.firstName;
-            _this.lastName = currentUser.lastName;
-            _this.email = currentUser.email;
+            /*this.username = currentUser.username;
+            this.firstName = currentUser.firstName;
+            this.lastName = currentUser.lastName;
+            this.email = currentUser.email;*/
         });
     };
     ProfileComponent.prototype.logout = function () {
@@ -866,13 +866,13 @@ var ProfileComponent = (function () {
     };
     ProfileComponent.prototype.updateUser = function () {
         var _this = this;
-        this.user.username = this.username;
+        /*this.user.username = this.username;
         this.user.firstName = this.firstName;
         this.user.lastName = this.lastName;
-        this.user.email = this.email;
+        this.user.email = this.email;*/
         this.userService.updateUser(this.userId, this.user)
             .subscribe(function (data) {
-            _this.ngOnInit();
+            _this.router.navigate(['/user', _this.userId]);
         });
     };
     ProfileComponent.prototype.deleteUser = function () {

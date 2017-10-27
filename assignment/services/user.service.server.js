@@ -5,9 +5,9 @@
 module.exports = function (app) {
 
   app.post("/api/user", createUser);
-  app.put("/api/user/:userId", updateUser);
   app.get("/api/user/:userId", findUserById);
   app.get("/api/user", findUser);
+  app.put("/api/user/:userId", updateUser);
   app.delete("/api/user/:userId", deleteUser);
 
   var users = [
@@ -45,13 +45,16 @@ module.exports = function (app) {
 
   function updateUser(req, res) {
     var updatedUser = req.body;
-    var userId = updatedUser._id;
+    var userId = req.params["userId"];
     for (var u in users) {
       if (users[u]._id === userId) {
-        users[u] == updatedUser;
+        users[u].username = updatedUser.username;
+        users[u].firstName = updatedUser.firstName;
+        users[u].lastName = updatedUser.lastName;
+        users[u].email = updatedUser.email;
       }
     }
-    res.json(users);
+    res.json(updatedUser);
   }
 
   function deleteUser(req, res) {
