@@ -36,16 +36,14 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser() {
-    const currentUser = this.userService.findUserById(this.userId)
+     this.userService.findUserById(this.userId)
       .subscribe(
-        (data: any) => {
-          this.username = data.username;
-          this.firstName = data.firstName;
-          this.lastName = data.lastName;
-          this.email = data.email;
-        },
-        (error: any) => {
-
+        (currentUser: User) => {
+          this.user = currentUser;
+          this.username = currentUser.username;
+          this.firstName = currentUser.firstName;
+          this.lastName = currentUser.lastName;
+          this.email = currentUser.email;
         }
       );
   }
@@ -54,15 +52,25 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   updateUser() {
-    const user = new User(this.userId, this.username, this.password, this.firstName, this.lastName);
-    user.email = this.email;
-    this.userService.updateUser(this.userId, user);
-    this.ngOnInit();
+    this.user.username = this.username;
+    this.user.firstName = this.firstName;
+    this.user.lastName = this.lastName;
+    this.user.email = this.email;
+    this.userService.updateUser(this.userId, this.user)
+      .subscribe(
+        (data: any) => {
+          this.ngOnInit();
+        }
+      );
   }
 
   deleteUser() {
-    this.userService.deleteUser(this.userId);
-    this.router.navigate(['/login']);
+    this.userService.deleteUser(this.userId)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['/login']);
+        }
+      );
   }
 
 }

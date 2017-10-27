@@ -38,8 +38,12 @@ export class WidgetChooserComponent implements OnInit {
   }
 
   findWidgetsByPageId() {
-    const widgets = this.widgetService.findWidgetsByPageId(this.pageId);
-    this.widgets = widgets;
+    this.widgetService.findWidgetsByPageId(this.pageId)
+      .subscribe(
+        (data: any) => {
+          this.widgets = data;
+        }
+      );
   }
 
 }

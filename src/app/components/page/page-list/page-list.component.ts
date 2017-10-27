@@ -33,8 +33,12 @@ export class PageListComponent implements OnInit {
   }
 
   findPagesByWebsiteId() {
-    const pages = this.pageService.findPageByWebsiteId(this.websiteId);
-    this.pages = pages;
+    this.pageService.findPageByWebsiteId(this.websiteId)
+      .subscribe(
+        (data: any) => {
+          this.pages = data;
+        }
+      );
   }
 
 }

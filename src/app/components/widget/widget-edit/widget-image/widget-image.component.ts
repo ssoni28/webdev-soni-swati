@@ -49,18 +49,23 @@ export class WidgetImageComponent implements OnInit {
   }
 
   findWidgetById() {
-    const widget = this.widgetService.findWidgetById(this.widgetId);
-    if (widget) {
-      this.widgetFlag = true;
-      this.widgetURL = widget.url;
-      this.widgetWidth = widget.width;
-      this.widgetText = widget.text;
-    } else {
-      this.widgetWidth = '';
-      this.widgetURL = '';
-      this.widgetText = '';
-      this.widgetFlag = false;
-    }
+    const widget = this.widgetService.findWidgetById(this.widgetId)
+      .subscribe(
+        (data: any) => {
+          if (data) {
+            this.widgetFlag = true;
+            this.widgetURL = data.url;
+            this.widgetWidth = data.width;
+            this.widgetText = data.text;
+          } else {
+            this.widgetWidth = '';
+            this.widgetURL = '';
+            this.widgetText = '';
+            this.widgetFlag = false;
+          }
+        }
+      );
+
   }
 
   updateWidget() {

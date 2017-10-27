@@ -37,28 +37,43 @@ export class PageEditComponent implements OnInit {
   }
 
   getPage() {
-    const currentPage = this.pageService.findPageById(this.pageId);
-    if (currentPage) {
-      this.name = currentPage.name;
-      this.title = currentPage.description;
-      this.websiteId = currentPage.websiteId;
-    }
+    this.pageService.findPageById(this.pageId)
+      .subscribe(
+        (currentPage: Page) => {
+          this.name = currentPage.name;
+          this.title = currentPage.description;
+          this.websiteId = currentPage.websiteId;
+        }
+      );
   }
 
   findPagesByWebsiteId() {
-    const pages = this.pageService.findPageByWebsiteId(this.websiteId);
-    this.pages = pages;
+    this.pageService.findPageByWebsiteId(this.websiteId)
+      .subscribe(
+        (pages: any) => {
+          this.pages = pages;
+        }
+      );
   }
 
   updatePage() {
     const page = new Page(this.pageId, this.name, this.websiteId, this.title);
-    this.pageService.updatePage(this.pageId, page);
-    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+    this.pageService.updatePage(this.pageId, page)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+        }
+      );
+
   }
 
   deletePage() {
-    this.pageService.deletePage(this.pageId);
-    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+    this.pageService.deletePage(this.pageId)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+        }
+      );
   }
 
 }

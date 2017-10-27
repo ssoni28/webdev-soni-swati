@@ -1,11 +1,10 @@
-module.exports = function(app) {
+module.exports = function (app) {
 
   app.post("/api/user/:userId/website", createWebsite);
   app.put("/api/website/:websiteId", updateWebsite);
   app.get("/api/user/:userId/website", findAllWebsitesForUser);
   app.get("/api/website/:websiteId", findWebsiteById);
   app.delete("/api/website/:websiteId", deleteWebsite);
-}
 
 var websites = [
   {_id: '123', name: 'Facebook',    developerId: '456', description: 'Lorem'},
@@ -25,7 +24,7 @@ function findAllWebsitesForUser(req, res) {
       requiredWebsites.push(websites[w]);
     }
   }
- res.json(requiredWebsites);
+  res.json(requiredWebsites);
 }
 
 function createWebsite(req, res) {
@@ -63,7 +62,13 @@ function findWebsiteById(req, res) {
   for (let x = 0; x < websites.length; x++) {
     if (websites[x]._id === websiteId) {
       website = websites[x];
+      if (website) {
+        res.json(website);
+      } else {
+        res.json(null);
+      }
     }
-      res.json(website);
   }
 }
+
+};

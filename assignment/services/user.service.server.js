@@ -47,14 +47,14 @@ module.exports = function (app) {
   }
 
   function updateUser(req, res) {
-    var userId = req.params["userId"];
     var updatedUser = req.body;
+    var userId = updatedUser._id;
     for (var u in users) {
-      if (users[u]._id === req.params["userId"]) {
+      if (users[u]._id === userId) {
         users[u] == updatedUser;
-        res.json(users);
       }
     }
+    res.json(users);
   }
 
   function deleteUser(req, res) {

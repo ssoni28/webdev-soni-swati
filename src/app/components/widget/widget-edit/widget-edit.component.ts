@@ -35,15 +35,24 @@ export class WidgetEditComponent implements OnInit {
       if (params['widgetId']) {
         this.widgetId = params['widgetId'];
       }
-      this.widget = this.widgetService.findWidgetById(this.widgetId);
+     this.widgetService.findWidgetById(this.widgetId)
+        .subscribe(
+          (data: any) => {
+            this.widget = data;
+          }
+        );
       if (this.widget) {
         this.widgetFlag = true;
       }
     });
   }
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widgetId);
-    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+    this.widgetService.deleteWidget(this.widgetId)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+        }
+      );
   }
 
 }

@@ -33,14 +33,22 @@ export class PageNewComponent implements OnInit {
   }
 
   findPagesByWebsiteId() {
-    const pages = this.pageService.findPageByWebsiteId(this.websiteId);
-    this.pages = pages;
+   this.pageService.findPageByWebsiteId(this.websiteId)
+      .subscribe(
+        (data: any) => {
+          this.pages = data;
+        }
+      );
   }
 
   createPage() {
     this.page = new Page('', this.name, this.websiteId, this.title);
-    this.pageService.createPage(this.websiteId, this.page);
-    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+    this.pageService.createPage(this.websiteId, this.page)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+        }
+      );
   }
 
 

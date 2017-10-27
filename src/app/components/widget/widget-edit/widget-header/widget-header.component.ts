@@ -46,16 +46,20 @@ export class WidgetHeaderComponent implements OnInit {
   }
 
   findWidgetById() {
-    const widget = this.widgetService.findWidgetById(this.widgetId);
-    if (widget) {
-      this.widgetFlag = true;
-      this.widgetText = widget.text;
-      this.widgetSize = widget.size;
-    } else {
-      this.widgetText = '';
-      this.widgetSize = '';
-      this.widgetFlag = false;
-    }
+    this.widgetService.findWidgetById(this.widgetId)
+      .subscribe(
+        (data: any) => {
+          if (data) {
+            this.widgetFlag = true;
+            this.widgetText = data.text;
+            this.widgetSize = data.size;
+          } else {
+            this.widgetText = '';
+            this.widgetSize = '';
+            this.widgetFlag = false;
+          }
+        }
+      );
   }
   updateWidget() {
    const widget = new Widget(this.widgetId, 'HEADING', this.pageId, this.widgetSize, this.widgetText, '', '');

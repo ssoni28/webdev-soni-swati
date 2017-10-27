@@ -44,16 +44,20 @@ export class WidgetYoutubeComponent implements OnInit {
   }
 
   findWidgetById() {
-    const widget = this.widgetService.findWidgetById(this.widgetId);
-    if (widget) {
-      this.widgetFlag = true;
-      this.widgetURL = widget.url;
-      this.widgetWidth = widget.width;
-    } else {
-      this.widgetURL = '';
-      this.widgetWidth = '';
-      this.widgetFlag = false;
-    }
+    const widget = this.widgetService.findWidgetById(this.widgetId)
+      .subscribe(
+        (data: any) => {
+          if (data) {
+            this.widgetFlag = true;
+            this.widgetURL = data.url;
+            this.widgetWidth = data.width;
+          } else {
+            this.widgetURL = '';
+            this.widgetWidth = '';
+            this.widgetFlag = false;
+          }
+        }
+      );
   }
 
   updateWidget() {
