@@ -16,7 +16,6 @@ export class WidgetEditComponent implements OnInit {
   widgetId: String;
   widgetFlag: boolean;
   widget: Widget;
-  widgetType: String;
   constructor(private widgetService: WidgetService,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -38,9 +37,8 @@ export class WidgetEditComponent implements OnInit {
       }
      this.widgetService.findWidgetById(this.widgetId)
         .subscribe(
-          (data: any) => {
+          (data: Widget) => {
             this.widget = data;
-            this.widgetType = this.widget.widgetType;
           }
         );
       if (this.widget) {

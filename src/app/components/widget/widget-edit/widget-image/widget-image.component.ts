@@ -75,7 +75,7 @@ export class WidgetImageComponent implements OnInit {
       } else {
         this.widgetService.createWidget(this.pageId, widget);
       }
-      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget'])
+      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
   }
 
   deleteWidget() {

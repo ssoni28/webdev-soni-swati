@@ -48,7 +48,7 @@ export class WidgetHeaderComponent implements OnInit {
   findWidgetById() {
     this.widgetService.findWidgetById(this.widgetId)
       .subscribe(
-        (data: any) => {
+        (data: Widget) => {
           if (data) {
             this.widgetFlag = true;
             this.widgetText = data.text;
