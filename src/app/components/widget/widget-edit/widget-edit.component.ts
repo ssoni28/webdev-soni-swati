@@ -39,6 +39,7 @@ export class WidgetEditComponent implements OnInit {
         .subscribe(
           (data: Widget) => {
             this.widget = data;
+            this.widgetFlag = true;
           }
         );
     });

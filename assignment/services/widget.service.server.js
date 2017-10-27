@@ -18,28 +18,28 @@ module.exports = function (app) {
 
   function createWidget(req, res) {
     var widget = req.body;
-    var pageId = req.params['pageId'];
+    var pageId = req.params["pageId"];
     var widgetId = Math.random().toString();
     if (widget.widgetType === 'HEADING') {
       var w = {"_id":widgetId,"widgetType":widget.widgetType,"pageId":pageId,"size":widget.size,
         "text":widget.text,"width":'',"url":'' };
-      widgets.push(widget);
-      res.json(widget);
+      widgets.push(w);
+      res.json(w);
     } else if (widget.widgetType === 'IMAGE') {
       var w = {"_id":widgetId,"widgetType":widget.widgetType,"pageId":pageId,"size":'',
         "text":'',"width":widget.width,"url":widget.url};
-      widgets.push(widget);
-      res.json(widget);
+      widgets.push(w);
+      res.json(w);
     } else if (widget.widgetType === 'HTML') {
       var w = {"_id":widgetId,"widgetType":widget.widgetType,"pageId":pageId,"size":'',
         "text":widget.text,"width":'',"url":''};
-      widgets.push(widget);
-      res.json(widget);
+      widgets.push(w);
+      res.json(w);
     } else if (widget.widgetType === 'YOUTUBE') {
       var w = {"_id":widgetId,"widgetType":widget.widgetType,"pageId":pageId,"size":'',
         "text":'',"width":widget.width,"url":widget.url};
-      widgets.push(widget);
-      res.json(widget);
+      widgets.push(w);
+      res.json(w);
     } else{
       res.status(404).send({error:"Not found "});
     }

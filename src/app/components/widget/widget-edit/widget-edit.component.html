@@ -1,5 +1,5 @@
 <div class="container">
-<div [ngSwitch]="widget.widgetType">
+<div *ngIf="widgetFlag" [ngSwitch]="widget.widgetType">
 
   <div *ngSwitchCase="'HEADING'">
     <app-widget-header></app-widget-header>
