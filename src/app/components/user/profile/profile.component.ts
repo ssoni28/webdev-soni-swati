@@ -40,10 +40,10 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         (currentUser: User) => {
           this.user = currentUser;
-          /*this.username = currentUser.username;
+          this.username = currentUser.username;
           this.firstName = currentUser.firstName;
           this.lastName = currentUser.lastName;
-          this.email = currentUser.email;*/
+          this.email = currentUser.email;
         }
       );
   }
@@ -52,10 +52,10 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   updateUser() {
-    /*this.user.username = this.username;
+    this.user.username = this.username;
     this.user.firstName = this.firstName;
     this.user.lastName = this.lastName;
-    this.user.email = this.email;*/
+    this.user.email = this.email;
     this.userService.updateUser(this.userId, this.user)
       .subscribe(
         (data: any) => {

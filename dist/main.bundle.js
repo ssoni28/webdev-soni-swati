@@ -855,10 +855,10 @@ var ProfileComponent = (function () {
         this.userService.findUserById(this.userId)
             .subscribe(function (currentUser) {
             _this.user = currentUser;
-            /*this.username = currentUser.username;
-            this.firstName = currentUser.firstName;
-            this.lastName = currentUser.lastName;
-            this.email = currentUser.email;*/
+            _this.username = currentUser.username;
+            _this.firstName = currentUser.firstName;
+            _this.lastName = currentUser.lastName;
+            _this.email = currentUser.email;
         });
     };
     ProfileComponent.prototype.logout = function () {
@@ -866,10 +866,10 @@ var ProfileComponent = (function () {
     };
     ProfileComponent.prototype.updateUser = function () {
         var _this = this;
-        /*this.user.username = this.username;
+        this.user.username = this.username;
         this.user.firstName = this.firstName;
         this.user.lastName = this.lastName;
-        this.user.email = this.email;*/
+        this.user.email = this.email;
         this.userService.updateUser(this.userId, this.user)
             .subscribe(function (data) {
             _this.router.navigate(['/user', _this.userId]);
@@ -2453,9 +2453,14 @@ var _a;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: true,
-    baseUrl: ''
+    production: false,
+    baseUrl: 'http://localhost:3100'
 };
 //# sourceMappingURL=environment.js.map
 
