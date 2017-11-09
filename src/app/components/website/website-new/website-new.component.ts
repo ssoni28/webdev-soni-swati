@@ -38,8 +38,13 @@ export class WebsiteNewComponent implements OnInit {
   }
 
   createWebsite() {
-    this.website = new Website('', this.name, this.userId, this.description);
-    this.websiteService.createWebsite(this.userId, this.website)
+    const newWebsite = {
+      name: this.name,
+      developerId: this.userId,
+      description: this.description
+    };
+    /*this.website = new Website('', this.name, this.userId, this.description);*/
+    this.websiteService.createWebsite(this.userId, newWebsite)
       .subscribe(
         (data: any) => {
           this.router.navigate(['/user', this.userId, 'website']);

@@ -26,7 +26,7 @@ export class WebsiteService {
     });
   }
 
-  createWebsite(userId: String, website: Website) {
+  createWebsite(userId: String, website: any) {
     const url = this.newUrl + '/api/user/' + userId + '/website';
     return this.http.post(url, website)
       .map((response: Response) => {

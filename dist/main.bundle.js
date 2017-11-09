@@ -1091,14 +1091,14 @@ var WebsiteEditComponent = (function () {
         var website = new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */](this.websiteId, this.name, this.userId, this.description);
         this.websiteService.updateWebsite(this.websiteId, website)
             .subscribe(function (data) {
-            _this.router.navigate(['/user', _this.userId, 'website']);
+            _this.router.navigate(['/user/', _this.userId, 'website']);
         });
     };
     WebsiteEditComponent.prototype.deleteWebsite = function () {
         var _this = this;
         this.websiteService.deleteWebsite(this.websiteId)
             .subscribe(function (data) {
-            _this.router.navigate(['/user', _this.userId, 'website']);
+            _this.router.navigate(['/user/', _this.userId, 'website']);
         });
     };
     return WebsiteEditComponent;
@@ -1236,7 +1236,6 @@ module.exports = "\n<div class=\"container-fluid\">\n\n  <nav class=\"navbar nav
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__ = __webpack_require__("../../../../../src/app/models/website.model.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1246,7 +1245,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -1274,8 +1272,13 @@ var WebsiteNewComponent = (function () {
     };
     WebsiteNewComponent.prototype.createWebsite = function () {
         var _this = this;
-        this.website = new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */]('', this.name, this.userId, this.description);
-        this.websiteService.createWebsite(this.userId, this.website)
+        var newWebsite = {
+            name: this.name,
+            developerId: this.userId,
+            description: this.description
+        };
+        /*this.website = new Website('', this.name, this.userId, this.description);*/
+        this.websiteService.createWebsite(this.userId, newWebsite)
             .subscribe(function (data) {
             _this.router.navigate(['/user', _this.userId, 'website']);
         });

@@ -57,7 +57,7 @@ export class WebsiteEditComponent implements OnInit {
     this.websiteService.updateWebsite(this.websiteId, website)
       .subscribe(
         (data: any) => {
-          this.router.navigate(['/user', this.userId, 'website']);
+          this.router.navigate(['/user/', this.userId, 'website']);
         });
   }
 
@@ -65,10 +65,8 @@ export class WebsiteEditComponent implements OnInit {
     this.websiteService.deleteWebsite(this.websiteId)
       .subscribe(
         (data: any) => {
-          this.router.navigate(['/user', this.userId, 'website']);
+          this.router.navigate(['/user/', this.userId, 'website']);
         }
       );
   }
-
-
 }

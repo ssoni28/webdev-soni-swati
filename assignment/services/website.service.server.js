@@ -26,7 +26,8 @@ function findAllWebsitesForUser(req, res) {
 
 function createWebsite(req, res) {
   var website = req.body;
-  website.developerId = req.params['userId'];
+  var userId = req.params['userId'];
+  website.developerId = userId;
   websiteModel
     .createWebsiteForUser(userId, website)
     .then(function (website) {

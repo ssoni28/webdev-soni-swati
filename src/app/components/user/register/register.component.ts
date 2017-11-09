@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
       const user = {
         username: this.username,
         password: this.password
-      }
+      };
      /* const user = new User(' ', this.username, this.password, ' ', ' ');*/
       this.userService.createUser(user)
         .subscribe(
