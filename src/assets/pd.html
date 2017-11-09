@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plagiarism Detector</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet"
+        href="../../vendors/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet"
+        href="../styles.css"/>
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+
+  <nav class="navbar navbar-custom navbar-fixed-top">
+    <div class="row">
+      <div class="col-sm-1 col-md-1 col-lg-1">
+        <a
+           class="navbar-brand pull-left">
+          <span class="glyphicon glyphicon-refresh my-white-color"></span>
+        </a>
+      </div>
+
+      <div class="navbar-brand my-white-color col-sm-11 col-md-11 col-lg-11"
+      style="text-align: center; font-size: x-large">
+        Awesome Plagiarism Detector
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container" style="margin-top: 50px">
+
+    <div class="row" style="margin-bottom: 10px">
+      <label>Please upload at least two java files for comparison</label>
+    </div>
+    <div class="row">
+      <div class="col-xs-10 col-md-10 col-lg-10">
+        <input class="form-control"
+               type="file"
+               id="fileUpload"
+               name="Choose File"
+               placeholder="No file chosen"/>
+
+      </div>
+
+      <div class="col-xs-1 col-md-1 col-lg-1">
+        <a class="pull-right">
+          <span class="glyphicon glyphicon-remove" style="font-size: 30px"></span>
+        </a>
+      </div>
+
+      <div class="col-xs-1 col-md-1 col-lg-1">
+        <a class="pull-right">
+          <span class="glyphicon glyphicon-plus" style="font-size: 30px"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 30px">
+
+      <a class="btn btn-primary btn-block">
+        Confirm Upload
+      </a>
+    </div>
+
+    <div class="row" style="margin-top: 30px">
+      <button class="btn btn-primary btn-block"
+              type="submit"
+              disabled>
+      Detect Plagiarism
+      </button>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

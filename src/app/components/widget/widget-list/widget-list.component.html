@@ -43,7 +43,7 @@
              [src]="safeURL(widget.url)">
       </div>
 
-      <div *ngSwitchCase= "'YOUTUBE'">
+      <div *ngSwitchCase= "'YOUTUBE'" class="youtube-widget">
         <iframe  [style.width]="widget.width+'%'" height="300"
                  [src]="safeURL(widget.url)"></iframe>
       </div>

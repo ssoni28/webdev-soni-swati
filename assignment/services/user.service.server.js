@@ -4,6 +4,8 @@
  */
 module.exports = function (app) {
 
+  var userModel = require("../model/user/user.model.server");
+
   app.post("/api/user", createUser);
   app.put("/api/user/:userId", updateUser);
   app.get("/api/user/:userId", findUserById);
@@ -18,30 +20,50 @@ module.exports = function (app) {
   ];
 
   function findUserById(req, res) {
+
     var userId = req.params["userId"];
-    var user = users.find(function (user) {
+    userModel
+      .findUserById(userId)
+      .then(function(user) {
+        res.json(user);
+      });
+    /*var user = users.find(function (user) {
       return user._id === userId;
     });
-    res.json(user);
+    res.json(user);*/
   }
 
   function findUserByCredentials(username, password) {
 
-    var requiredUser;
-    for (const x in users) {
-      if (users[x].username === username && users[x].password === password) {
-        requiredUser = users[x];
-        return requiredUser;
-      }
-    }
+    var promise = userModel.findUserByCredentials(username, password);
+    promise.then(function(user){
+      res.json(user);
+      console.log(user);
+    });
+    return;
+
+    /*  var requiredUser;
+      for (const x in users) {
+        if (users[x].username === username && users[x].password === password) {
+          requiredUser = users[x];
+          return requiredUser;
+        }
+      }*/
   }
 
   function createUser(req, res) {
     var user = req.body;
-    user._id = Math.random().toString();
-    users.push(user);
-    res.json(user);
+    var promise = userModel.createUser(user);
+    promise.then(function (user){
+        res.json(user);
+        console.log(user);
+      });
+    return;
   }
+  /* user._id = Math.random().toString();
+   users.push(user);
+   res.json(user);*/
+
 
   function updateUser(req, res) {
     var updatedUser = req.body;
@@ -69,12 +91,18 @@ module.exports = function (app) {
   }
 
   function findUserByUsername(username) {
-    for (var x = 0; x < users.length; x++) {
+    userModel
+      .findUserByUsername(username)
+      .then(function(user){
+        res.json(user);
+        console.log(user);
+      });
+    /*for (var x = 0; x < users.length; x++) {
       if (users[x].username === username) {
         return users[x];
       }
     }
-    return null;
+    return null;*/
   }
 
   function findUser(req, res) {
@@ -82,9 +110,23 @@ module.exports = function (app) {
     var password = req.query['password'];
 
     if((username) && (password)) {
-      res.json(findUserByCredentials(username, password));
+      var promise = userModel.findUserByCredentials(username, password);
+      promise.then(function(user){
+        res.json(user);
+        console.log(user);
+      });
+      return;
+
+      //res.json(findUserByCredentials(username, password));
     } else if(username) {
-      res.json(findUserByUsername(username));
+      userModel
+        .findUserByUsername(username)
+        .then(function(user){
+          res.json(user);
+          console.log(user);
+        });
+      return;
+      // res.json(findUserByUsername(username));
     } else {
       res.status(404).send({error: "Not found"});
     }
