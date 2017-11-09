@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.userService.findUserByCredentials(this.username, this.password)
       .subscribe(
         (user: User) => {
-          this.router.navigate(['/user/', user._id]);
+          this.router.navigate(['/user', user._id]);
         },
         (error: any) => {
           this.errorFlag = true;

@@ -12,20 +12,17 @@ module.exports = function (app) {
   app.get("/api/user", findUser);
   app.delete("/api/user/:userId", deleteUser);
 
-  var users = [
-    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder'},
-    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley'},
-    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia'},
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi'}
-  ];
-
   function findUserById(req, res) {
 
     var userId = req.params["userId"];
     userModel
       .findUserById(userId)
       .then(function(user) {
-        res.json(user);
+        if(user) {
+          res.json(user);
+        } else{
+          res.json({});
+        }
       });
     /*var user = users.find(function (user) {
       return user._id === userId;
@@ -40,7 +37,6 @@ module.exports = function (app) {
       res.json(user);
       console.log(user);
     });
-    return;
 
     /*  var requiredUser;
       for (const x in users) {
@@ -52,13 +48,12 @@ module.exports = function (app) {
   }
 
   function createUser(req, res) {
-    var user = req.body;
-    var promise = userModel.createUser(user);
-    promise.then(function (user){
+    const user = req.body;
+    userModel
+      .createUser(user)
+      .then(function (user){
         res.json(user);
-        console.log(user);
       });
-    return;
   }
   /* user._id = Math.random().toString();
    users.push(user);
@@ -68,7 +63,12 @@ module.exports = function (app) {
   function updateUser(req, res) {
     var updatedUser = req.body;
     var userId = req.params["userId"];
-    for (var u in users) {
+    userModel
+      .updateUser(userId, updatedUser)
+      .then(function (updatedUser) {
+        res.json(updatedUser);
+      });
+   /* for (var u in users) {
       if (users[u]._id === userId) {
         users[u].username = updatedUser.username;
         users[u].firstName = updatedUser.firstName;
@@ -76,18 +76,23 @@ module.exports = function (app) {
         users[u].email = updatedUser.email;
       }
     }
-    res.json(updatedUser);
+    res.json(updatedUser);*/
   }
 
   function deleteUser(req, res) {
     var userId = req.params["userId"];
-    for (var u in users) {
+    userModel
+      .deleteUser(userId)
+      .then(function (user) {
+        res.json(user);
+      });
+    /*for (var u in users) {
       if (users[u]._id === userId) {
         var y = +u;
         users.splice(y, 1);
       }
     }
-    res.json(users);
+    res.json(users);*/
   }
 
   function findUserByUsername(username) {
