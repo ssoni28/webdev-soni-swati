@@ -29,7 +29,7 @@ export class UserService {
         }
       );
   }
-  createUser(user: User) {
+  createUser(user: any) {
     const url = this.newUrl + '/api/user/';
     return this.http.post(url, user)
       .map(

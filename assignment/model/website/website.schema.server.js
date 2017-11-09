@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
+
 var WebsiteSchema = mongoose.Schema({
-  _user: String,
+  developerId: [{type:mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],
   name: String,
   description: String,
-  pages: String,
-  dateCreated: Date,
-  salary: Number
-}, {collection: 'user'});
-module.exports = UserSchema;
+  pages: [{type:mongoose.Schema.Types.ObjectId, ref: 'PageModel'}],
+  dateCreated: Date
+}, {collection: 'website'});
+
+module.exports = WebsiteSchema;

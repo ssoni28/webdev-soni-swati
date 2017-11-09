@@ -14,7 +14,7 @@ module.exports = function (app) {
 
   function findUserById(req, res) {
 
-    var userId = req.params["userId"];
+    var userId = req.params['userId'];
     userModel
       .findUserById(userId)
       .then(function(user) {
@@ -48,12 +48,13 @@ module.exports = function (app) {
   }
 
   function createUser(req, res) {
-    const user = req.body;
     userModel
-      .createUser(user)
+      .createUser(req.body)
       .then(function (user){
         res.json(user);
-      });
+      }, function(err) {
+      res.status(400).send(err);
+    });
   }
   /* user._id = Math.random().toString();
    users.push(user);
@@ -62,7 +63,7 @@ module.exports = function (app) {
 
   function updateUser(req, res) {
     var updatedUser = req.body;
-    var userId = req.params["userId"];
+    var userId = req.params['userId'];
     userModel
       .updateUser(userId, updatedUser)
       .then(function (updatedUser) {
@@ -80,7 +81,7 @@ module.exports = function (app) {
   }
 
   function deleteUser(req, res) {
-    var userId = req.params["userId"];
+    var userId = req.params['userId'];
     userModel
       .deleteUser(userId)
       .then(function (user) {
