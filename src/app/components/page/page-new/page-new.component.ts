@@ -42,7 +42,12 @@ export class PageNewComponent implements OnInit {
   }
 
   createPage() {
-    this.page = new Page('', this.name, this.websiteId, this.title);
+    const newPage = {
+      name: this.name,
+      websiteId: this.websiteId,
+      title: this.title
+    };
+   /* this.page = new Page('', this.name, this.websiteId, this.title);*/
     this.pageService.createPage(this.websiteId, this.page)
       .subscribe(
         (data: any) => {
