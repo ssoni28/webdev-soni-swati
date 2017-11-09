@@ -25,7 +25,7 @@ export class PageService {
     'findPageById' : this.findPageById
   };
 
-  createPage(websiteId: String, page: Page) {
+  createPage(websiteId: String, page: any) {
     const url = this.newUrl + '/api/website/' + websiteId + '/page';
     return this.http.post(url, page).map((response: Response) => {
       return response.json();
@@ -37,7 +37,7 @@ export class PageService {
       return response.json();
     });
   }
-  updatePage(pageId: String, page: Page) {
+  updatePage(pageId: String, page: any) {
     const url = this.newUrl + '/api/page/' + pageId;
     return this.http.put(url, page).map((response: Response) => {
       return response.json();

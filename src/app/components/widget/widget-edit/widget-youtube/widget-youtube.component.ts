@@ -61,7 +61,13 @@ export class WidgetYoutubeComponent implements OnInit {
   }
 
   updateWidget() {
-    const widget = new Widget(this.widgetId, 'YOUTUBE', this.pageId, '', '', this.widgetWidth, this.widgetURL);
+    const widget = {
+      widgetType: 'YOUTUBE',
+      pageId: this.pageId,
+      width: this.widgetWidth,
+      url: this.widgetURL
+    };
+   /* const widget = new Widget(this.widgetId, 'YOUTUBE', this.pageId, '', '', this.widgetWidth, this.widgetURL);*/
     if (this.widgetId) {
       this.widgetService.updateWidget(this.widgetId, widget)
         .subscribe(

@@ -62,7 +62,13 @@ export class WidgetHeaderComponent implements OnInit {
       );
   }
   updateWidget() {
-    const widget = new Widget(this.widgetId, 'HEADING', this.pageId, this.widgetSize, this.widgetText, '', '');
+    const widget = {
+      widgetType: 'HEADING',
+      pageId: this.pageId,
+      size: this.widgetSize,
+      text: this.widgetText
+    };
+     /* new Widget(this.widgetId, 'HEADING', this.pageId, this.widgetSize, this.widgetText, '', '');*/
     if (this.widgetId) {
       this.widgetService.updateWidget(this.widgetId, widget)
         .subscribe(

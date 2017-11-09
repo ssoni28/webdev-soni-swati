@@ -19,7 +19,7 @@ export class WidgetService {
     'findWidgetById' : this.findWidgetById
   };
 
-  createWidget(pageId: string, widget: Widget) {
+  createWidget(pageId: string, widget: any) {
     const url = this.newUrl + '/api/page/' + pageId + '/widget';
     return this.http.post(url, widget)
       .map((response: Response) => {
@@ -33,7 +33,7 @@ export class WidgetService {
       return response.json();
     });
   }
-  updateWidget(widgetId: String, widget: Widget) {
+  updateWidget(widgetId: String, widget: any) {
     const url = this.newUrl + '/api/widget/' + widgetId;
     return this.http.put(url, widget)
       .map((response: Response) => {
