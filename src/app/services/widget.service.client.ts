@@ -19,7 +19,7 @@ export class WidgetService {
     'findWidgetById' : this.findWidgetById
   };
 
-  createWidget(pageId: string, widget: any) {
+  createWidget(pageId: String, widget: any) {
     const url = this.newUrl + '/api/page/' + pageId + '/widget';
     return this.http.post(url, widget)
       .map((response: Response) => {

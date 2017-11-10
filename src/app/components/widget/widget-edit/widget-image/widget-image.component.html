@@ -57,9 +57,15 @@
 
       <a [routerLink]=""
          class="btn btn-primary btn-block">Upload Image</a>
+
+      <a class="form-control btn btn-primary"
+         [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'IMAGE', 'search']">
+        Flickr Image Search
+      </a>
+
       <a (click)="deleteWidget()"
-          class="btn btn-danger btn-block"
-      [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
+         class="btn btn-danger btn-block"
+         [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
     </div>
   </div>
 </div>
