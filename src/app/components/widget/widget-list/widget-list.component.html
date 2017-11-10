@@ -49,7 +49,10 @@
       </div>
 
       <div *ngSwitchCase="'HTML'">
-        <p> {{widget.text}}</p>
+        <quill-editor [(ngModel)]="widget['text']"></quill-editor>
+      </div>
+      <div *ngSwitchCase="'TEXT'">
+        <div innerHTML="{{widget.text}}"></div>
       </div>
     </div>
   </div>

@@ -22,16 +22,22 @@
   </nav>
   <div class="row">
     <div class="my-container col-xs-12 col-md-9 col-lg-9" >
-      <form>
-        <quill-editor [(ngModel)]="widget.text"
+     <label for="widgetName">Name</label>
+      <input class="form-control"
+             id="widgetName"
+             name="widgetName"
+             placeholder="Name"
+             [(ngModel)]="widgetName"/>
+        <quill-editor [(ngModel)]="widgetText"
+                      (ready)="onEditorCreated($event)"
+                      (change)="onContentChanged($event)"
                       name="widgetText">
-
         </quill-editor>
 
         <a class="btn btn-danger btn-block "
            (click)="deleteWidget()">Delete</a>
 
-      </form>
+
     </div>
   </div>
 </div>

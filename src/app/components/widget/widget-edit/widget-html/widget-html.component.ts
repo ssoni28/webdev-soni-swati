@@ -15,18 +15,27 @@ export class WidgetHtmlComponent implements OnInit {
   pageId: string;
   widgetId: String;
   widgetType: String;
-  widgetText: String;
   widgetSize: String;
   errorFlag: boolean;
   errorMsg = 'Fields can not be blank';
   widgetFlag: boolean;
-  widget: Widget;
+  widget: any;
   widgetURL: String;
   widgetWidth: String;
+  widgetName: String;
+  public editor;
+  public widgetText: any;
   constructor(private widgetService: WidgetService,
               private route: ActivatedRoute,
               private router: Router) { }
 
+  onEditorCreated(quill) {
+    this.editor = quill;
+  }
+
+  onContentChanged({quill, html, text}) {
+
+  }
   ngOnInit() {
     this.errorFlag = false;
     this.route.params.subscribe(params => {
@@ -56,6 +65,7 @@ export class WidgetHtmlComponent implements OnInit {
               this.widget = data;
               this.widgetSize = this.widget.size;
               this.widgetText = this.widget.text;
+              this.widgetName = this.widget.name;
             }
           }, (error: any) => {
           }
