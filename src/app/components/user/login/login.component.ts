@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/Rx';
 import {User} from '../../../models/user.model.client';
 import {UserService} from '../../../services/user.service.client';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-login',
@@ -19,14 +20,16 @@ export class LoginComponent implements OnInit {
   errorFlag: boolean;
   errorMsg = 'Invalid username or password';
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router,
+              private userService: UserService,
+              private sharedService: SharedService) {
   }
 
   ngOnInit() {
     this.errorFlag = false;
   }
 
-  login() {
+ /* login() {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
 
@@ -38,5 +41,25 @@ export class LoginComponent implements OnInit {
         (error: any) => {
           this.errorFlag = true;
         });
+  }*/
+
+  login() {
+    // fetching data from loginForm
+    this.username = this.loginForm.value.username;
+    this.password = this.loginForm.value.password;
+
+    // calling client side userservice to send login information
+    console.log('data', this.username);
+    this.userService.login(this.username, this.password)
+      .subscribe(
+        (data: any) => {
+          this.sharedService.user = data;
+          this.router.navigate(['/user', data._id]);
+          },
+        (error: any) => {
+          console.log(error);
+        }
+      );
   }
+
 }

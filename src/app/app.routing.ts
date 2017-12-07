@@ -19,6 +19,7 @@ import {WidgetImageComponent} from './components/widget/widget-edit/widget-image
 import {FlickrImageSearchComponent} from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component';
 import {WidgetTextComponent} from './components/widget/widget-edit/widget-text/widget-text.component';
+import {AuthenticationService} from './services/authentication.service.server';
 
 
 
@@ -27,11 +28,12 @@ const APP_ROUTES: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'user/:userId', component: ProfileComponent },
-  { path: 'user/:userId/website', component: WebsiteListComponent },
-  { path: 'user/:userId/website/new', component: WebsiteNewComponent },
-  { path: 'user/:userId/website/:websiteId', component: WebsiteEditComponent },
-  { path: 'user/:userId/website/:websiteId/page', component: PageListComponent },
+  { path: 'user/:userId', component: ProfileComponent, canActivate: [AuthenticationService]},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthenticationService]},
+  { path: 'user/:userId/website', component: WebsiteListComponent, canActivate: [AuthenticationService] },
+  { path: 'user/:userId/website/new', component: WebsiteNewComponent, canActivate: [AuthenticationService] },
+  { path: 'user/:userId/website/:websiteId', component: WebsiteEditComponent, canActivate: [AuthenticationService] },
+  { path: 'user/:userId/website/:websiteId/page', component: PageListComponent, canActivate: [AuthenticationService] },
   { path: 'user/:userId/website/:websiteId/page/new', component: PageNewComponent },
   { path: 'user/:userId/website/:websiteId/page/:pageId', component: PageEditComponent },
   { path: 'user/:userId/website/:websiteId/page/:pageId/widget', component: WidgetListComponent },
@@ -41,7 +43,7 @@ const APP_ROUTES: Routes = [
   { path: 'user/:userId/website/:websiteId/page/:pageId/widget/new/IMAGE', component: WidgetImageComponent },
   { path: 'user/:userId/website/:websiteId/page/:pageId/widget/new/HTML', component: WidgetHtmlComponent },
   { path: 'user/:userId/website/:websiteId/page/:pageId/widget/new/TEXT', component: WidgetTextComponent },
-  { path: 'user/:userId/website/:websiteId/page/:pageId/widget/new/IMAGE/search', component: FlickrImageSearchComponent },
+  { path: 'user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/search', component: FlickrImageSearchComponent },
   { path: 'user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', component: WidgetEditComponent }
 ];
 

@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 import {WidgetService} from '../../../../../services/widget.service.client';
 import {FlickrService} from '../../../../../services/flickr.service.client';
+import {Widget} from '../../../../../models/widget.model.client';
 
 
 @Component({
@@ -23,10 +24,11 @@ export class FlickrImageSearchComponent implements OnInit {
   widget: any;
   widgetURL: String;
   widgetWidth: String;
-  photos: any[] = [];
+  search: boolean;
+  photos: any;
 
-  constructor(private flickrService: FlickrService,
-              private widgetService: WidgetService,
+  constructor(private widgetService: WidgetService,
+              private flickrService: FlickrService,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -36,8 +38,15 @@ export class FlickrImageSearchComponent implements OnInit {
         this.userId = params['userId'];
         this.websiteId = params['websiteId'];
         this.pageId = params['pageId'];
+       // this.widgetId = params['widgetId'];
       }
     );
+    this.widgetService.findWidgetById(this.widgetId).subscribe(
+      (widget: any) => {
+        this.widget = widget;
+      }
+    );
+
   }
 
   searchPhotos() {
@@ -52,23 +61,24 @@ export class FlickrImageSearchComponent implements OnInit {
           val = JSON.parse(val);
           console.log(val);
           this.photos = val.photos;
+          this.search = true;
         }
       );
   }
 
-  selectPhoto(photo: any) {
+  selectPhoto(photo) {
     let url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server;
     url += '/' + photo.id + '_' + photo.secret + '_b.jpg';
     const widget = {
       widgetType: 'IMAGE',
-      websiteId : this.websiteId,
-      pageId : this.pageId,
+      websiteId: this.websiteId,
+      pageId: this.pageId,
       url: url
     };
 
-    this.widgetService.createWidget(this.pageId, widget)
+    this.widgetService.updateWidget(this.widgetId, widget)
       .subscribe((data: any) => {
-              console.log(data);
+            //  console.log(data);
               this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget', data._id]);
       });
   }

@@ -22,51 +22,59 @@
     </div>
   </nav>
   <div class="row">
-    <div class="my-container col-xs-12 col-md-9 col-lg-9" >
-      <label for="name">Name</label>
-      <input [(ngModel)]="widgetName"
-             class="form-control"
-             id="name"
-             type="text"
-             placeholder="Name"/>
-      <label for="text">Text</label>
-      <input [(ngModel)]="widgetText"
-             class="form-control"
-             id="text"
-             type="text"
-             placeholder="Text"/>
-      <label for="url">URL</label>
-      <input [(ngModel)]="widgetURL"
-             class="form-control"
-             id="url"
-             type="url"
-             placeholder="http://lorempixel.com/400/200"/>
-      <label for="imageWidth">Width</label>
-      <input [(ngModel)]="widgetWidth"
-             class="form-control"
-             id="imageWidth"
-             type="text"
-             placeholder="100%"/>
-      <label for="fileUpload">Upload</label>
-      <input [(ngModel)]="widgetUpload"
-             class="form-control"
-             type="file"
-             id="fileUpload"
-             name="Choose File"
-             placeholder="No file choosen">
 
-      <a [routerLink]=""
-         class="btn btn-primary btn-block">Upload Image</a>
+    <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
 
-      <a class="form-control btn btn-primary"
-         [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'IMAGE', 'search']">
-        Flickr Image Search
-      </a>
+      <div class="my-container col-xs-12 col-md-9 col-lg-9" >
+        <label for="name">Name</label>
+        <input [(ngModel)]="widgetName"
+               class="form-control"
+               id="name"
+               type="text"
+               placeholder="Name"/>
+        <label for="text">Text</label>
+        <input [(ngModel)]="widgetText"
+               class="form-control"
+               id="text"
+               type="text"
+               placeholder="Text"/>
 
-      <a (click)="deleteWidget()"
-         class="btn btn-danger btn-block"
-         [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
-    </div>
+        <label for="url">URL</label>
+        <div class="input-group">
+          <input [(ngModel)]="widgetURL"
+                 class="form-control"
+                 id="url"
+                 type="url"
+                 placeholder="http://lorempixel.com/400/200"/>
+          <span class="input-group-btn">
+             <a class="form-control btn btn-primary"
+                [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId, 'search']">
+          Flickr Image Search
+        </a>
+          </span>
+        </div>
+
+        <label for="imageWidth">Width</label>
+        <input [(ngModel)]="widgetWidth"
+               class="form-control"
+               id="imageWidth"
+               type="text"
+               placeholder="100%"/>
+        <label for="fileUpload">Upload</label>
+        <input  name="myFile"    id="fileUpload" type="file" class="form-control"/>
+        <input  name="widgetId" value="{{widgetId}}"   style="display: none"/>
+        <input  name="websiteId" value="{{websiteId}}"   style="display: none"/>
+        <input  name="pageId" value="{{pageId}}"   style="display: none"/>
+        <input  name="userId" value="{{userId}}"   style="display: none"/>
+        <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+        <br/>
+
+
+        <a (click)="deleteWidget()"
+           class="btn btn-danger btn-block"
+           [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -74,7 +82,7 @@
   <div class="container-fluid">
     <p class="navbar-text pull-right">
       <a [routerLink]="['/user', userId]">
-        <span class="glyphicon glyphicon-user"></span>
+        <span class="glyphicon glyphicon-user my-white-color"></span>
       </a>
     </p>
 

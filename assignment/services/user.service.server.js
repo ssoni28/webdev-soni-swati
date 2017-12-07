@@ -5,12 +5,89 @@
 module.exports = function (app) {
 
   var userModel = require("../model/user/user.model.server");
+  var passport = require('passport');
+  var LocalStrategy = require('passport-local').Strategy;
 
   app.post("/api/user", createUser);
   app.put("/api/user/:userId", updateUser);
   app.get("/api/user/:userId", findUserById);
   app.get("/api/user", findUser);
   app.delete("/api/user/:userId", deleteUser);
+  app.post  ('/api/login', passport.authenticate('local'), login);
+  app.post('/api/register', register);
+  app.post('/api/logout', logout);
+  app.post('/api/loggedIn', loggedIn);
+
+  passport.use(new LocalStrategy(localStrategy));
+
+  function register(req, res) {
+    var user = req.body;
+    userModel
+      .createUser(user)
+      .then(function(user){
+        if(user) {
+          req.login(user, function (err) {
+            res.json(user);
+          });
+        }
+      });
+  }
+
+  function login(req, res) {
+    res.json(req.user);
+  }
+
+  function logout(req, res) {
+    req.logOut();
+    res.send(200);
+  }
+
+  function loggedIn(req, res) {
+   if(req.isAuthenticated()) {
+     res.json(req.user);
+   } else {
+     res.send('0');
+   }
+  }
+
+  passport.serializeUser(serializeUser);
+  // Way out
+  function serializeUser(user, done) {
+    done(null, user);
+  }
+
+  passport.deserializeUser(deserializeUser);
+  // Way In
+  function deserializeUser(user, done) {
+    userModel
+      .findUserById(user._id)
+      .then(
+        function(user){
+          done(null, user);
+        },
+        function(err){
+          done(err, null);
+        }
+      );
+  }
+
+  function localStrategy(username, password, done) {
+    userModel
+      .findUserByCredentials(username, password)
+      .then(
+        function(user) {
+          if(user.username === username && user.password === password) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+        },
+        function(err) {
+          if (err) { return done(err); }
+        }
+      );
+  }
+
 
   function findUserById(req, res) {
 

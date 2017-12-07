@@ -9,9 +9,18 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const app = express();
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+app.use(cookieParser());
+app.use(session({ secret: 'choose a secret' }));
+
+var passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 
@@ -26,6 +35,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
 

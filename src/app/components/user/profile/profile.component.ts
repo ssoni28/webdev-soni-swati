@@ -3,6 +3,7 @@ import 'rxjs/Rx';
 import {UserService} from '../../../services/user.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../models/user.model.client';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
   errorMsg = 'Invalid username or password!';
   constructor(
     private userService: UserService,
+    private sharedService: SharedService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -49,7 +51,10 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/login']);
+    this.userService.logout()
+      .subscribe((data: any) => {
+        this.router.navigate(['/login']);
+      });
   }
   updateUser() {
     this.user.username = this.username;

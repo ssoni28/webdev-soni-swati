@@ -5,6 +5,7 @@ import {User} from '../../../models/user.model.client';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/Rx';
 import {NgForm} from '@angular/forms';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-register',
@@ -30,12 +31,30 @@ export class RegisterComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private sharedService: SharedService) { }
 
   ngOnInit() {
   }
 
-  createUser() {
+  register() {
+    this.errorFlag = false;
+    this.username = this.registerForm.value.username;
+    this.password = this.registerForm.value.password;
+    this.verifyPassword = this.registerForm.value.verifyPassword;
+    if (this.password !== this.verifyPassword) {
+      this.errorFlag = true;
+      return;
+    }
+    this.userService
+      .register(this.username, this.password)
+      .subscribe((user) => {
+        this.sharedService.user = user;
+        this.router.navigate(['/user', user._id]);
+      });
+  }
+
+ /* createUser() {
     this.errorFlag = false;
     this.username = this.registerForm.value.username;
     this.password = this.registerForm.value.password;
@@ -45,7 +64,7 @@ export class RegisterComponent implements OnInit {
         username: this.username,
         password: this.password
       };
-     /* const user = new User(' ', this.username, this.password, ' ', ' ');*/
+     // const user = new User(' ', this.username, this.password, ' ', ' ');
       this.userService.createUser(user)
         .subscribe(
           (newUser: any) => {
@@ -57,7 +76,7 @@ export class RegisterComponent implements OnInit {
         );
     }
   }
-
+*/
   cancel() {
     this.router.navigate(['/login']);
   }

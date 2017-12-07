@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Widget} from '../../../../models/widget.model.client';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-widget-image',
@@ -24,6 +25,8 @@ export class WidgetImageComponent implements OnInit {
   widget: Widget;
   widgetURL: String;
   widgetWidth: String;
+  widgetName: String;
+  baseUrl = environment.baseUrl;
   constructor(private widgetService: WidgetService,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -53,12 +56,15 @@ export class WidgetImageComponent implements OnInit {
       .subscribe(
         (data: any) => {
           if (data) {
+            this.widget = data;
+            this.widgetName = data.name;
             this.widgetFlag = true;
             this.widgetURL = data.url;
             this.widgetWidth = data.width;
             this.widgetText = data.text;
           } else {
             this.widgetWidth = '';
+            this.widgetName = '';
             this.widgetURL = '';
             this.widgetText = '';
             this.widgetFlag = false;

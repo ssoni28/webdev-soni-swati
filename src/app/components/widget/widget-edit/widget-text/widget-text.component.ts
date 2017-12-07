@@ -21,7 +21,7 @@ export class WidgetTextComponent implements OnInit {
   errorFlag: boolean;
   errorMsg = 'Fields can not be blank';
   widgetFlag: boolean;
-  widget: any = {"name": "", "type": "TEXT", "text": "", "rows": "", "placeholder": "", "formatted": ""};
+  widget = {placeholder: '', rows: '', formatted: '', name: '', text: '', size: '', type: 'TEXT'};
   widgetURL: String;
   widgetWidth: String;
   constructor(private widgetService: WidgetService,
@@ -48,7 +48,6 @@ export class WidgetTextComponent implements OnInit {
 
   }
   findWidgetById() {
-    if (this.widgetId) {
       this.widgetService.findWidgetById(this.widgetId)
         .subscribe(
           (data: any) => {
@@ -61,7 +60,6 @@ export class WidgetTextComponent implements OnInit {
           }, (error: any) => {
           }
         );
-    }
 
   }
   updateWidget() {
@@ -72,14 +70,16 @@ export class WidgetTextComponent implements OnInit {
     };
     /* const widget = new Widget(this.widgetId, 'IMAGE', this.pageId, '', this.widgetText, this.widgetWidth, this.widgetURL);*/
     if (this.widgetId) {
-      this.widgetService.updateWidget(this.widgetId, widget)
+      this.widget.type = 'TEXT';
+      this.widgetService.updateWidget(this.widgetId, this.widget)
         .subscribe(
           (data: any) => {
             this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
           }
         );
     } else {
-      this.widgetService.createWidget(this.pageId, widget)
+      this.widget.type = 'TEXT';
+      this.widgetService.createWidget(this.pageId, this.widget)
         .subscribe(
           (data: any) => {
             this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);

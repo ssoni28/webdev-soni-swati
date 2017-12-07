@@ -15,7 +15,7 @@ export class WidgetListComponent implements OnInit {
   userId: String;
   websiteId: String;
   pageId: String;
-  widgets: Widget[];
+  widgets: any[];
   widgetWidth: String;
   widgetId: String;
   url: String;

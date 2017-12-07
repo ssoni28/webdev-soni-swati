@@ -33,6 +33,8 @@ import { FlickrImageSearchComponent } from './components/widget/widget-edit/widg
 import {FlickrService} from './services/flickr.service.client';
 import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
+import {SharedService} from './services/shared.service.client';
+import {AuthenticationService} from './services/authentication.service.server';
 
 @NgModule({
   // Declare components here
@@ -67,7 +69,14 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
     Routing
   ],
   // Client Side services here
-  providers: [ TestService, UserService, WebsiteService, PageService, WidgetService, FlickrService],
+  providers: [ TestService,
+    UserService,
+    WebsiteService,
+    PageService,
+    WidgetService,
+    FlickrService,
+    SharedService,
+    AuthenticationService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
