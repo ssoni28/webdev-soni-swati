@@ -27,6 +27,7 @@
              id="widgetName"
              name="widgetName"
              placeholder="Name"
+             required
              [(ngModel)]="widgetName"/>
         <quill-editor [(ngModel)]="widgetText"
                       (ready)="onEditorCreated($event)"

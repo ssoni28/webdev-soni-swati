@@ -7,6 +7,7 @@ module.exports = function (app) {
   var userModel = require("../model/user/user.model.server");
   var passport = require('passport');
   var LocalStrategy = require('passport-local').Strategy;
+  var FacebookStrategy = require('passport-facebook').Strategy;
 
   app.post("/api/user", createUser);
   app.put("/api/user/:userId", updateUser);
@@ -17,6 +18,14 @@ module.exports = function (app) {
   app.post('/api/register', register);
   app.post('/api/logout', logout);
   app.post('/api/loggedIn', loggedIn);
+
+  app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
+
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+      successRedirect: '/#/profile',
+      failureRedirect: '/#/login'
+    }));
 
   passport.use(new LocalStrategy(localStrategy));
 
