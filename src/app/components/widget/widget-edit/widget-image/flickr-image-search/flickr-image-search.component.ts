@@ -76,10 +76,10 @@ export class FlickrImageSearchComponent implements OnInit {
       url: url
     };
 
-    this.widgetService.updateWidget(this.widgetId, widget)
+    this.widgetService.createWidget(this.pageId, widget)
       .subscribe((data: any) => {
             //  console.log(data);
-              this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget', data._id]);
+              this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
       });
   }
 

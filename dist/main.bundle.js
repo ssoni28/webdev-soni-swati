@@ -1942,10 +1942,10 @@ var FlickrImageSearchComponent = (function () {
             pageId: this.pageId,
             url: url
         };
-        this.widgetService.updateWidget(this.widgetId, widget)
+        this.widgetService.createWidget(this.pageId, widget)
             .subscribe(function (data) {
             //  console.log(data);
-            _this.router.navigate(['/user/', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget', data._id]);
+            _this.router.navigate(['/user/', _this.userId, 'website', _this.websiteId, 'page', _this.pageId, 'widget']);
         });
     };
     return FlickrImageSearchComponent;
