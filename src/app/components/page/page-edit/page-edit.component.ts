@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {PageService} from '../../../services/page.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Page} from '../../../models/page.model.client';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-page-edit',
@@ -9,13 +10,15 @@ import {Page} from '../../../models/page.model.client';
   styleUrls: ['./page-edit.component.css']
 })
 export class PageEditComponent implements OnInit {
-
+  @ViewChild('f') pageEditForm: NgForm;
   userId: String;
   websiteId: String;
   pageId: String;
   name: String;
   title: String;
   pages: Page[];
+  errorFlag: boolean;
+  errorMsg: String;
   constructor(private router: Router,
               private route: ActivatedRoute,
               private pageService: PageService) { }
@@ -58,13 +61,17 @@ export class PageEditComponent implements OnInit {
 
   updatePage() {
     const page = new Page(this.pageId, this.name, this.websiteId, this.title);
-    this.pageService.updatePage(this.pageId, page)
-      .subscribe(
-        (data: any) => {
-          this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
-        }
-      );
-
+    if (page.name !== '') {
+      this.pageService.updatePage(this.pageId, page)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+          }
+        );
+    } else {
+      this.errorFlag = true;
+      this.errorMsg = 'Please provide page name';
+    }
   }
 
   deletePage() {

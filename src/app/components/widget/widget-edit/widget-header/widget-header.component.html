@@ -23,17 +23,16 @@
   </nav>
 
   <div class="my-container row">
-    <div *ngIf="errorFlag"
-         class="alert alert-danger">
-      {{errorMsg}}
-    </div>
     <div class="col-xs-12 col-md-9 col-lg-9">
+      <div *ngIf="errorFlag" class="alert alert-danger custom-style">{{errorMsg}}</div>
+      <form class="form-group">
       <label for="headerName">Name</label>
-      <input [(ngModel)]="widgetType"
+      <input [(ngModel)]="widgetName"
              class="form-control"
              placeholder="Name"
              type="text"
              required
+             name="headerName"
              id="headerName"/>
 
       <label for="headerText">Text</label>
@@ -42,6 +41,7 @@
              class="form-control"
              type="text"
              id="headerText"
+             name="headerText"
              placeholder="A Short History of Donald Trump's Stormy Relationship With Facebook"/>
 
       <label for="size">Size</label>
@@ -50,10 +50,12 @@
              class="form-control"
              placeholder="4"
              type="number"
+             name="size"
              id="size"/>
       <a (click)="deleteWidget()"
          class="btn btn-danger btn-block"
          [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
+      </form>
     </div>
   </div>
 </div>

@@ -17,8 +17,9 @@ export class WidgetHeaderComponent implements OnInit {
   widgetType: String;
   widgetText: String;
   widgetSize: String;
+  widgetName: String;
   errorFlag: boolean;
-  errorMsg = 'Fields can not be blank';
+  errorMsg: String;
   widgetFlag: boolean;
   widget: Widget;
   constructor(private widgetService: WidgetService,
@@ -48,12 +49,14 @@ export class WidgetHeaderComponent implements OnInit {
   findWidgetById() {
     this.widgetService.findWidgetById(this.widgetId)
       .subscribe(
-        (data: Widget) => {
+        (data: any) => {
           if (data) {
             this.widgetFlag = true;
+            this.widgetName = data.name;
             this.widgetText = data.text;
             this.widgetSize = data.size;
           } else {
+            this.widgetName = '';
             this.widgetText = '';
             this.widgetSize = '';
             this.widgetFlag = false;
@@ -64,25 +67,36 @@ export class WidgetHeaderComponent implements OnInit {
   updateWidget() {
     const widget = {
       widgetType: 'HEADING',
+      name: this.widgetName,
       pageId: this.pageId,
       size: this.widgetSize,
       text: this.widgetText
     };
      /* new Widget(this.widgetId, 'HEADING', this.pageId, this.widgetSize, this.widgetText, '', '');*/
     if (this.widgetId) {
-      this.widgetService.updateWidget(this.widgetId, widget)
-        .subscribe(
-          (data: any) => {
-            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-          }
-        );
+      if (widget.name !== '') {
+        this.widgetService.updateWidget(this.widgetId, widget)
+          .subscribe(
+            (data: any) => {
+              this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+            }
+          );
+      } else {
+        this.errorFlag = true;
+        this.errorMsg = 'Please provide widget name';
+      }
     } else {
-      this.widgetService.createWidget(this.pageId, widget)
-        .subscribe(
-          (data: any) => {
-            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-          }
-        );
+      if (widget.name !== '') {
+        this.widgetService.createWidget(this.pageId, widget)
+          .subscribe(
+            (data: any) => {
+              this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+            }
+          );
+      } else {
+        this.errorFlag = true;
+        this.errorMsg = 'Please provide widget name';
+      }
     }
   }
   deleteWidget() {

@@ -19,7 +19,10 @@ export class WidgetYoutubeComponent implements OnInit {
   widgetURL: String;
   widgetWidth: String;
   widgetFlag: boolean;
-  widget: Widget;
+  widgetName: String;
+  widget: Widget;errorFlag: boolean;
+  errorMsg = 'Fields can not be blank';
+
   constructor(private widgetService: WidgetService,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -48,10 +51,13 @@ export class WidgetYoutubeComponent implements OnInit {
       .subscribe(
         (data: any) => {
           if (data) {
+            this.widget = data;
+            this.widgetName = data.name;
             this.widgetFlag = true;
             this.widgetURL = data.url;
             this.widgetWidth = data.width;
           } else {
+            this.widgetName = '';
             this.widgetURL = '';
             this.widgetWidth = '';
             this.widgetFlag = false;
@@ -65,23 +71,34 @@ export class WidgetYoutubeComponent implements OnInit {
       widgetType: 'YOUTUBE',
       pageId: this.pageId,
       width: this.widgetWidth,
-      url: this.widgetURL
+      url: this.widgetURL,
+      name: this.widgetName
     };
    /* const widget = new Widget(this.widgetId, 'YOUTUBE', this.pageId, '', '', this.widgetWidth, this.widgetURL);*/
     if (this.widgetId) {
+      if (widget.name !== '') {
       this.widgetService.updateWidget(this.widgetId, widget)
         .subscribe(
           (data: any) => {
             this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
           }
         );
+      } else {
+        this.errorFlag = true;
+        this.errorMsg = 'Please provide widget name';
+      }
     } else {
+      if (widget.name !== '') {
           this.widgetService.createWidget(this.pageId, widget)
             .subscribe(
               (data: any) => {
                 this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
               }
-            );
+            ); } else {
+        this.errorFlag = true;
+        this.errorMsg = 'Please provide widget name';
+      }
+
       }
     }
 

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {WebsiteService} from '../../../services/website.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Website} from '../../../models/website.model.client';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-website-edit',
@@ -9,12 +10,14 @@ import {Website} from '../../../models/website.model.client';
   styleUrls: ['./website-edit.component.css']
 })
 export class WebsiteEditComponent implements OnInit {
-
+  @ViewChild('f') websiteEditForm: NgForm;
   userId: String;
   websiteId: String;
   name: String;
   description: String;
   websites: Website[];
+  errorFlag: boolean;
+  errorMsg: String;
   constructor( private websiteService: WebsiteService,
                private route: ActivatedRoute,
                private router: Router) { }
@@ -54,11 +57,16 @@ export class WebsiteEditComponent implements OnInit {
 
   updateWebsite() {
     const website = new Website(this.websiteId, this.name, this.userId, this.description);
-    this.websiteService.updateWebsite(this.websiteId, website)
-      .subscribe(
-        (data: any) => {
-          this.router.navigate(['/user/', this.userId, 'website']);
-        });
+    if (website.name !== '') {
+      this.websiteService.updateWebsite(this.websiteId, website)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user/', this.userId, 'website']);
+          });
+    } else {
+      this.errorFlag = true;
+      this.errorMsg = 'Please provide website name';
+    }
   }
 
   deleteWebsite() {

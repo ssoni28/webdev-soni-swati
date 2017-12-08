@@ -22,13 +22,16 @@
   </nav>
   <div class="row">
     <div class="my-container col-xs-12 col-md-9 col-lg-9" >
+      <div *ngIf="errorFlag" class="alert alert-danger custom-style">{{errorMsg}}</div>
+      <form class="form-group">
      <label for="widgetName">Name</label>
-      <input class="form-control"
+      <input [(ngModel)]="widgetName"
+             class="form-control"
              id="widgetName"
              name="widgetName"
              placeholder="Name"
              required
-             [(ngModel)]="widgetName"/>
+             />
         <quill-editor [(ngModel)]="widgetText"
                       (ready)="onEditorCreated($event)"
                       (change)="onContentChanged($event)"
@@ -38,7 +41,7 @@
         <a class="btn btn-danger btn-block "
            (click)="deleteWidget()">Delete</a>
 
-
+      </form>
     </div>
   </div>
 </div>

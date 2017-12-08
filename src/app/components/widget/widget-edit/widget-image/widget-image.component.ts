@@ -80,23 +80,34 @@ export class WidgetImageComponent implements OnInit {
       pageId: this.pageId,
       text: this.widgetText,
       width: this.widgetWidth,
-      url: this.widgetURL
+      url: this.widgetURL,
+      name: this.widgetName
     };
      /* const widget = new Widget(this.widgetId, 'IMAGE', this.pageId, '', this.widgetText, this.widgetWidth, this.widgetURL);*/
       if (this.widgetId) {
+        if (widget.name !== '') {
         this.widgetService.updateWidget(this.widgetId, widget)
           .subscribe(
             (data: any) => {
               this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
             }
           );
+        } else {
+          this.errorFlag = true;
+          this.errorMsg = 'Please provide widget name';
+        }
       } else {
+        if (widget.name !== '') {
         this.widgetService.createWidget(this.pageId, widget)
           .subscribe(
             (data: any) => {
               this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
             }
           );
+        } else {
+          this.errorFlag = true;
+          this.errorMsg = 'Please provide widget name';
+        }
       }
 
   }

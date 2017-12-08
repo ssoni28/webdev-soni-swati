@@ -23,44 +23,48 @@
   </nav>
 
   <div class="my-container row">
-    <div *ngIf="errorFlag"
-         class="alert alert-danger">
-      {{errorMsg}}
-    </div>
     <div class="col-xs-12 col-md-9 col-lg-9">
-      <label for="name">Name</label>
-      <input [(ngModel)]="widgetName"
-             class="form-control"
-             required
-             id="name"
-             type="text"
-             placeholder="Name"/>
+      <div *ngIf="errorFlag" class="alert alert-danger custom-style">{{errorMsg}}</div>
+      <form class="form-group">
 
-      <label for="text">Text</label>
+        <label for="name">Name</label>
+        <input [(ngModel)]="widgetName"
+               class="form-control"
+               required
+               id="name"
+               name="name"
+               type="text"
+               placeholder="Name"/>
 
-      <input [(ngModel)]="widgetText"
-             class="form-control"
-             id="text"
-             type="text"
-             placeholder="Text"/>
+        <label for="text">Text</label>
 
-      <label for="url">URL</label>
+        <input [(ngModel)]="widgetText"
+               class="form-control"
+               id="text"
+               type="text"
+               name="text"
+               placeholder="Text"/>
 
-      <input [(ngModel)]="widgetURL"
-             class="form-control"
-             id="url"
-             type="url"
-             placeholder="http://lorempixel.com/400/200"/>
-      <label for="videoWidth">Width</label>
+        <label for="url">URL</label>
 
-      <input [(ngModel)]="widgetWidth"
-             class="form-control"
-             id="videoWidth"
-             type="text"
-             placeholder="100%"/>
-      <a (click)="deleteWidget()"
-         class="btn btn-danger btn-block"
-         [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
+        <input [(ngModel)]="widgetURL"
+               class="form-control"
+               id="url"
+               type="url"
+               name="url"
+               placeholder="http://lorempixel.com/400/200"/>
+        <label for="videoWidth">Width</label>
+
+        <input [(ngModel)]="widgetWidth"
+               class="form-control"
+               id="videoWidth"
+               type="text"
+               name="width"
+               placeholder="100%"/>
+        <a (click)="deleteWidget()"
+           class="btn btn-danger btn-block"
+           [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
+      </form>
     </div>
   </div>
 </div>

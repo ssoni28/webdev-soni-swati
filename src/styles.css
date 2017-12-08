@@ -16,7 +16,7 @@ body {
 }
 
 .my-wd-toolbar {
-  position: absolute;;
+  position: absolute;
   right: 0px;
   background-color: grey;
   padding: 7px;
@@ -55,15 +55,15 @@ body {
 
 .youtube-widget {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
+  padding-bottom: 56.25%;
+  height: 50%;
 }
 
 .youtube-widget iframe {
   position: relative;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 90%;
   height: 100%;
 }
 

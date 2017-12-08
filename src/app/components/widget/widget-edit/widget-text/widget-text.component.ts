@@ -19,6 +19,7 @@ export class WidgetTextComponent implements OnInit {
   widgetText: String;
   widgetSize: String;
   errorFlag: boolean;
+  widgetName: String;
   errorMsg = 'Fields can not be blank';
   widgetFlag: boolean;
   widget = {placeholder: '', rows: '', formatted: '', name: '', text: '', size: '', type: 'TEXT'};
@@ -54,8 +55,9 @@ export class WidgetTextComponent implements OnInit {
             if (data) {
               this.widgetFlag = true;
               this.widget = data;
-              this.widgetSize = this.widget.size;
-              this.widgetText = this.widget.text;
+              this.widgetName = data.name;
+              this.widgetSize = data.size;
+              this.widgetText = data.text;
             }
           }, (error: any) => {
           }
@@ -66,25 +68,34 @@ export class WidgetTextComponent implements OnInit {
     const widget = {
       widgetType: 'TEXT',
       text: this.widgetText,
-      size: this.widgetSize
+      size: this.widgetSize,
+      name: this.widgetName
     };
     /* const widget = new Widget(this.widgetId, 'IMAGE', this.pageId, '', this.widgetText, this.widgetWidth, this.widgetURL);*/
     if (this.widgetId) {
-      this.widget.type = 'TEXT';
+      if (widget.name !== '') {
       this.widgetService.updateWidget(this.widgetId, this.widget)
         .subscribe(
           (data: any) => {
             this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
           }
         );
+      } else {
+        this.errorFlag = true;
+        this.errorMsg = 'Please provide widget name';
+      }
     } else {
-      this.widget.type = 'TEXT';
+        if (widget.name !== '') {
       this.widgetService.createWidget(this.pageId, this.widget)
         .subscribe(
           (data: any) => {
             this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
           }
         );
+        } else {
+          this.errorFlag = true;
+          this.errorMsg = 'Please provide widget name';
+        }
     }
 
   }

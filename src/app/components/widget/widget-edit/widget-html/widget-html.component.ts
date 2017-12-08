@@ -63,9 +63,9 @@ export class WidgetHtmlComponent implements OnInit {
             if (data) {
               this.widgetFlag = true;
               this.widget = data;
-              this.widgetSize = this.widget.size;
-              this.widgetText = this.widget.text;
-              this.widgetName = this.widget.name;
+              this.widgetSize = data.size;
+              this.widgetText = data.text;
+              this.widgetName = data.name;
             }
           }, (error: any) => {
           }
@@ -77,23 +77,34 @@ export class WidgetHtmlComponent implements OnInit {
     const widget = {
       widgetType: 'HTML',
       text: this.widgetText,
-      size: this.widgetSize
+      size: this.widgetSize,
+      name: this.widgetName
     };
     /* const widget = new Widget(this.widgetId, 'IMAGE', this.pageId, '', this.widgetText, this.widgetWidth, this.widgetURL);*/
     if (this.widgetId) {
+      if (widget.name !== '') {
       this.widgetService.updateWidget(this.widgetId, widget)
         .subscribe(
           (data: any) => {
             this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
           }
         );
+      } else {
+        this.errorFlag = true;
+        this.errorMsg = 'Please provide widget name';
+      }
     } else {
+      if (widget.name !== '') {
       this.widgetService.createWidget(this.pageId, widget)
         .subscribe(
           (data: any) => {
             this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
           }
         );
+      } else {
+        this.errorFlag = true;
+        this.errorMsg = 'Please provide widget name';
+      }
     }
 
   }

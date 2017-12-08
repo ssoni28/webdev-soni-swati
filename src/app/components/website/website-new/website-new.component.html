@@ -63,13 +63,14 @@
         <span class="help-block" *ngIf="!name.valid && name.touched">Please enter website name</span>
 
         <label for="description">Description</label>
-        <textarea [(ngModel)]="description"
-                  class="form-control"
+        <textarea class="form-control"
                   id="description"
                   rows="4"
+                  ngModel
                   type="text"
                   name="description"
                   placeholder="Description"
+                  #description="ngModel"
         ></textarea>
 
         <a class="btn btn-danger btn-block"

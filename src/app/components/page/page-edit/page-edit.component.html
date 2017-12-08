@@ -24,6 +24,8 @@
 
   <div class="my-container row">
     <div class="col-xs-12 col-md-9 col-lg-9">
+      <div *ngIf="errorFlag" class="alert alert-danger custom-style">{{errorMsg}}</div>
+      <form class="form-group" #f="ngForm">
       <label for="pageName">Name</label>
       <input [(ngModel)]="name"
              class="form-control"
@@ -32,6 +34,7 @@
              required
              name="name"
              placeholder="Main Page"/>
+
 
       <label for="pageTitle">Title</label>
       <input [(ngModel)]="title"
@@ -42,6 +45,7 @@
              placeholder="Page Title"/>
       <a (click)="deletePage()"
          class="btn btn-danger btn-block">Delete</a>
+      </form>
     </div>
   </div>
 </div>

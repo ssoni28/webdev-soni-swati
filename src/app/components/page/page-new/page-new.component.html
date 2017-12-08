@@ -37,12 +37,13 @@
         <span class="help-block" *ngIf="!name.valid && name.touched">Please enter page name</span>
 
         <label for="pageTitle">Title</label>
-        <input [(ngModel)]="title"
-               class="form-control"
+        <input class="form-control"
                id="pageTitle"
                type="text"
                name="title"
-               placeholder="Page Title"/>
+               ngModel
+               placeholder="Page Title"
+               #title="ngModel"/>
       </form>
     </div>
   </div>

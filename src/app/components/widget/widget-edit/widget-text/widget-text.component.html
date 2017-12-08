@@ -22,15 +22,18 @@
   </nav>
   <div class="row">
     <div class="my-container col-xs-12 col-md-9 col-lg-9" >
-
+      <div *ngIf="errorFlag" class="alert alert-danger custom-style">{{errorMsg}}</div>
+      <form class="form-group">
       <label for="text">Text</label>
         <input [(ngModel)]="widget.text"
                class="form-control"
+               name="text"
                id="text"/>
 
         Rows
         <input [(ngModel)]="widget.rows"
                class="form-control"
+               name="rows"
                type="number"/>
         <label for="Name">Name</label>
         <div>
@@ -51,6 +54,7 @@
         <div class="input-group">
           <input type="text"
                  readonly
+                 name="format"
                  value="Formatted"
                  class="form-control"/>
           <span class="input-group-addon">
@@ -62,7 +66,7 @@
            class="btn btn-danger btn-block"
            [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
 
-
+      </form>
 
     </div>
   </div>

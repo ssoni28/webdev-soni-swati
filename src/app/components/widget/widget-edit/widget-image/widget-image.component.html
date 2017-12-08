@@ -23,21 +23,24 @@
   </nav>
   <div class="row">
 
-    <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+    <div class="my-container col-xs-12 col-md-9 col-lg-9" >
+      <div *ngIf="errorFlag" class="alert alert-danger custom-style">{{errorMsg}}</div>
+      <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
 
-      <div class="my-container col-xs-12 col-md-9 col-lg-9" >
         <label for="name">Name</label>
         <input [(ngModel)]="widgetName"
                class="form-control"
                id="name"
                type="text"
                required
+               name="name"
                placeholder="Name"/>
         <label for="text">Text</label>
         <input [(ngModel)]="widgetText"
                class="form-control"
                id="text"
                type="text"
+               name="text"
                placeholder="Text"/>
 
         <label for="url">URL</label>
@@ -46,6 +49,7 @@
                  class="form-control"
                  id="url"
                  type="url"
+                 name="url"
                  placeholder="http://lorempixel.com/400/200"/>
           <span class="input-group-btn">
              <a class="form-control btn btn-primary"
@@ -60,6 +64,7 @@
                class="form-control"
                id="imageWidth"
                type="text"
+               name="widgetWidth"
                placeholder="100%"/>
         <label for="fileUpload">Upload</label>
         <input  name="myFile"    id="fileUpload" type="file" class="form-control"/>
@@ -74,8 +79,9 @@
         <a (click)="deleteWidget()"
            class="btn btn-danger btn-block"
            [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
-      </div>
-    </form>
+      </form>
+    </div>
+
   </div>
 </div>
 

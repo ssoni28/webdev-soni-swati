@@ -51,7 +51,6 @@
       </div>
 
       <div *ngSwitchCase="'TEXT'">
-
         <div *ngIf="widget.formatted">
           <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
         </div>

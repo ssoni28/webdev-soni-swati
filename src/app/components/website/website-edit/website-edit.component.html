@@ -49,6 +49,8 @@
     </div>
 
     <div class="col-sm-12 col-md-9 col-lg-9">
+      <div *ngIf="errorFlag" class="alert alert-danger custom-style">{{errorMsg}}</div>
+      <form class="form-group" #f="ngForm">
       <label for="name">Website Name</label>
       <input [(ngModel)]="name"
              class="form-control"
@@ -69,6 +71,7 @@
 
       <a (click)="deleteWebsite()"
          class="btn btn-danger btn-block">Delete</a>
+      </form>
     </div>
   </div>
 </div>
