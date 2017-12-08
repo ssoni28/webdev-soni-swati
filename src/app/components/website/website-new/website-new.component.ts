@@ -10,11 +10,14 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./website-new.component.css']
 })
 export class WebsiteNewComponent implements OnInit {
+  @ViewChild('f') websiteForm: NgForm;
   website: Website;
   userId: String;
   name: String;
   description: String;
   websites: Website[];
+  errorFlag: boolean;
+  errorMsg: String;
   constructor(private router: Router,
               private route: ActivatedRoute,
               private websiteService: WebsiteService) { }
@@ -39,17 +42,22 @@ export class WebsiteNewComponent implements OnInit {
 
   createWebsite() {
     const newWebsite = {
-      name: this.name,
+      name: this.websiteForm.value.name,
       developerId: this.userId,
-      description: this.description
+      description: this.websiteForm.value.description
     };
     /*this.website = new Website('', this.name, this.userId, this.description);*/
-    this.websiteService.createWebsite(this.userId, newWebsite)
-      .subscribe(
-        (data: any) => {
-          this.router.navigate(['/user', this.userId, 'website']);
-        }
-      );
+    if(newWebsite.name !== '') {
+      this.websiteService.createWebsite(this.userId, newWebsite)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user', this.userId, 'website']);
+          }
+        );
+    } else {
+      this.errorFlag = true;
+      this.errorMsg = 'Please provide website name';
+    }
   }
 
 }

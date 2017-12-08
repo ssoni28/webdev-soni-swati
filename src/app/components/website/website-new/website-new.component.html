@@ -48,17 +48,21 @@
       </ul>
     </div>
 
-      <div class="col-sm-12 col-md-9 col-lg-9">
+    <div class="col-sm-12 col-md-9 col-lg-9">
+      <div *ngIf="errorFlag" class="alert alert-danger custom-style">{{errorMsg}}</div>
+      <form class="form-group" #f="ngForm">
         <label for="name">Name</label>
-        <input [(ngModel)]="name"
-               class="form-control"
+        <input class="form-control"
                id="name"
+               ngModel
+               required
                type="text"
                name="name"
                placeholder="Name"
-               required/>
+               #name="ngModel"/>
+        <span class="help-block" *ngIf="!name.valid && name.touched">Please enter website name</span>
 
-       <label for="description">Description</label>
+        <label for="description">Description</label>
         <textarea [(ngModel)]="description"
                   class="form-control"
                   id="description"
@@ -66,11 +70,12 @@
                   type="text"
                   name="description"
                   placeholder="Description"
-                  ></textarea>
+        ></textarea>
 
-       <a class="btn btn-danger btn-block"
-         [routerLink]="['/user', userId, 'website']">Cancel</a>
-      </div>
+        <a class="btn btn-danger btn-block"
+           [routerLink]="['/user', userId, 'website']">Cancel</a>
+      </form>
+    </div>
 
   </div>
 </div>
