@@ -21,10 +21,6 @@ var passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
-
-
 // Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -38,8 +34,6 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
-
-
 
 
 const port = process.env.PORT || '3100';

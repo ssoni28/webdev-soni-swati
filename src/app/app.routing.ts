@@ -24,7 +24,7 @@ import {AuthenticationService} from './services/authentication.service.server';
 
 
 const APP_ROUTES: Routes = [
-  { path: '', component : LoginComponent },
+  { path: '', component : HomeComponent },
   { path: 'test', component: TestComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

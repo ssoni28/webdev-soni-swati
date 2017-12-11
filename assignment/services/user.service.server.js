@@ -16,10 +16,11 @@ module.exports = function (app) {
   app.get("/api/user/:userId", findUserById);
   app.get("/api/user", findUser);
   app.delete("/api/user/:userId", deleteUser);
-  app.post  ('/api/login', passport.authenticate('local'), login);
+  app.post('/api/login', passport.authenticate('local'), login);
   app.post('/api/register', register);
   app.post('/api/logout', logout);
   app.post('/api/loggedIn', loggedIn);
+
 
   app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
 
