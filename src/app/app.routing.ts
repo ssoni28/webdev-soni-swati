@@ -20,6 +20,7 @@ import {FlickrImageSearchComponent} from './components/widget/widget-edit/widget
 import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component';
 import {WidgetTextComponent} from './components/widget/widget-edit/widget-text/widget-text.component';
 import {AuthenticationService} from './services/authentication.service.server';
+import {HomeComponent} from './components/home/home.component';
 
 
 

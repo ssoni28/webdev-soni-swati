@@ -228,6 +228,8 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_widget_widget_edit_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_widget_widget_edit_widget_text_widget_text_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_authentication_service_server__ = __webpack_require__("../../../../../src/app/services/authentication.service.server.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_home_home_component__ = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
+
 
 
 
@@ -250,7 +252,7 @@ AppModule = __decorate([
 
 
 var APP_ROUTES = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__components_user_login_login_component__["a" /* LoginComponent */] },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_21__components_home_home_component__["a" /* HomeComponent */] },
     { path: 'test', component: __WEBPACK_IMPORTED_MODULE_1__components_test_test_component__["a" /* TestComponent */] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_2__components_user_login_login_component__["a" /* LoginComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_3__components_user_register_register_component__["a" /* RegisterComponent */] },
@@ -286,7 +288,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".black {\n  background-color: black;\n  width: 100%;\n  height: 100%;\n  position: fixed;\n  top:0px;\n  left:0px;\n  z-index:1000;\n}\n\n.white {\n  color: white;\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -299,7 +301,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\">\n\n  <h1>\n    Angular 4 MEAN stack app\n  </h1>\n\n\n  <h3>\n    App works\n  </h3>\n\n\n  <h4>\n    <a href=\"test\">Test MongoDB</a>\n  </h4>\n\n  <h5>\n    <a href=\"https://github.com/ssoni28/webdev-soni-swati\">GitHub URL</a>\n  </h5>\n\n  <h6>\n    <a href=\"https://webdev-soni-swati.herokuapp.com/\">Heroku</a>\n  </h6>\n\n</div>\n\n"
+module.exports = "<div class=\"container-fluid black\">\n\n  <h1 class=\"white\">\n    Swati Soni\n  </h1>\n\n  <h3 class=\"white\">\n    I am a Computer Science graduate student at Northeastern University. This repository is dedicated to the assignments of Fall 2017 class of CS5610 Web Development. You can find my resume <a href=\"https://github.com/ssoni28/massivx-exchange/blob/master/src/assets/SwatiSoniResume.pdf\">here</a>.\n  </h3>\n\n  <h3 class=\"white\">\n    <b>GitHub Repositories</b> <br></h3>\n  <hr>\n    <h4 class=\"white\">I am using the following two repositories for the projects and assignments of this course:\n<br>\n    <a href=\"https://github.com/ssoni28/webdev-soni-swati\">Assignment Github</a><br>\n    <a href=\"https://github.com/ssoni28/massivx-exchange\">Project GitHub</a>\n</h4>\n\n  <h3 class=\"white\">\n    <b>MongoDb Test URL</b> <br></h3>\n  <hr>\n  <h4 class=\"white\">\n    <a href=\"test\">Test MongoDB</a>\n  </h4>\n\n  <h3 class=\"white\">\n    <b class=\"white\">Heroku URLs</b> <br></h3>\n  <hr>\n  <h4 class=\"white\">  The link for landing page of assignment and project on heroku are as follows:\n<br>\n    <a href=\"https://webdev-soni-swati.herokuapp.com/login\">Assignment Login</a><br>\n    <a href=\"https://massivx-exchange.herokuapp.com/\">Project</a>\n\n  </h4>\n</div>\n\n"
 
 /***/ }),
 
